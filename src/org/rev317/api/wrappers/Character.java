@@ -18,6 +18,7 @@ public class Character implements Locatable {
 	private int index;
 
 	public Character(org.rev317.accessors.Character accessor, int index) {
+		this.accessor = accessor;
 		this.index = index;
 	}
 

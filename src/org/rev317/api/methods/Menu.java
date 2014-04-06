@@ -177,7 +177,11 @@ public class Menu {
 		int index = 0;
 		Client client = Loader.getClient();
 
-		// TODO : set action
+		client.getMenuAction1()[index] = cmd1;
+		client.getMenuAction2()[index] = cmd2;
+		client.getMenuAction3()[index] = cmd3;
+		client.getMenuActionId()[index] = action;
+		
 
 		client.doAction(index);
 	}

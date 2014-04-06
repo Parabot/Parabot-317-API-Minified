@@ -123,7 +123,7 @@ public class SceneObjects {
     }
 	
 	private static SceneObject getSceneObjectAtTile(int x, int y, boolean useCached) {
-		Ground sceneTile = Loader.getClient().getScene().getGroundArray()[0][x][y];
+		Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
 		if(sceneTile == null) {
 			return null;
 		}
@@ -168,7 +168,7 @@ public class SceneObjects {
 	 * @return array of sceneobjects, or null if there aren't any
 	 */
 	public static final Collection<SceneObject> getSceneObjectsAtTile(int x, int y, boolean useCached) {
-		Ground sceneTile = Loader.getClient().getScene().getGroundArray()[0][x][y];
+		Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
 		ArrayList<SceneObject> sceneObjects = null;
 		final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
 		if(interactiveObjects != null) {

@@ -30,6 +30,14 @@ public interface Client {
 	
 	public int getPlane();
 	
+	public int[] getMenuActionId();
+	
+	public int[] getMenuAction1();
+	
+	public int[] getMenuAction2();
+	
+	public int[] getMenuAction3();
+	
 	public CollisionMap[] getCollisionMap();
 	
 	// args switched

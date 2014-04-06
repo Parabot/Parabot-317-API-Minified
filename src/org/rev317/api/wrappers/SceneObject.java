@@ -65,8 +65,7 @@ public class SceneObject implements Locatable {
 	 * @return object id
 	 */
 	public final int getId() {
-		// TODO
-		return -1;
+		return accessor.getHash() >> 14 & 0x7FFF;
 	}
 
 	/**

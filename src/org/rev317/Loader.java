@@ -2,6 +2,7 @@ package org.rev317;
 
 import java.applet.Applet;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.JMenuBar;
@@ -9,6 +10,7 @@ import javax.swing.JMenuBar;
 import org.parabot.core.Context;
 import org.parabot.core.asm.ASMClassLoader;
 import org.parabot.core.asm.adapters.AddInterfaceAdapter;
+import org.parabot.core.asm.hooks.HookFile;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.servers.ServerManifest;
 import org.parabot.environment.servers.ServerProvider;
@@ -31,7 +33,7 @@ public class Loader extends ServerProvider {
 		try {
 			final Context context = Context.getInstance();
 			final ASMClassLoader classLoader = context.getASMClassLoader();
-			final Class<?> clientClass = classLoader.loadClass("client");
+			final Class<?> clientClass = classLoader.loadClass("Client");
 			Object instance = clientClass.newInstance();
 			applet = (Applet) instance;
 			return applet;
@@ -71,6 +73,16 @@ public class Loader extends ServerProvider {
 	public void initScript(Script script) {
 		ScriptEngine.getInstance().setScript(script);
 		ScriptEngine.getInstance().init();
+	}
+	
+	@Override
+	public HookFile getHookFile() {
+		try {
+			return new HookFile(new URL("http://bot.parabot.org/hooks/317api_hooks_min.xml"), HookFile.TYPE_XML);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public void unloadScript(Script script) {

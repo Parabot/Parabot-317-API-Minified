@@ -77,7 +77,7 @@ public class GroundItems {
 			if (client == null) {
 				client = Loader.getClient();
 			}
-			final Deque deque = client.getGroundItems()[0][x][y];
+			final Deque deque = client.getGroundItems()[Game.getPlane()][x][y];
 			if (deque == null) {
 				return null;
 			}
