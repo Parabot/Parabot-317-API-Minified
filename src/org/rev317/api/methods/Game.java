@@ -54,7 +54,15 @@ public class Game {
 	 * @return collision flags
 	 */
 	public static int[][] getCollisionFlags() {
-		return Loader.getClient().getCollisionMap()[0].getFlags();
+		return Loader.getClient().getCollisionMap()[Game.getPlane()].getFlags();
+	}
+	
+	/**
+	 * Gets current plane
+	 * @return current plane
+	 */
+	public static int getPlane() {
+		return Loader.getClient().getPlane();
 	}
 
 }

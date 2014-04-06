@@ -28,6 +28,8 @@ public interface Client {
 	
 	public int getBackDialogId();
 	
+	public int getPlane();
+	
 	public CollisionMap[] getCollisionMap();
 	
 	// args switched

@@ -1,5 +1,6 @@
 package org.rev317.api.wrappers;
 
+import org.rev317.api.interfaces.Locatable;
 import org.rev317.api.interfaces.TileFlags;
 import org.rev317.api.methods.Calculations;
 import org.rev317.api.methods.Game;
@@ -13,7 +14,7 @@ import org.rev317.api.methods.Walking;
  * @author Everel
  * 
  */
-public final class Tile implements TileFlags {
+public final class Tile implements TileFlags, Locatable {
 	private int x;
 	private int y;
 	private int z;
@@ -47,10 +48,18 @@ public final class Tile implements TileFlags {
 		return y;
 	}
 
+	/**
+	 * Gets region x
+	 * @return region x
+	 */
 	public final int getRegionX() {
 		return x - Game.getBaseX();
 	}
 	
+	/**
+	 * Gets region y
+	 * @return region y
+	 */
 	public final int getRegionY() {
 		return y - Game.getBaseY();
 	}
@@ -64,6 +73,11 @@ public final class Tile implements TileFlags {
 		return z;
 	}
 
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public final int distanceTo() {
 		return (int) Calculations.distanceTo(this);
 	}
@@ -114,28 +128,44 @@ public final class Tile implements TileFlags {
 	
 	/**
 	 * Determines if this tile is walkable
-	 * @return <b>true</b> if this tile is walkable, otherwise <b>false</b>.
+	 * @return <code>true</code> if this tile is walkable, otherwise <code>false</code>
 	 */
 	public boolean isWalkable() {
 		return (Game.getCollisionFlags()[getRegionX()][getRegionY()] & 256) == 0;
 	}
 	
 	/**
-	 * 
-	 * @param isObject
-	 * @return
+	 * Determines if this tile is reachable
+	 * @param isObject whether this tile is an object tile
+	 * @return <code>true</code> if this tile is reachable, otherwise <code>false</code>
 	 */
 	public boolean isReachable(boolean isObject) {
 		Tile current = Players.getMyPlayer().getLocation();
 		return Calculations.dijkstraDist(current.getRegionX(), current.getRegionY(), getRegionX(), getRegionY(), isObjectTile()) > -1;
 	}
 	
+	/**
+	 * Determines if this tile is reachable
+	 * @return <code>true</code> if this tile is reachable, otherwise <code>false</code>
+	 */
 	public boolean isReachable() {
 		return isReachable(isObjectTile());
 	}
 	
+	/**
+	 * Determines if this tile is an object tile
+	 * @return <code>true</code> if this tile is an object tile, otherwise <code>false</code>
+	 */
 	public boolean isObjectTile() {
 		return (Game.getCollisionFlags()[getRegionX()][getRegionY()] & OBJECT_TILE) != 0;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Tile getLocation() {
+		return this;
 	}
 
 }
