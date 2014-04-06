@@ -28,7 +28,7 @@ public class Menu {
 	 * @param actionIndex
 	 */
 	public static void interact(SceneObject object, int actionIndex) {
-		/*int actionId = 502;
+		int actionId = 502;
 		switch (actionIndex) {
 		case 0:
 			actionId = 502;
@@ -45,8 +45,8 @@ public class Menu {
 		case 4:
 			actionId = 1062;
 			break;
-		}*/
-		// TODO : send Action
+		}
+		sendAction(actionId, object.getId(), object.getLocalRegionX(), object.getLocalRegionY());
 	}
 
 	/**
