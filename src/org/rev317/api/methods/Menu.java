@@ -161,15 +161,27 @@ public class Menu {
 	public static void clickButton(int id) {
 		sendAction(ACTION_CLICK_BUTTON, 0, 0, id);
 	}
-
+	
 	/**
-	 * Sends an action the client
+	 * Sends an action to the client
 	 * @param action
 	 * @param cmd1
 	 * @param cmd2
 	 * @param cmd3
 	 */
 	public static void sendAction(int action, int cmd1, int cmd2, int cmd3) {
+		sendAction(action, cmd1, cmd2, cmd3, 0);
+	}
+
+	/**
+	 * Sends an action to the client
+	 * @param action
+	 * @param cmd1
+	 * @param cmd2
+	 * @param cmd3
+	 * @param cmd4
+	 */
+	public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int cmd4) {
 		if (constants == null) {
 			constants = Context.getInstance().getHookParser().getConstants();
 		}
