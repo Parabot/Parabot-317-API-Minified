@@ -64,7 +64,7 @@ public class Loader extends ServerProvider {
 	
 	@Override
 	public void injectHooks() {
-		AddInterfaceAdapter.setAccessorPackage("org/rev317/accessors/");
+		AddInterfaceAdapter.setAccessorPackage("org/rev317/min/accessors/");
 		// default injection is done by bot, it basically parses the hooks file
 		super.injectHooks();
 	}
