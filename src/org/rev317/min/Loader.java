@@ -22,11 +22,11 @@ import java.io.File;
 import java.net.URL;
 
 /**
- * 
+ *
  * @author Everel
  *
  */
-@ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 0.2)
+@ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 0.3)
 public class Loader extends ServerProvider {
 	private Applet applet;
 
