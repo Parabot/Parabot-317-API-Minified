@@ -10,7 +10,6 @@ public class DSceneObjects extends AbstractDebugger {
 
 	@Override
 	public void paint(Graphics g) {
-		
 	}
 
 	@Override
@@ -21,8 +20,15 @@ public class DSceneObjects extends AbstractDebugger {
 	@Override
 	public void toggle() {
 		SceneObject[] objects = SceneObjects.getNearest();
-		for(SceneObject object : objects) {
-			System.out.println("ID: " + object.getId() + " UID: " + object.getHash() + " Location: " + object.getLocation() + " Distance: " + object.distanceTo());
+		if(objects == null || objects.length == 0) 
+			return;
+
+		for (int i = objects.length - 1; i >= 0; i--) {
+			System.out.println(
+					" ID: " + objects[i].getId() + 
+					" UID: " + objects[i].getHash() + 
+					" Location: "+ objects[i].getLocation() + 
+					" Distance: "+ objects[i].distanceTo());
 		}
 	}
 
