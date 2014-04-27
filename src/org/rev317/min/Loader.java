@@ -1,16 +1,13 @@
 package org.rev317.min;
 
-import java.applet.Applet;
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.swing.JMenuBar;
-
 import org.parabot.core.Context;
+import org.parabot.core.Directories;
 import org.parabot.core.asm.ASMClassLoader;
 import org.parabot.core.asm.adapters.AddInterfaceAdapter;
 import org.parabot.core.asm.hooks.HookFile;
+import org.parabot.core.desc.ServerProviderInfo;
+import org.parabot.core.ui.components.VerboseLoader;
+import org.parabot.environment.api.utils.WebUtil;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.servers.ServerManifest;
 import org.parabot.environment.servers.ServerProvider;
@@ -19,12 +16,17 @@ import org.rev317.min.accessors.Client;
 import org.rev317.min.script.ScriptEngine;
 import org.rev317.min.ui.BotMenu;
 
+import javax.swing.*;
+import java.applet.Applet;
+import java.io.File;
+import java.net.URL;
+
 /**
- * 
+ *
  * @author Everel
  *
  */
-@ServerManifest(author = "Everel", name = "Local Client", type = Type.INJECTION, version = 0.1)
+@ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 0.3)
 public class Loader extends ServerProvider {
 	private Applet applet;
 
@@ -33,7 +35,7 @@ public class Loader extends ServerProvider {
 		try {
 			final Context context = Context.getInstance();
 			final ASMClassLoader classLoader = context.getASMClassLoader();
-			final Class<?> clientClass = classLoader.loadClass("Client");
+			final Class<?> clientClass = classLoader.loadClass(context.getServerProviderInfo().getClientClass());
 			Object instance = clientClass.newInstance();
 			applet = (Applet) instance;
 			return applet;
@@ -43,15 +45,17 @@ public class Loader extends ServerProvider {
 		}
 	}
 
-	@Override
-	public URL getJar() {
-		try {
-			return new File("D:/317client.jar").toURI().toURL();
-		} catch(Throwable t) {
-			t.printStackTrace();
-		}
-		return null;
-	}
+    @Override
+    public URL getJar() {
+        ServerProviderInfo serverProvider = Context.getInstance().getServerProviderInfo();
+
+        File target = new File(Directories.getCachePath(), serverProvider.getClientCRC32() + ".jar");
+        if(!target.exists()) {
+            WebUtil.downloadFile(serverProvider.getClient(), target, VerboseLoader.get());
+        }
+
+        return WebUtil.toURL(target);
+    }
 	
 	public static Client getClient() {
 		return (Client) Context.getInstance().getClient();
@@ -77,12 +81,7 @@ public class Loader extends ServerProvider {
 	
 	@Override
 	public HookFile getHookFile() {
-		try {
-			return new HookFile(new URL("http://bot.parabot.org/hooks/317api_hooks_min.xml"), HookFile.TYPE_XML);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		return null;
+        return new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
 	}
 	
 	public void unloadScript(Script script) {

@@ -20,6 +20,8 @@ public class BotMenu implements ActionListener {
 		
 		JMenu debug = new JMenu("Debug");
 	
+		JMenuItem inventory = newItem("Inventory");
+		JMenuItem bank = newItem("Bank");
 		JMenuItem map = newItem("Map");
 		JMenuItem animation = newItem("Animation");
 		JMenuItem objects = newItem("Objects");
@@ -31,6 +33,8 @@ public class BotMenu implements ActionListener {
 		
 		debugger.addDebugger("Actions", new DActions());
 		debugger.addDebugger("Animation", new DAnimation());
+		debugger.addDebugger("Inventory", new DInventory());
+		debugger.addDebugger("Bank", new DBank());
 		debugger.addDebugger("Map", new DMap());
 		debugger.addDebugger("Objects", new DSceneObjects());
 		debugger.addDebugger("Npcs", new DNpcs());
@@ -46,6 +50,8 @@ public class BotMenu implements ActionListener {
 		debug.add(items);
 		debug.add(interfaces);
 		debug.add(flags);
+		debug.add(inventory);
+		debug.add(bank);
 		
 		bar.add(debug);
 	}
@@ -62,4 +68,3 @@ public class BotMenu implements ActionListener {
 	}
 
 }
-

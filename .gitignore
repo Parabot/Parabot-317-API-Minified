@@ -5,3 +5,9 @@
 *.war
 *.ear
 /bin
+
+# IntelliJ
+/out/
+out
+*.iml
+.idea/
