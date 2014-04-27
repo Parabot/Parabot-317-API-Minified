@@ -123,15 +123,15 @@ public class Bank {
 		}
 
 		if (amount == 1) {
-			b.transform(0, INV_PARENT_ID);
+			b.transform(0, ITEM_INTERFACE);
 		} else if (amount == 5) {
-			b.transform(1, INV_PARENT_ID);
+			b.transform(1, ITEM_INTERFACE);
 		} else if (amount == 10) {
-			b.transform(2, INV_PARENT_ID);
+			b.transform(2, ITEM_INTERFACE);
 		} else if (amount == 0) {
-			b.transform(3, INV_PARENT_ID);
+			b.transform(3, ITEM_INTERFACE);
 		} else {
-			b.transform(4, INV_PARENT_ID);
+			b.transform(4, ITEM_INTERFACE);
 			Time.sleep(1500 + sleep);
 			Keyboard.getInstance().sendKeys("" + amount);
 		}
