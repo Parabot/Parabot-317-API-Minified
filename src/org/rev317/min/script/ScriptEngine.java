@@ -84,7 +84,7 @@ public class ScriptEngine {
 	public void unload() {
 		clearMouseListeners();
 		clearMouseMotionListeners();
-		//clearMessageListeners();
+		clearMessageListeners();
 		if(script instanceof Paintable) {
 			Context.getInstance().removePaintable((Paintable)script);
 		}
