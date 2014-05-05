@@ -10,6 +10,8 @@ import java.util.HashMap;
 import org.parabot.core.Context;
 import org.parabot.environment.api.interfaces.Paintable;
 import org.parabot.environment.scripts.Script;
+import org.rev317.min.api.events.MessageEvent;
+import org.rev317.min.api.events.listeners.MessageListener;
 
 /**
  * 
@@ -20,14 +22,14 @@ public class ScriptEngine {
 	private static HashMap<Context, ScriptEngine> instances = new HashMap<Context, ScriptEngine>();
 	private ArrayList<MouseListener> mouseListeners;
 	private ArrayList<MouseMotionListener> mouseMotionListeners;
-	//private ArrayList<MessageListener> messageListeners;
+	private ArrayList<MessageListener> messageListeners;
 	
 	private Script script = null;
 	
 	private ScriptEngine() {
 		this.mouseListeners = new ArrayList<MouseListener>();
 		this.mouseMotionListeners = new ArrayList<MouseMotionListener>();
-		//this.messageListeners = new ArrayList<MessageListener>();
+		this.messageListeners = new ArrayList<MessageListener>();
 		instances.put(Context.getInstance(), this);
 	}
 	
@@ -63,7 +65,7 @@ public class ScriptEngine {
 		mouseMotionListeners.clear();
 	}
 	
-	/*public void addMessageListener(MessageListener messageListener) {
+	public void addMessageListener(MessageListener messageListener) {
 		messageListeners.add(messageListener);
 	}
 	
@@ -73,7 +75,7 @@ public class ScriptEngine {
 	
 	public void clearMessageListeners() {
 		messageListeners.clear();
-	}*/
+	}
 	
 	public void setScript(final Script script) {
 		this.script = script;
@@ -99,9 +101,9 @@ public class ScriptEngine {
 		if(script instanceof MouseMotionListener) {
 			addMouseMotionListener((MouseMotionListener)script);
 		}
-		/*if(script instanceof MessageListener) {
+		if(script instanceof MessageListener) {
 			addMessageListener((MessageListener)script);
-		}*/
+		}
 		if(script instanceof Paintable) {
 			Context.getInstance().addPaintable((Paintable)script); 
 		}
@@ -145,11 +147,11 @@ public class ScriptEngine {
 		}
 	}
 	
-	/*public void dispatch(MessageEvent event) {
+	public void dispatch(MessageEvent event) {
 		for(final MessageListener messageListener : messageListeners) {
 			messageListener.messageReceived(event);
 		}
-	}*/
+	}
 
 }
 
