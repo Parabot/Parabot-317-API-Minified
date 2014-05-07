@@ -46,7 +46,7 @@ public class Menu {
 			actionId = 1062;
 			break;
 		}
-		sendAction(actionId, object.getId(), object.getLocalRegionX(), object.getLocalRegionY());
+		sendAction(actionId, object.getHash(), object.getLocalRegionX(), object.getLocalRegionY());
 	}
 
 	/**
