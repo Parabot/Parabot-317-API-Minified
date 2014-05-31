@@ -67,8 +67,12 @@ public enum Skill {
 		return Skill.getRealLevel(this.getIndex());
 	}
 
+	/**
+	 * Returns the current level. (For example, if you've been de-buffed by a spell, or drank a beer that buffs the stat; it will return the buffed level.)
+	 * Done by Bears
+	 */
 	public final int getLevel() {
-		return Skill.getRealLevel(this.getIndex());
+		return Skill.getCurrentLevel(this.getIndex());
 	}
 
 	/**
@@ -114,6 +118,18 @@ public enum Skill {
 	 */
 	public static final int getRealLevel(int index) {
 		return getLevelByExperience(getCurrentExperience(index));
+	}
+	
+	/**
+	 * Returns the current level of the provided skill. (Will return de-buffed/buffed levels)
+	 * 
+	 * @param index
+	 *            the skill index.
+	 * @return the current skill level.
+	 * Done by Bears
+	 */
+	public static final int getCurrentLevel(int index) {
+		return Loader.getClient().getCurrentStats()[index];
 	}
 
 	/**
