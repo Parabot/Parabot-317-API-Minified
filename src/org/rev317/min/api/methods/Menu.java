@@ -170,7 +170,7 @@ public class Menu {
 	 * @param cmd3
 	 */
 	public static void sendAction(int action, int cmd1, int cmd2, int cmd3) {
-		sendAction(action, cmd1, cmd2, cmd3, 0);
+		sendAction(action, cmd1, cmd2, cmd3, 1);
 	}
 
 	/**
@@ -179,16 +179,15 @@ public class Menu {
 	 * @param cmd1
 	 * @param cmd2
 	 * @param cmd3
-	 * @param cmd4
+	 * @param index
 	 */
-	public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int cmd4) {
+	public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int index) {
 		if (constants == null) {
 			constants = Context.getInstance().getHookParser().getConstants();
 		}
 
-		int index = 0;
 		Client client = Loader.getClient();
-
+		
 		client.getMenuAction1()[index] = cmd1;
 		client.getMenuAction2()[index] = cmd2;
 		client.getMenuAction3()[index] = cmd3;
