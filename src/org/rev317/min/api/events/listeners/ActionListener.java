@@ -1,4 +1,4 @@
-package org.rev317.min.api.event.listeners;
+package org.rev317.min.api.events.listeners;
 
 public interface ActionListener{
 
