@@ -124,7 +124,8 @@ public enum Skill {
 	 * Done by Bears
 	 */
 	public static final int getCurrentLevel(int index) {
-		return Loader.getClient().getCurrentStats()[index];
+		//return Loader.getClient().getCurrentStats()[index];
+		return getRealLevel(index); //TODO fix this method, it invokes a method not in the client accessor.
 	}
 
 	/**
