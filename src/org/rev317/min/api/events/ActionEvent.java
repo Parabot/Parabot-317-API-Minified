@@ -24,7 +24,11 @@ public final class ActionEvent{
     }
     
     public int getAction(){
-      return acrtion;
+      return action;
+    }
+    
+    public int getIndex(){
+        return index;
     }
 
 
