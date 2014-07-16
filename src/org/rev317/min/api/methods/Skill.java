@@ -9,11 +9,11 @@ import org.rev317.min.Loader;
  */
 public enum Skill {
 
-	ATTACK(0), DEFENSE(1), STRENGTH(2), HITPOINTS(3), CONSTITUTION(3), RANGE(4), PRAYER(
-			5), MAGIC(6), COOKING(7), WOODCUTTING(8), FLETCHING(9), FISHING(10), FIREMAKING(
-			11), CRAFTING(12), SMITHING(13), MINING(14), HERBLORE(15), HERBLAW(
-			15), AGILITY(16), THIEVING(17), SLAYER(18), FARMING(19), RUNECRAFTING(
-			20), HUNTER(21), CONSTRUCTION(22), SUMMONING(23), DUNGEONEERING(24);
+	ATTACK, DEFENSE, STRENGTH, HITPOINTS, CONSTITUTION, RANGE, PRAYER
+			, MAGIC, COOKING, WOODCUTTING, FLETCHING, FISHING, FIREMAKING
+			, CRAFTING, SMITHING, MINING, HERBLORE, HERBLAW
+			, AGILITY, THIEVING, SLAYER, FARMING, RUNECRAFTING
+			, HUNTER, CONSTRUCTION, SUMMONING, DUNGEONEERING;
 
 	private static final int[] EXPERIENCE = { 0, 0, 83, 174, 276, 388, 512,
 			650, 801, 969, 1154, 1358, 1584, 1833, 2107, 2411, 2746, 3115,
@@ -32,17 +32,12 @@ public enum Skill {
 			42769801, 47221641, 52136869, 57563718, 63555443, 70170840,
 			77474828, 85539082, 94442737, 104273167 };
 
-	private int index;
-
-	private Skill(int index) {
-		this.index = index;
-	}
-
 	/**
+	 * @Deprecated use Skill.ordinal() instead
 	 * Returns the skill's index.
 	 */
 	public int getIndex() {
-		return this.index;
+		return ordinal();
 	}
 
 	/**
