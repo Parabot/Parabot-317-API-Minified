@@ -30,6 +30,7 @@ public class BotMenu implements ActionListener {
 		JMenuItem interfaces = newItem("Interfaces");
 		JMenuItem flags = newItem("Collision flags");
 		JMenuItem actions = newItem("Actions");
+		JMenuItem mouse = newItem("Mouse");
 		
 		debugger.addDebugger("Actions", new DActions());
 		debugger.addDebugger("Animation", new DAnimation());
@@ -41,6 +42,7 @@ public class BotMenu implements ActionListener {
 		debugger.addDebugger("GroundItems", new DGroundItems());
 		debugger.addDebugger("Interfaces", new DInterfaces());
 		debugger.addDebugger("Collision flags", new DCollisionFlags());
+		debugger.addDebugger("Mouse", new DMouse());
 		
 		debug.add(actions);
 		debug.add(map);
@@ -52,6 +54,7 @@ public class BotMenu implements ActionListener {
 		debug.add(flags);
 		debug.add(inventory);
 		debug.add(bank);
+		debug.add(mouse);
 		
 		bar.add(debug);
 	}
