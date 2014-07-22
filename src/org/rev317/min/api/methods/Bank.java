@@ -1,7 +1,9 @@
 package org.rev317.min.api.methods;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
+import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.input.Keyboard;
@@ -13,13 +15,29 @@ import org.rev317.min.api.wrappers.SceneObject;
 /**
  * 
  * @author Everel
+ * @author Matt123337
  *
  */
 public class Bank {
-	public static final int BANK_INTERFACE = 5292;
-	public static final int ITEM_INTERFACE = 5382;
-	public static final int BUTTON_DEPOSIT_ALL = 5386;
-	public static final int INV_PARENT_ID = 5064;
+	public static int BANK_INTERFACE = 5292;
+	public static int ITEM_INTERFACE = 5382;
+	public static int BUTTON_DEPOSIT_ALL = 5386;
+	public static int INV_PARENT_ID = 5064;
+	public static int BANK_OPEN_INDEX = 1;
+	
+	static{
+		Properties p = Context.getInstance().getServerProviderInfo().getProperties();
+		if(p.containsKey("bankInterface"))
+			BANK_INTERFACE = Integer.parseInt(p.getProperty("bankInterface"));
+		if(p.containsKey("bankItemInterface"))
+			ITEM_INTERFACE = Integer.parseInt(p.getProperty("bankItemInterface"));
+		if(p.containsKey("bankDepositAll"))
+			BUTTON_DEPOSIT_ALL = Integer.parseInt(p.getProperty("bankDepositAll"));
+		if(p.containsKey("bankInvParent"))
+			INV_PARENT_ID = Integer.parseInt(p.getProperty("bankInvParent"));
+		if(p.containsKey("bankOpenIndex"))
+			BANK_OPEN_INDEX = Integer.parseInt(p.getProperty("bankOpenIndex"));
+	}
 
 	public static final int[] BANKERS = new int[] { 44, 45, 494, 495, 498, 499,
 			909, 958, 1036, 2271, 2354, 2355, 3824, 5488, 5901, 4456, 4457,
@@ -87,10 +105,10 @@ public class Bank {
 		Npc banker = getBanker();
 
 		if (bank != null) {
-			bank.interact(1);
+			bank.interact(BANK_OPEN_INDEX);
 			return true;
 		} else if (banker != null) {
-			banker.interact(1);
+			banker.interact(BANK_OPEN_INDEX);
 			return true;
 		}
 
@@ -186,7 +204,7 @@ public class Bank {
 			bank.getLocation().walkTo();
 			return;
 		}
-		bank.interact(1);
+		bank.interact(BANK_OPEN_INDEX);
 	}
 
 
