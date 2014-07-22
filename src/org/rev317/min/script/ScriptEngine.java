@@ -12,10 +12,13 @@ import org.parabot.environment.api.interfaces.Paintable;
 import org.parabot.environment.scripts.Script;
 import org.rev317.min.api.events.MessageEvent;
 import org.rev317.min.api.events.listeners.MessageListener;
+import org.rev317.min.api.events.ActionEvent;
+import org.rev317.min.api.events.listeners.ActionListener;
 
 /**
  * 
  * @author Everel
+ * @author matt123337
  *
  */
 public class ScriptEngine {
@@ -23,6 +26,7 @@ public class ScriptEngine {
 	private ArrayList<MouseListener> mouseListeners;
 	private ArrayList<MouseMotionListener> mouseMotionListeners;
 	private ArrayList<MessageListener> messageListeners;
+	private ArrayList<ActionListener> actionListeners;
 	
 	private Script script = null;
 	
@@ -30,6 +34,7 @@ public class ScriptEngine {
 		this.mouseListeners = new ArrayList<MouseListener>();
 		this.mouseMotionListeners = new ArrayList<MouseMotionListener>();
 		this.messageListeners = new ArrayList<MessageListener>();
+		this.actionListeners = new ArrayList<ActionListener>();
 		instances.put(Context.getInstance(), this);
 	}
 	
@@ -39,6 +44,18 @@ public class ScriptEngine {
 			return engine;
 		}
 		return new ScriptEngine();
+	}
+	
+	public void addActionListener(ActionListener a){
+		actionListeners.add(a);
+	}
+	
+	public void removeActionListener(ActionListener a){
+		actionListeners.remove(a);
+	}
+	
+	public void clearActionListeners(){
+		actionListeners.clear();
 	}
 	
 	public void addMouseListener(MouseListener mouseListener) {
@@ -107,6 +124,9 @@ public class ScriptEngine {
 		if(script instanceof Paintable) {
 			Context.getInstance().addPaintable((Paintable)script); 
 		}
+		if(script instanceof ActionListener){
+			addActionListener((ActionListener) script);
+		}
 	}
 	
 	public void dispatch(AWTEvent event) {
@@ -150,6 +170,12 @@ public class ScriptEngine {
 	public void dispatch(MessageEvent event) {
 		for(final MessageListener messageListener : messageListeners) {
 			messageListener.messageReceived(event);
+		}
+	}
+	
+	public void dispatch(ActionEvent event) {
+		for(final ActionListener a : actionListeners) {
+			a.onGameAction(event);
 		}
 	}
 
