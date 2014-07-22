@@ -124,6 +124,9 @@ public class ScriptEngine {
 		if(script instanceof Paintable) {
 			Context.getInstance().addPaintable((Paintable)script); 
 		}
+		if(script instanceof ActionListener){
+			addActionListener((ActionListener) script);
+		}
 	}
 	
 	public void dispatch(AWTEvent event) {
