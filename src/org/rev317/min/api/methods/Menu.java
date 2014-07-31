@@ -46,7 +46,11 @@ public class Menu {
 			actionId = 1062;
 			break;
 		}
-		sendAction(actionId, object.getHash(), object.getLocalRegionX(), object.getLocalRegionY());
+		if(Game.hasAction4()) {
+			sendAction(actionId, object.getHash(), object.getLocalRegionX(), object.getLocalRegionY(), object.getId(), 0);
+		} else {
+			sendAction(actionId, object.getHash(), object.getLocalRegionX(), object.getLocalRegionY());
+		}
 	}
 
 	/**
@@ -205,7 +209,7 @@ public class Menu {
 		client.getMenuAction2()[index] = cmd2;
 		client.getMenuAction3()[index] = cmd3;
 		if(Game.hasAction4()) {
-			client.getMenuAction4()[4] = cmd4;
+			client.getMenuAction4()[index] = cmd4;
 		}
 		client.getMenuActionId()[index] = action;
 		
