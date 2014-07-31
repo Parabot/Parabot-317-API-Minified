@@ -38,6 +38,8 @@ public interface Client {
 	
 	public int[] getMenuAction3();
 	
+	public int[] getMenuAction4();
+	
 	public CollisionMap[] getCollisionMap();
 	
 	// args switched

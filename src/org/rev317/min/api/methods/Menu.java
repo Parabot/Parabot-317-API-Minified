@@ -182,6 +182,19 @@ public class Menu {
 	 * @param index
 	 */
 	public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int index) {
+		sendAction(action, cmd1, cmd2, cmd3, 0, index);
+	}
+	
+	/**
+	 * Sends an action to the client
+	 * @param action
+	 * @param cmd1
+	 * @param cmd2
+	 * @param cmd3
+	 * @param cmd4
+	 * @param index
+	 */
+	public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int cmd4, int index) {
 		if (constants == null) {
 			constants = Context.getInstance().getHookParser().getConstants();
 		}
@@ -191,6 +204,9 @@ public class Menu {
 		client.getMenuAction1()[index] = cmd1;
 		client.getMenuAction2()[index] = cmd2;
 		client.getMenuAction3()[index] = cmd3;
+		if(Game.hasAction4()) {
+			client.getMenuAction4()[4] = cmd4;
+		}
 		client.getMenuActionId()[index] = action;
 		
 

@@ -64,5 +64,18 @@ public class Game {
 	public static int getPlane() {
 		return Loader.getClient().getPlane();
 	}
+	
+	/**
+	 * Determines whether this client has action 4 hooked
+	 * @return <code>true</code> if action 4 is hooked
+	 */
+	public static boolean hasAction4() {
+		try {
+			Loader.getClient().getMenuAction4();
+			return true;
+		} catch(AbstractMethodError e) {
+			return false;
+		}
+	}
 
 }
