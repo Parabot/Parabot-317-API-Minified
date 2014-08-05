@@ -12,8 +12,8 @@ import org.parabot.environment.api.interfaces.Paintable;
 import org.parabot.environment.scripts.Script;
 import org.rev317.min.api.events.MessageEvent;
 import org.rev317.min.api.events.listeners.MessageListener;
-import org.rev317.min.api.events.ActionEvent;
-import org.rev317.min.api.events.listeners.ActionListener;
+import org.rev317.min.api.events.GameActionEvent;
+import org.rev317.min.api.events.listeners.GameActionListener;
 
 /**
  * 
@@ -26,7 +26,7 @@ public class ScriptEngine {
 	private ArrayList<MouseListener> mouseListeners;
 	private ArrayList<MouseMotionListener> mouseMotionListeners;
 	private ArrayList<MessageListener> messageListeners;
-	private ArrayList<ActionListener> actionListeners;
+	private ArrayList<GameActionListener> actionListeners;
 	
 	private Script script = null;
 	
@@ -34,7 +34,7 @@ public class ScriptEngine {
 		this.mouseListeners = new ArrayList<MouseListener>();
 		this.mouseMotionListeners = new ArrayList<MouseMotionListener>();
 		this.messageListeners = new ArrayList<MessageListener>();
-		this.actionListeners = new ArrayList<ActionListener>();
+		this.actionListeners = new ArrayList<GameActionListener>();
 		instances.put(Context.getInstance(), this);
 	}
 	
@@ -46,11 +46,11 @@ public class ScriptEngine {
 		return new ScriptEngine();
 	}
 	
-	public void addActionListener(ActionListener a){
+	public void addActionListener(GameActionListener a){
 		actionListeners.add(a);
 	}
 	
-	public void removeActionListener(ActionListener a){
+	public void removeActionListener(GameActionListener a){
 		actionListeners.remove(a);
 	}
 	
@@ -124,8 +124,8 @@ public class ScriptEngine {
 		if(script instanceof Paintable) {
 			Context.getInstance().addPaintable((Paintable)script); 
 		}
-		if(script instanceof ActionListener){
-			addActionListener((ActionListener) script);
+		if(script instanceof GameActionListener){
+			addActionListener((GameActionListener) script);
 		}
 	}
 	
@@ -173,8 +173,8 @@ public class ScriptEngine {
 		}
 	}
 	
-	public void dispatch(ActionEvent event) {
-		for(final ActionListener a : actionListeners) {
+	public void dispatch(GameActionEvent event) {
+		for(final GameActionListener a : actionListeners) {
 			a.onGameAction(event);
 		}
 	}
