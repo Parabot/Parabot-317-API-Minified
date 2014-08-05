@@ -10,7 +10,7 @@ import org.rev317.min.script.ScriptEngine;
 /**
  * 
  * @author Everel
- * @author mat123337
+ * @author Matt123337
  * 
  */
 public class MenuAction {
