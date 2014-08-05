@@ -1,7 +1,7 @@
 package org.rev317.min.api.methods;
 
 import java.util.ArrayList;
-import java.util.Properties;
+import java.util.HashMap;
 
 import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
@@ -26,17 +26,17 @@ public class Bank {
 	public static int BANK_OPEN_INDEX = 1;
 	
 	static{
-		Properties p = Context.getInstance().getServerProviderInfo().getProperties();
+		HashMap<String, String> p = Context.getInstance().getServerProviderInfo().getProperties();
 		if(p.containsKey("bankInterface"))
-			BANK_INTERFACE = Integer.parseInt(p.getProperty("bankInterface"));
+			BANK_INTERFACE = Integer.parseInt(p.get("bankInterface"));
 		if(p.containsKey("bankItemInterface"))
-			ITEM_INTERFACE = Integer.parseInt(p.getProperty("bankItemInterface"));
+			ITEM_INTERFACE = Integer.parseInt(p.get("bankItemInterface"));
 		if(p.containsKey("bankDepositAll"))
-			BUTTON_DEPOSIT_ALL = Integer.parseInt(p.getProperty("bankDepositAll"));
+			BUTTON_DEPOSIT_ALL = Integer.parseInt(p.get("bankDepositAll"));
 		if(p.containsKey("bankInvParent"))
-			INV_PARENT_ID = Integer.parseInt(p.getProperty("bankInvParent"));
+			INV_PARENT_ID = Integer.parseInt(p.get("bankInvParent"));
 		if(p.containsKey("bankOpenIndex"))
-			BANK_OPEN_INDEX = Integer.parseInt(p.getProperty("bankOpenIndex"));
+			BANK_OPEN_INDEX = Integer.parseInt(p.get("bankOpenIndex"));
 	}
 
 	public static final int[] BANKERS = new int[] { 44, 45, 494, 495, 498, 499,
