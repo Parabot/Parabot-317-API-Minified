@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.parabot.core.Context;
-import org.parabot.environment.api.utils.Filter;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.input.Keyboard;
 import org.rev317.min.Loader;
@@ -25,7 +24,7 @@ public class Bank {
 	public static int INV_PARENT_ID = 5064;
 	public static int BANK_OPEN_INDEX = 1;
 	
-	static{
+	static {
 		HashMap<String, String> p = Context.getInstance().getServerProviderInfo().getProperties();
 		if(p.containsKey("bankInterface"))
 			BANK_INTERFACE = Integer.parseInt(p.get("bankInterface"));
@@ -54,19 +53,7 @@ public class Bank {
 	 * @return nearest banker
 	 */
 	public static Npc getBanker() {
-		return Npcs.getNearest(new Filter<Npc>() {
-
-			@Override
-			public boolean accept(Npc f) {
-				for (int id : BANKERS) {
-					if (id == f.getDef().getId()) {
-						return true;
-					}
-				}
-				return false;
-			}
-
-		})[0];
+		return Npcs.getClosest(BANKERS);
 	}
 
 	/**
