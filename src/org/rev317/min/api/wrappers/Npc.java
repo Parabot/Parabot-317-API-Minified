@@ -1,5 +1,7 @@
 package org.rev317.min.api.wrappers;
 
+import org.parabot.core.reflect.RefClass;
+
 /**
  * 
  * @author Everel
@@ -20,6 +22,14 @@ public final class Npc extends Character {
 	 */
 	public final NpcDef getDef() {
 		return new NpcDef(this.accessor.getDef());
+	}
+	
+	/**
+	 * Gets the accessor class
+	 * @return RefClass of accessor
+	 */
+	public RefClass getRefClass() {
+		return new RefClass(this.accessor);
 	}
 
 }

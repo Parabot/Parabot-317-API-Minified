@@ -1,5 +1,6 @@
 package org.rev317.min.api.wrappers;
 
+import org.parabot.core.reflect.RefClass;
 import org.rev317.min.accessors.SceneObjectTile;
 import org.rev317.min.api.interfaces.Locatable;
 import org.rev317.min.api.methods.Calculations;
@@ -91,6 +92,14 @@ public class SceneObject implements Locatable {
 	 */
 	public void interact(int actionIndex) {
 		Menu.interact(this, actionIndex);
+	}
+	
+	/**
+	 * Gets the accessor class
+	 * @return RefClass of accessor
+	 */
+	public RefClass getRefClass() {
+		return new RefClass(this.accessor);
 	}
 	
 	@Override
