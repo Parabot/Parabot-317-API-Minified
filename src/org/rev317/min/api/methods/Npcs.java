@@ -64,6 +64,32 @@ public class Npcs {
 	public static final Npc[] getNpcs() {
 		return getNpcs(ALL_FILTER);
 	}
+	
+	/**
+	 * Gets the closest npc which matches the given filter
+	 * @param filter
+	 * @return closest npc
+	 */
+	public static final Npc getClosest(final Filter<Npc> filter) {
+		Npc[] npcs = getNearest(filter);
+		if(npcs == null || npcs.length == 0) {
+			return null;
+		}
+		return npcs[0];
+	}
+	
+	/**
+	 * Gets the closest npc which matches the given ids
+	 * @param ids
+	 * @return closest npc
+	 */
+	public static final Npc getClosest(int... ids) {
+		Npc[] npcs = getNearest(ids);
+		if(npcs == null || npcs.length == 0) {
+			return null;
+		}
+		return npcs[0];
+	}
 
 	/**
 	 * Returns array with the first index to be the nearest Npc
