@@ -145,6 +145,15 @@ public class Character implements Locatable {
 		}
 		return null;
 	}
+
+    /**
+     * Determines if the entity is logged in
+     *
+     * @return <b>true</b> if entity is logged in
+     */
+    public boolean isLoggedIn(){
+        return accessor.isLoggedIn();
+    }
 	
 	/**
 	 * Gets the accessor class
