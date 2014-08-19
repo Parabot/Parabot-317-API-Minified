@@ -22,76 +22,74 @@ import java.io.File;
 import java.net.URL;
 
 /**
- *
  * @author Everel
- *
  */
 @ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
-	private Applet applet;
+    private Applet applet;
     private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getExtendenHookFile(), HookFile.TYPE_XML);
 
-	@Override
-	public Applet fetchApplet() {
-		try {
-			final Context context = Context.getInstance();
-			final ASMClassLoader classLoader = context.getASMClassLoader();
-			final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
-			Object instance = clientClass.newInstance();
-			applet = (Applet) instance;
-			return applet;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+    public static Client getClient() {
+        return (Client) Context.getInstance().getClient();
+    }
+
+    @Override
+    public Applet fetchApplet() {
+        try {
+            final Context context = Context.getInstance();
+            final ASMClassLoader classLoader = context.getASMClassLoader();
+            final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
+            Object instance = clientClass.newInstance();
+            applet = (Applet) instance;
+            return applet;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public URL getJar() {
         ServerProviderInfo serverProvider = Context.getInstance().getServerProviderInfo();
 
         File target = new File(Directories.getCachePath(), serverProvider.getClientCRC32() + ".jar");
-        if(!target.exists()) {
+        if (!target.exists()) {
             WebUtil.downloadFile(serverProvider.getClient(), target, VerboseLoader.get());
         }
 
         return WebUtil.toURL(target);
     }
-	
-	public static Client getClient() {
-		return (Client) Context.getInstance().getClient();
-	}
-	
-	@Override
-	public void addMenuItems(JMenuBar bar) {
-		new BotMenu(bar);
-	}
-	
-	@Override
-	public void injectHooks() {
-		AddInterfaceAdapter.setAccessorPackage("org/rev317/min/accessors/");
+
+    @Override
+    public void addMenuItems(JMenuBar bar) {
+        new BotMenu(bar);
+    }
+
+    @Override
+    public void injectHooks() {
+        AddInterfaceAdapter.setAccessorPackage("org/rev317/min/accessors/");
         try {
             super.injectHooks();
-        }catch (Exception e) {
-           e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             this.hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
             super.injectHooks();
         }
-	}
-	
-	@Override
-	public void initScript(Script script) {
-		ScriptEngine.getInstance().setScript(script);
-		ScriptEngine.getInstance().init();
-	}
-	
-	@Override
-	public HookFile getHookFile() {
+    }
+
+    @Override
+    public void initScript(Script script) {
+        ScriptEngine.getInstance().setScript(script);
+        ScriptEngine.getInstance().init();
+    }
+
+    @Override
+    public HookFile getHookFile() {
         return this.hookFile;
     }
-	
-	public void unloadScript(Script script) {
-		ScriptEngine.getInstance().unload();
-	}
+
+    public void unloadScript(Script script) {
+        ScriptEngine.getInstance().unload();
+    }
 
 }
