@@ -26,16 +26,17 @@ import java.net.URL;
  * @author Everel
  *
  */
-@ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 0.3)
+@ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
 	private Applet applet;
+    private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getExtendenHookFile(), HookFile.TYPE_XML);
 
 	@Override
 	public Applet fetchApplet() {
 		try {
 			final Context context = Context.getInstance();
 			final ASMClassLoader classLoader = context.getASMClassLoader();
-			final Class<?> clientClass = classLoader.loadClass(context.getServerProviderInfo().getClientClass());
+			final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
 			Object instance = clientClass.newInstance();
 			applet = (Applet) instance;
 			return applet;
@@ -69,8 +70,13 @@ public class Loader extends ServerProvider {
 	@Override
 	public void injectHooks() {
 		AddInterfaceAdapter.setAccessorPackage("org/rev317/min/accessors/");
-		// default injection is done by bot, it basically parses the hooks file
-		super.injectHooks();
+        try {
+            super.injectHooks();
+        }catch (Exception e) {
+           e.printStackTrace();
+            this.hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
+            super.injectHooks();
+        }
 	}
 	
 	@Override
@@ -81,8 +87,8 @@ public class Loader extends ServerProvider {
 	
 	@Override
 	public HookFile getHookFile() {
-        return new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
-	}
+        return this.hookFile;
+    }
 	
 	public void unloadScript(Script script) {
 		ScriptEngine.getInstance().unload();

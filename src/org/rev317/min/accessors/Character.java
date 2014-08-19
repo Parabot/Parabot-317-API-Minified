@@ -16,5 +16,6 @@ public interface Character {
 	
 	public int getInteractingEntity();
 
+    public boolean isLoggedIn();
 }
 
