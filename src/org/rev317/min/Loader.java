@@ -27,7 +27,7 @@ import java.net.URL;
 @ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
     private Applet applet;
-    private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getExtendenHookFile(), HookFile.TYPE_XML);
+    private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getExtendedHookFile(), HookFile.TYPE_XML);
 
     public static Client getClient() {
         return (Client) Context.getInstance().getClient();
