@@ -1,5 +1,8 @@
 package org.rev317.min.api.methods;
 
+import java.util.ArrayList;
+import java.util.Properties;
+
 import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.input.Keyboard;
@@ -7,9 +10,6 @@ import org.rev317.min.Loader;
 import org.rev317.min.api.wrappers.Item;
 import org.rev317.min.api.wrappers.Npc;
 import org.rev317.min.api.wrappers.SceneObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * @author Everel
@@ -30,17 +30,17 @@ public class Bank {
     public static int INV_PARENT_ID = 5064;
     public static int BANK_OPEN_INDEX = 1;
     static {
-        HashMap<String, String> p = Context.getInstance().getServerProviderInfo().getProperties();
+        Properties p = Context.getInstance().getServerProviderInfo().getProperties();
         if (p.containsKey("bankInterface"))
-            BANK_INTERFACE = Integer.parseInt(p.get("bankInterface"));
+            BANK_INTERFACE = Integer.parseInt(p.getProperty("bankInterface"));
         if (p.containsKey("bankItemInterface"))
-            ITEM_INTERFACE = Integer.parseInt(p.get("bankItemInterface"));
+            ITEM_INTERFACE = Integer.parseInt(p.getProperty("bankItemInterface"));
         if (p.containsKey("bankDepositAll"))
-            BUTTON_DEPOSIT_ALL = Integer.parseInt(p.get("bankDepositAll"));
+            BUTTON_DEPOSIT_ALL = Integer.parseInt(p.getProperty("bankDepositAll"));
         if (p.containsKey("bankInvParent"))
-            INV_PARENT_ID = Integer.parseInt(p.get("bankInvParent"));
+            INV_PARENT_ID = Integer.parseInt(p.getProperty("bankInvParent"));
         if (p.containsKey("bankOpenIndex"))
-            BANK_OPEN_INDEX = Integer.parseInt(p.get("bankOpenIndex"));
+            BANK_OPEN_INDEX = Integer.parseInt(p.getProperty("bankOpenIndex"));
     }
 
     /**
