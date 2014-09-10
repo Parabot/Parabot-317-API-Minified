@@ -18,6 +18,7 @@ import java.net.URLClassLoader;
 public class Downloader {
 
     public Downloader(){
+        downloadRandoms();
         parseRandoms();
     }
 
