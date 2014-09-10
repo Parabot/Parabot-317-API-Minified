@@ -2,14 +2,18 @@ package org.rev317.min.ui;
 
 import org.parabot.core.Context;
 import org.parabot.core.paint.PaintDebugger;
+import org.parabot.environment.scripts.randoms.Random;
 import org.rev317.min.debug.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class BotMenu implements ActionListener {
+
+    private RandomUI randomUI;
 
     public BotMenu(JMenuBar bar) {
         PaintDebugger debugger = Context.getInstance().getPaintDebugger();
@@ -51,6 +55,23 @@ public class BotMenu implements ActionListener {
         debug.add(inventory);
         debug.add(bank);
         debug.add(mouse);
+
+        JMenuItem randoms = new JMenuItem("Randoms");
+        bar.getMenu(0).add(randoms, 0);
+
+        randoms.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (randomUI == null){
+                    randomUI = new RandomUI();
+                }
+                ArrayList<String> randoms = new ArrayList<>();
+                for (Random r : Context.getInstance().getRandomHandler().getRandoms()){
+                    randoms.add(r.getName());
+                }
+                randomUI.openFrame(randoms);
+            }
+        });
 
         bar.add(debug);
     }
