@@ -27,7 +27,6 @@ import java.net.URL;
  */
 @ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
-    private Applet applet;
     private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getExtendedHookFile(), HookFile.TYPE_XML);
 
     public static Client getClient() {
@@ -41,8 +40,7 @@ public class Loader extends ServerProvider {
             final ASMClassLoader classLoader = context.getASMClassLoader();
             final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
             Object instance = clientClass.newInstance();
-            this.applet = (Applet) instance;
-            return this.applet;
+            return (Applet) instance;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
