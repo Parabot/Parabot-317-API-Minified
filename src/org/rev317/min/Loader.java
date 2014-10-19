@@ -13,7 +13,6 @@ import org.parabot.environment.servers.ServerManifest;
 import org.parabot.environment.servers.ServerProvider;
 import org.parabot.environment.servers.Type;
 import org.rev317.min.accessors.Client;
-import org.rev317.min.randoms.Downloader;
 import org.rev317.min.script.ScriptEngine;
 import org.rev317.min.ui.BotMenu;
 
@@ -93,6 +92,6 @@ public class Loader extends ServerProvider {
 
     @Override
     public void init() {
-        new Downloader();
+        //new Downloader();
     }
 }
