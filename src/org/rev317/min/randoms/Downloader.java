@@ -16,6 +16,7 @@ import java.net.URLClassLoader;
  * @author JKetelaar
  */
 public class Downloader {
+    //TODO: Move to parabot itself
 
     public Downloader(){
         if (downloadRandoms()) {
