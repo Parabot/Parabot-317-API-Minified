@@ -148,6 +148,25 @@ public class Menu {
         sendAction(actionId, item.getId(), item.getX(), item.getY());
     }
 
+    public static void interact(Item item, int action){
+        int actionId = 447;
+        switch (action){
+            case 0:
+                actionId = 447;
+                break;
+            case 1:
+                actionId = 847;
+                break;
+            case 2:
+                actionId = 1125;
+                break;
+            case 3:
+                actionId = 1107;
+                break;
+        }
+        sendAction(actionId, item.getSlot(), item.getId(), 3214);
+    }
+
     /**
      * Drops an item
      *

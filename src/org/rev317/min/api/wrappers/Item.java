@@ -55,7 +55,7 @@ public class Item {
      * @param i
      */
     public void interact(int i) {
-        // TODO
+        Menu.interact(this, i);
     }
 
     public void transform(int actionIndex, int interfaceParentId) {
