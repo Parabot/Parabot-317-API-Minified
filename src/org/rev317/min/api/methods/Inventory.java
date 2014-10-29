@@ -35,6 +35,11 @@ public class Inventory {
         }
     }
 
+    /**
+     * Clears the inventory except for certain item ids
+     *
+     * @param ids The ids that should not be cleared
+     */
     public static void clearExcept(int... ids) {
         for (Item item : getItems()) {
             for (int id : ids) {
@@ -206,10 +211,24 @@ public class Inventory {
         return Inventory.getCount() == 0;
     }
 
+    /**
+     * Checks if an item exists in the inventory
+     *
+     * @param id The item id that will be looked for
+     *
+     * @return True if the item exists in the inventory
+     */
     public static boolean containts(int... id) {
         return getCount(id) > 0;
     }
 
+    /**
+     * Returns the item in the inventory based on the given id
+     *
+     * @param id The item id that will be used to find the item in the inventory
+     *
+     * @return First found item in the inventory
+     */
     public static Item getItem(int id) {
         for (Item i : getItems(id)) {
             if (i != null) {
@@ -219,6 +238,14 @@ public class Inventory {
         return null;
     }
 
+    /**
+     * Combines two items by using it on each other
+     *
+     * @param itemOne The first item id that will be used to combine
+     * @param itemTwo The second item id that will be used to combine
+     *
+     * @return True if nothing unexpected happened
+     */
     public static boolean combine(int itemOne, int itemTwo) {
         Item io = getItem(itemOne);
         Item it = getItem(itemTwo);
@@ -235,6 +262,15 @@ public class Inventory {
         return false;
     }
 
+    /**
+     * Combines two items by using it on each other
+     *
+     * @param itemOne The first item id that will be used to combine
+     * @param itemTwo The second item id that will be used to combine
+     * @param sleepCondition The sleep condition that will be used to check and wait until the condition is valid
+     *
+     * @return True if the condition was true and nothing unexpected happened
+     */
     public static boolean combine(int itemOne, int itemTwo, SleepCondition sleepCondition) {
         Item io = getItem(itemOne);
         Item it = getItem(itemTwo);
@@ -245,9 +281,8 @@ public class Inventory {
                 Time.sleep(50, 100);
                 Menu.interact(it, "use with");
                 Time.sleep(50, 100);
-                if (sleepCondition.isValid()) {
-                    return true;
-                }
+                sleepCondition.isValid();
+                return true;
             }
         }
         return false;
