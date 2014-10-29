@@ -167,6 +167,25 @@ public class Menu {
         sendAction(actionId, item.getSlot(), item.getId(), 3214);
     }
 
+    public static void interact(Item item, String action){
+        int actionId = 447;
+        switch (action.toLowerCase()){
+            case "use":
+                actionId = 447;
+                break;
+            case "drop":
+                actionId = 847;
+                break;
+            case "examine":
+                actionId = 1125;
+                break;
+            case "cancel":
+                actionId = 1107;
+                break;
+        }
+        sendAction(actionId, item.getSlot(), item.getId(), 3214);
+    }
+
     /**
      * Drops an item
      *

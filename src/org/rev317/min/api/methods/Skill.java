@@ -3,7 +3,7 @@ package org.rev317.min.api.methods;
 import org.rev317.min.Loader;
 
 /**
- * @author Dane
+ * @author Dane, JKetelaar
  */
 public enum Skill {
 

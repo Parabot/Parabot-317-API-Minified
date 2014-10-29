@@ -58,6 +58,19 @@ public class Item {
         Menu.interact(this, i);
     }
 
+    /**
+     * Interacts with this item
+     * @param s
+     */
+    public void interact(String s){
+        Menu.interact(this, s);
+    }
+
+    /**
+     *
+     * @param actionIndex
+     * @param interfaceParentId
+     */
     public void transform(int actionIndex, int interfaceParentId) {
         Menu.transformItem(this, actionIndex, interfaceParentId);
     }
