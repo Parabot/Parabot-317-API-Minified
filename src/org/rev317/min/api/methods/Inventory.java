@@ -48,7 +48,7 @@ public class Inventory {
      *
      * @return amount of items
      */
-    public static final int getCount() {
+    public static int getCount() {
         return getCount(false);
     }
 
@@ -59,7 +59,7 @@ public class Inventory {
      *
      * @return amount of items
      */
-    public static final int getCount(int... ids) {
+    public static int getCount(int... ids) {
         return getCount(false, ids);
     }
 
@@ -70,7 +70,7 @@ public class Inventory {
      *
      * @return amount of items
      */
-    public static final int getCount(final boolean includeStack) {
+    public static int getCount(final boolean includeStack) {
         final Interface inventory = getInterface();
         if (inventory == null) {
             return -1;
@@ -94,7 +94,7 @@ public class Inventory {
      *
      * @return amount of items
      */
-    public static final int getCount(final boolean includeStack, int... ids) {
+    public static int getCount(final boolean includeStack, int... ids) {
         final Interface inventory = getInterface();
         if (inventory == null) {
             return -1;
@@ -121,7 +121,7 @@ public class Inventory {
      *
      * @return items
      */
-    public static final Item[] getItems() {
+    public static Item[] getItems() {
         return getItems(ALL_FILTER);
     }
 
@@ -132,7 +132,7 @@ public class Inventory {
      *
      * @return items
      */
-    public static final Item[] getItems(final int... ids) {
+    public static Item[] getItems(final int... ids) {
         return getItems(new Filter<Item>() {
 
             @Override
@@ -155,7 +155,7 @@ public class Inventory {
      *
      * @return items
      */
-    public static final Item[] getItems(final Filter<Item> filter) {
+    public static Item[] getItems(final Filter<Item> filter) {
         final Interface inventory = getInterface();
         if (inventory == null) {
             return null;
@@ -182,7 +182,7 @@ public class Inventory {
      *
      * @return <b>true</b> if inventory is full, otherwise <b>false</b>
      */
-    public static final boolean isFull() {
+    public static boolean isFull() {
         return Inventory.getCount() == 28;
     }
 
@@ -191,8 +191,12 @@ public class Inventory {
      *
      * @return <b>true</b> if inventory is empty, otherwise <b>false</b>
      */
-    public static final boolean isEmpty() {
+    public static boolean isEmpty() {
         return Inventory.getCount() == 0;
+    }
+
+    public static boolean containts(int... id){
+        return getCount(id) > 0;
     }
 
 }
