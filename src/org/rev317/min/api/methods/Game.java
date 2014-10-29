@@ -84,4 +84,24 @@ public class Game {
         }
     }
 
+    /**
+     * Returns the settings within the client
+     *
+     * @param index The index of the setting you want to gather
+     *
+     * @return The specific setting for the given index
+     */
+    public static int getSetting(int index){
+        return Loader.getClient().getSettings()[index];
+    }
+
+    /**
+     * Returns all the settings within the client
+     *
+     * @return All settings
+     */
+    public static int[] getSettings(){
+        return Loader.getClient().getSettings();
+    }
+
 }
