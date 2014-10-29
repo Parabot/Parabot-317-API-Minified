@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 /**
- * @author Everel
+ * @author Everel, JKetelaar, Fryslan
  */
 public class Inventory {
     public static final int INVENTORY_INDEX = 3214;
@@ -32,6 +32,16 @@ public class Inventory {
         for (Item item : Inventory.getItems()) {
             item.drop();
             Time.sleep(60, 80);
+        }
+    }
+
+    public static void clearExcept(int... ids) {
+        for (Item item : getItems()) {
+            for (int id : ids) {
+                if (item.getId() != id) {
+                    item.drop();
+                }
+            }
         }
     }
 
@@ -196,13 +206,13 @@ public class Inventory {
         return Inventory.getCount() == 0;
     }
 
-    public static boolean containts(int... id){
+    public static boolean containts(int... id) {
         return getCount(id) > 0;
     }
 
-    public static Item getItem(int id){
-        for (Item i : getItems(id)){
-            if (i != null){
+    public static Item getItem(int id) {
+        for (Item i : getItems(id)) {
+            if (i != null) {
                 return i;
             }
         }
