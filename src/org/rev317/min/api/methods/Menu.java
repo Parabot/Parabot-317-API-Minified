@@ -182,6 +182,12 @@ public class Menu {
             case "cancel":
                 actionId = 1107;
                 break;
+            case "wear":
+                actionId = 454;
+                break;
+            case "use with":
+                actionId = 870;
+                break;
         }
         sendAction(actionId, item.getSlot(), item.getId(), 3214);
     }

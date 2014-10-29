@@ -2,6 +2,7 @@ package org.rev317.min.api.methods;
 
 import org.parabot.environment.api.utils.Filter;
 import org.parabot.environment.api.utils.Time;
+import org.parabot.environment.scripts.framework.SleepCondition;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Interface;
 import org.rev317.min.api.wrappers.Item;
@@ -199,5 +200,47 @@ public class Inventory {
         return getCount(id) > 0;
     }
 
+    public static Item getItem(int id){
+        for (Item i : getItems(id)){
+            if (i != null){
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public static boolean combine(int itemOne, int itemTwo) {
+        Item io = getItem(itemOne);
+        Item it = getItem(itemTwo);
+
+        if (io != null) {
+            if (it != null) {
+                Menu.interact(io, "use");
+                Time.sleep(50, 100);
+                Menu.interact(it, "use with");
+                Time.sleep(50, 100);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean combine(int itemOne, int itemTwo, SleepCondition sleepCondition) {
+        Item io = getItem(itemOne);
+        Item it = getItem(itemTwo);
+
+        if (io != null) {
+            if (it != null) {
+                Menu.interact(io, "use");
+                Time.sleep(50, 100);
+                Menu.interact(it, "use with");
+                Time.sleep(50, 100);
+                if (sleepCondition.isValid()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
 
