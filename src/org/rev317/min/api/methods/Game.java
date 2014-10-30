@@ -3,7 +3,7 @@ package org.rev317.min.api.methods;
 import org.rev317.min.Loader;
 
 /**
- * @author Everel
+ * @author Everel, JKetelaar
  */
 public class Game {
 

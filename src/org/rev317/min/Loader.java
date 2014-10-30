@@ -1,6 +1,7 @@
 package org.rev317.min;
 
 import org.parabot.core.Context;
+import org.parabot.core.Core;
 import org.parabot.core.Directories;
 import org.parabot.core.asm.ASMClassLoader;
 import org.parabot.core.asm.adapters.AddInterfaceAdapter;
@@ -22,10 +23,11 @@ import java.io.File;
 import java.net.URL;
 
 /**
- * @author Everel, Paradox
+ * @author Everel, JKetelaar
  */
-@ServerManifest(author = "Everel & Paradox", name = "Server name here", type = Type.INJECTION, version = 2.1)
+@ServerManifest(author = "Everel & JKetelaar", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
+    private boolean extended = true;
     //private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getExtendedHookFile(), HookFile.TYPE_XML);
     //private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
 
@@ -70,9 +72,11 @@ public class Loader extends ServerProvider {
         try {
             super.injectHooks();
         } catch (Exception e) {
-            e.printStackTrace();
-            //this.hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
-            //super.injectHooks();
+            if (Core.inVerboseMode()){
+                e.printStackTrace();
+            }
+            this.extended = false;
+            super.injectHooks();
         }
     }
 
@@ -84,7 +88,11 @@ public class Loader extends ServerProvider {
 
     @Override
     public HookFile getHookFile() {
-        return new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
+        if (this.extended){
+            return new HookFile(Context.getInstance().getServerProviderInfo().getExtendedHookFile(), HookFile.TYPE_XML);
+        }else{
+            return new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
+        }
     }
 
     public void unloadScript(Script script) {
