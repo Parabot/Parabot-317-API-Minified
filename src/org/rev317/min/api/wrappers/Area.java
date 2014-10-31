@@ -19,8 +19,8 @@ public class Area {
      */
     public Area(Tile... tiles) {
         this.p = new Polygon();
-        for (int i = 0; i < tiles.length; i++) {
-            p.addPoint(tiles[i].getX(), tiles[i].getY());
+        for (Tile tile : tiles) {
+            p.addPoint(tile.getX(), tile.getY());
         }
     }
 
@@ -56,7 +56,7 @@ public class Area {
         int lowestY = -1;
         int highestX = -1;
         int highestY = -1;
-        ArrayList<Tile> t = new ArrayList<Tile>();
+        ArrayList<Tile> t = new ArrayList<>();
         for (int i : p.xpoints) {
             if (i < lowestX || lowestX == -1) {
                 lowestX = i;
