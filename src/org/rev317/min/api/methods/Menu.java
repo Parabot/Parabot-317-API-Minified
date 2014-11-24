@@ -164,7 +164,7 @@ public class Menu {
                 actionId = 1107;
                 break;
         }
-        sendAction(actionId, item.getSlot(), item.getId(), 3214);
+        sendAction(actionId, item.getId() - 1, item.getSlot(), 3214);
     }
 
     public static void interact(Item item, String action){
@@ -189,7 +189,7 @@ public class Menu {
                 actionId = 870;
                 break;
         }
-        sendAction(actionId, item.getSlot(), item.getId(), 3214);
+        sendAction(actionId, item.getId() - 1, item.getSlot(), 3214);
     }
 
     /**

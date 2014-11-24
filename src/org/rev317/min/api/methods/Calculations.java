@@ -1,10 +1,6 @@
 package org.rev317.min.api.methods;
 
-import org.rev317.min.Loader;
-import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Tile;
-
-import java.awt.*;
 
 /**
  * @author Everel
