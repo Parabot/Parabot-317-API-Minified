@@ -7,7 +7,7 @@
 /bin
 
 # IntelliJ
-/out/
 out
 *.iml
-.idea/
+.idea
+Loader2.java

@@ -1,8 +1,5 @@
 package org.rev317.min.api.methods;
 
-import java.util.ArrayList;
-import java.util.Properties;
-
 import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.input.Keyboard;
@@ -10,6 +7,9 @@ import org.rev317.min.Loader;
 import org.rev317.min.api.wrappers.Item;
 import org.rev317.min.api.wrappers.Npc;
 import org.rev317.min.api.wrappers.SceneObject;
+
+import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * @author Everel

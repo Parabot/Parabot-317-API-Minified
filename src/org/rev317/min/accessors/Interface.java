@@ -6,4 +6,6 @@ public interface Interface {
 
     public int[] getStackSizes();
 
+    public int getMessage();
+
 }
