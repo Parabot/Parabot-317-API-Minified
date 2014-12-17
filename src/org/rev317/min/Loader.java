@@ -14,6 +14,7 @@ import org.parabot.environment.servers.ServerManifest;
 import org.parabot.environment.servers.ServerProvider;
 import org.parabot.environment.servers.Type;
 import org.rev317.min.accessors.Client;
+import org.rev317.min.randoms.Executer;
 import org.rev317.min.script.ScriptEngine;
 import org.rev317.min.ui.BotMenu;
 
@@ -23,8 +24,8 @@ import java.io.File;
 import java.net.URL;
 
 /**
- * @author Everel, JKetelaar
- */
+* @author Everel, JKetelaar
+*/
 @ServerManifest(author = "Everel & JKetelaar", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
     private boolean extended = true;
@@ -101,6 +102,7 @@ public class Loader extends ServerProvider {
 
     @Override
     public void init() {
-        //new Downloader();
+        Executer executer = new Executer();
+        executer.getRandoms();
     }
 }

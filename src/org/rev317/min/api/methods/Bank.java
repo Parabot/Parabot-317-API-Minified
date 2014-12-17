@@ -30,6 +30,7 @@ public class Bank {
     public static int INV_PARENT_ID = 5064;
     public static int BANK_OPEN_INDEX = 1;
     static {
+
         Properties p = Context.getInstance().getServerProviderInfo().getProperties();
         if (p.containsKey("bankInterface"))
             BANK_INTERFACE = Integer.parseInt(p.getProperty("bankInterface"));

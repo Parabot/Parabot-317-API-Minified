@@ -1,6 +1,7 @@
 package org.rev317.min.ui;
 
 import org.parabot.core.Context;
+import org.parabot.core.Core;
 import org.parabot.environment.scripts.randoms.Random;
 
 import javax.swing.*;
@@ -60,6 +61,7 @@ public class RandomUI implements ActionListener {
                 if (checkBox.isSelected()) {
                     for (Random r : Context.getInstance().getRandomHandler().getRandoms()) {
                         if (r.getName().equalsIgnoreCase(checkBox.getText().toLowerCase())) {
+                            Core.verbose("Actived random '" + r.getName() + "'");
                             Context.getInstance().getRandomHandler().setActive(r.getName());
                         }
                     }

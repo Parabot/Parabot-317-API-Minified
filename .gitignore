@@ -10,4 +10,4 @@
 out
 *.iml
 .idea
-Loader2.java
+DeprecatedLoader.java

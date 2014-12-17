@@ -15,27 +15,27 @@ import java.net.URLClassLoader;
 /**
  * @author JKetelaar
  */
-public class Downloader {
-    //TODO: Move to parabot itself
+public class Executer {
+    /* TODO Move to Parabot client */
 
-    public Downloader(){
-        if (downloadRandoms()) {
-            Core.verbose("Parsing random(s)...");
-            parseRandoms();
-        }else{
-            Core.verbose("There do not seem to be any randoms for this server...");
-        }
+    public void getRandoms() {
+        Core.verbose("Downloading randoms");
+        downloadRandoms();
+        Core.verbose("Parsing random(s)");
+        parseRandoms();
     }
 
-    private void parseRandoms(){
+    private void parseRandoms() {
         File myJar = new File(Directories.getCachePath() + "/randoms.jar");
-        if (!myJar.exists() || !myJar.canRead()){
+        if (!myJar.exists() || !myJar.canRead()) {
             return;
         }
         try {
             URL url = myJar.toURI().toURL();
             URL[] urls = new URL[]{url};
-            String server = "ikov";
+//            String server = Context.getInstance().getServerProviderInfo().getServerName();
+            String server = "pkhonor";
+
             URLClassLoader child = new URLClassLoader(urls, this.getClass().getClassLoader());
             Class<?> classToLoad = Class.forName("org.parabot.randoms.Core", true, child);
             Method method = classToLoad.getDeclaredMethod("init", String.class);
@@ -44,17 +44,18 @@ public class Downloader {
             Core.verbose("Parsed random(s)!");
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | ClassNotFoundException | MalformedURLException e) {
             e.printStackTrace();
+            Core.verbose("Failed to random(s)...");
         }
     }
 
-    private boolean downloadRandoms(){
+    private void downloadRandoms() {
         try {
             File random = new File(Directories.getCachePath() + "/randoms.jar");
-            if (random.exists()){
+            if (random.exists()) {
                 Core.verbose("Random already exists, no need to download it.");
-                return true;
+                return;
             }
-            String downloadLink = "http://sdn.parabot.org/randoms.php";
+            String downloadLink = "http://bdn.parabot.org/api/get.php?action=randoms";
             WebUtil.downloadFile(new URL(downloadLink), random, new ProgressListener() {
                 @Override
                 public void onProgressUpdate(double v) {
@@ -66,9 +67,8 @@ public class Downloader {
 
                 }
             });
-            return random.exists();
         } catch (Exception e) {
-            return false;
+            e.printStackTrace();
         }
     }
 }
