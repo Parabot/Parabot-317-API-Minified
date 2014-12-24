@@ -1,5 +1,6 @@
 package org.rev317.min.randoms;
 
+import org.parabot.core.Context;
 import org.parabot.core.Core;
 import org.parabot.core.Directories;
 import org.parabot.core.io.ProgressListener;
@@ -33,8 +34,7 @@ public class Executer {
         try {
             URL url = myJar.toURI().toURL();
             URL[] urls = new URL[]{url};
-//            String server = Context.getInstance().getServerProviderInfo().getServerName();
-            String server = "pkhonor";
+            String server = Context.getInstance().getServerProviderInfo().getServerName();
 
             URLClassLoader child = new URLClassLoader(urls, this.getClass().getClassLoader());
             Class<?> classToLoad = Class.forName("org.parabot.randoms.Core", true, child);
