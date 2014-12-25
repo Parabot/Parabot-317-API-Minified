@@ -236,8 +236,8 @@ public class Bank {
                 if (Inventory.getItems(itemId).length > 0)
                 {
                     Item item = Inventory.getItems(itemId)[0];
-
-                    Menu.sendAction(431,item.getId() - 1, item.getSlot(), 5064);
+                    
+                    item.transform(3, INV_PARENT_ID);
 
                     Time.sleep(100);
                 }
