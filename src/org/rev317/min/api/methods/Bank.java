@@ -205,23 +205,41 @@ public class Bank {
     }
 
     /**
-     * Deposits all items except the given ids
-     *
-     * @param exceptions the item indexes that will be ignored.
+     * Deposits all items except the ones we specify in the parameter
+     * @param ids the ids of the items we don't want to deposit
      */
-    public static void depositAllExcept(int... exceptions) {
-        if (Bank.isOpen()) {
-            final ArrayList<Integer> ignored = new ArrayList<Integer>();
-            for (int i : exceptions) {
+    public void depositAllExcept(int... ids)
+    {
+        if (Bank.isOpen())
+        {
+            ArrayList<Integer> ignored = new ArrayList<>();
+            Stack<Integer> itemsToDeposit = new Stack<>();
+
+            for (int i : ids)
+            {
                 ignored.add(i);
             }
-            for (Item i : Inventory.getItems()) {
-                if (!ignored.contains(i.getId())) {
-                    while (Bank.isOpen() && Inventory.getCount(i.getId()) > 0) {
-                        i.transform(3, INV_PARENT_ID);
-                        ignored.add(i.getId());
-                        Time.sleep(50);
-                    }
+
+            for (Item i : Inventory.getItems())
+            {
+                if (!ignored.contains(i.getId())
+                        && !itemsToDeposit.contains(i.getId()))
+                {
+                    itemsToDeposit.push(i.getId());
+                }
+            }
+
+            while (!itemsToDeposit.isEmpty())
+            {
+                int itemId = itemsToDeposit.pop();
+
+                if (Inventory.getItems(itemId).length > 0)
+                {
+                    Item item = Inventory.getItems(itemId)[0];
+                    
+                    item.transform(3, INV_PARENT_ID);
+
+                    Time.sleep(100);
                 }
             }
         }
