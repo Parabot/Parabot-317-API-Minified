@@ -20,7 +20,7 @@ public class RandomUI implements ActionListener {
 	public void openFrame(ArrayList<String> randoms) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 351, 100 + (randoms.size() * 35));
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnSubmit = new JButton("Submit");

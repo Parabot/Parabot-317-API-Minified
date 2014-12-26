@@ -17,7 +17,7 @@ import java.net.URLClassLoader;
  * @author JKetelaar
  */
 public class Executer {
-    /* TODO Move to Parabot client */
+    /* TODO Move to client */
 
     public void getRandoms() {
         Core.verbose("Downloading randoms");
@@ -44,7 +44,7 @@ public class Executer {
             Core.verbose("Parsed random(s)!");
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | ClassNotFoundException | MalformedURLException e) {
             e.printStackTrace();
-            Core.verbose("Failed to random(s)...");
+            Core.verbose("Failed to parse random(s)...");
         }
     }
 
