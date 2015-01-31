@@ -3,6 +3,7 @@ package org.rev317.min.api.methods;
 import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.input.Keyboard;
+import org.parabot.environment.scripts.framework.SleepCondition;
 import org.rev317.min.Loader;
 import org.rev317.min.api.wrappers.Item;
 import org.rev317.min.api.wrappers.Npc;
@@ -215,12 +216,19 @@ public class Bank {
             for (int i : exceptions) {
                 ignored.add(i);
             }
+
             for (Item i : Inventory.getItems()) {
                 if (!ignored.contains(i.getId())) {
                     while (Bank.isOpen() && Inventory.getCount(i.getId()) > 0) {
                         i.transform(3, INV_PARENT_ID);
                         ignored.add(i.getId());
-                        Time.sleep(50);
+                        final int previous = Inventory.getCount(true);
+                        Time.sleep(new SleepCondition() {
+                            @Override
+                            public boolean isValid() {
+                                return Inventory.getCount(true) != previous;
+                            }
+                        }, 500);
                     }
                 }
             }
