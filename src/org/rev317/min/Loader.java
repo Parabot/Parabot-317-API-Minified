@@ -14,7 +14,6 @@ import org.parabot.environment.servers.ServerManifest;
 import org.parabot.environment.servers.ServerProvider;
 import org.parabot.environment.servers.Type;
 import org.rev317.min.accessors.Client;
-import org.rev317.min.randoms.Executer;
 import org.rev317.min.script.ScriptEngine;
 import org.rev317.min.ui.BotMenu;
 
@@ -29,8 +28,6 @@ import java.net.URL;
 @ServerManifest(author = "Everel & JKetelaar", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
     private boolean extended = true;
-    //private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getExtendedHookFile(), HookFile.TYPE_XML);
-    //private HookFile hookFile = new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
 
     public static Client getClient() {
         return (Client) Context.getInstance().getClient();
@@ -102,7 +99,6 @@ public class Loader extends ServerProvider {
 
     @Override
     public void init() {
-        Executer executer = new Executer();
-        executer.getRandoms();
+
     }
 }

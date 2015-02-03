@@ -212,7 +212,7 @@ public class Bank {
      */
     public static void depositAllExcept(int... exceptions) {
         if (Bank.isOpen()) {
-            final ArrayList<Integer> ignored = new ArrayList<Integer>();
+            final ArrayList<Integer> ignored = new ArrayList<>();
             for (int i : exceptions) {
                 ignored.add(i);
             }
