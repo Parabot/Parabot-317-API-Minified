@@ -12,16 +12,24 @@ public class Walking {
     /**
      * Walks from tile to tile
      *
-     * @param from
-     * @param to
+     * @param from Tile to Walk From.
+     * @param to   Tile to Walk To.
      */
     public static void walkTo(Tile from, Tile to) {
         Loader.getClient().walkTo(0, 0, 0, 0, from.getRegionY(), 0, 0, to.getRegionY(), from.getRegionX(), true, to.getRegionX());
     }
 
     /**
-     * @param tilePath
+     * Walks from the Player's Location to tile.
      *
+     * @param to Destination Tile.
+     */
+    public static void walkTo(Tile to) {
+        Loader.getClient().walkTo(0, 0, 0, 0, Players.getMyPlayer().getLocation().getRegionY(), 0, 0, to.getRegionY(), Players.getMyPlayer().getLocation().getRegionX(), true, to.getRegionX());
+    }
+
+    /**
+     * @param tilePath
      * @return <b>true</b> if destination reached, otherwise <b>false</b>
      */
     public static boolean walkDown(TilePath tilePath) {
@@ -36,7 +44,6 @@ public class Walking {
      * Gets nearest reachable tile on minimap to given tile
      *
      * @param tile
-     *
      * @return nearest reachable tile on minimap
      */
     public static Tile getNearestTileTo(Tile tile) {
