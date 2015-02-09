@@ -104,4 +104,13 @@ public class Game {
         return Loader.getClient().getSettings();
     }
 
+    /**
+     * Determines if the entity is logged in
+     *
+     * @return <b>true</b> if entity is logged in
+     */
+    public boolean isLoggedIn() {
+        return Loader.getClient().isLoggedIn();
+    }
+
 }
