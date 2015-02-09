@@ -50,4 +50,6 @@ public interface Client {
     public int[] getCurrentStats();
 
     public int[] getSettings();
+
+    public boolean isLoggedIn();
 }
