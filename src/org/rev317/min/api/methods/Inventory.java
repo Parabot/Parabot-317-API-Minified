@@ -218,7 +218,7 @@ public class Inventory {
      *
      * @return True if the item exists in the inventory
      */
-    public static boolean containts(int... id) {
+    public static boolean contains(int... id) {
         return getCount(id) > 0;
     }
 
