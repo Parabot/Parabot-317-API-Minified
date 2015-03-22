@@ -222,6 +222,11 @@ public class Inventory {
         return getCount(id) > 0;
     }
 
+    @Deprecated
+    public static boolean containts(int... id) {
+        return contains(id);
+    }
+
     /**
      * Returns the item in the inventory based on the given id
      *
