@@ -109,7 +109,7 @@ public class Game {
      *
      * @return <b>true</b> if entity is logged in
      */
-    public boolean isLoggedIn() {
+    public static boolean isLoggedIn() {
         return Loader.getClient().isLoggedIn();
     }
 
