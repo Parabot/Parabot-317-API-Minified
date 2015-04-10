@@ -20,7 +20,7 @@ public class Trading {
     TODO Get the player its offer and implement its features
      */
     public static int OPPONENT_OFFER_INTERFACE_ID = 3416;
-    public static int YOUR_OFFER_INTERFACE_ID = -1;
+    public static int MY_OFFER_INTERFACE_ID = 3415;
 
     public static int FIRST_TRADE_INTERFACE_ID = 3323;
     public static int SECOND_TRADE_INTERFACE_ID = 3443;
@@ -29,6 +29,9 @@ public class Trading {
         Properties p = Context.getInstance().getServerProviderInfo().getProperties();
         if (p.containsKey("opponentInterface")) {
             OPPONENT_OFFER_INTERFACE_ID = Integer.parseInt(p.getProperty("opponentInterface"));
+        }
+        if (p.containsKey("myInterface")) {
+            OPPONENT_OFFER_INTERFACE_ID = Integer.parseInt(p.getProperty("myInterface"));
         }
         if (p.containsKey("firstTradeInterface")) {
             FIRST_TRADE_INTERFACE_ID = Integer.parseInt(p.getProperty("firstTradeInterface"));
@@ -69,10 +72,10 @@ public class Trading {
         }, 2500);
     }
 
-    public static Item[] getOpponentsOffer() {
+    public static Item[] getMyOffer() {
         ArrayList<Item> items = new ArrayList<>();
-        int[] ids = getItemIDs();
-        int[] stacks = getItemStacks();
+        int[] ids = getItemIDs(MY_OFFER_INTERFACE_ID);
+        int[] stacks = getItemStacks(MY_OFFER_INTERFACE_ID);
         for (int i = 0; i < ids.length; i++) {
             if (ids[i] > 0) {
                 items.add(new Item(ids[i], stacks[i], i));
@@ -81,10 +84,21 @@ public class Trading {
         return items.toArray(new Item[items.size()]);
     }
 
-    private static int[] getItemIDs() {
-        Interface i;
+    public static Item[] getOpponentsOffer() {
+        ArrayList<Item> items = new ArrayList<>();
+        int[] ids = getItemIDs(OPPONENT_OFFER_INTERFACE_ID);
+        int[] stacks = getItemStacks(OPPONENT_OFFER_INTERFACE_ID);
+        for (int i = 0; i < ids.length; i++) {
+            if (ids[i] > 0) {
+                items.add(new Item(ids[i], stacks[i], i));
+            }
+        }
+        return items.toArray(new Item[items.size()]);
+    }
 
-        if ((i = Loader.getClient().getInterfaceCache()[OPPONENT_OFFER_INTERFACE_ID]) != null) {
+    private static int[] getItemIDs(int interfaceID) {
+        Interface i;
+        if ((i = Loader.getClient().getInterfaceCache()[interfaceID]) != null) {
             int[] items;
             if ((items = i.getItems()) != null && items.length > 0) {
                 return items;
@@ -93,10 +107,10 @@ public class Trading {
         return new int[0];
     }
 
-    private static int[] getItemStacks() {
+    private static int[] getItemStacks(int interfaceID) {
         Interface i;
 
-        if ((i = Loader.getClient().getInterfaceCache()[OPPONENT_OFFER_INTERFACE_ID]) != null) {
+        if ((i = Loader.getClient().getInterfaceCache()[interfaceID]) != null) {
             int[] stacks;
             if ((stacks = i.getStackSizes()) != null && stacks.length > 0) {
                 return stacks;
