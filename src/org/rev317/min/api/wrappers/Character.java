@@ -182,4 +182,7 @@ public class Character implements Locatable {
         return true;
     }
 
+    public org.rev317.min.accessors.Character getAccessor() {
+        return accessor;
+    }
 }

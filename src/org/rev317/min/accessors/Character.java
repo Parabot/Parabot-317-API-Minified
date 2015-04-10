@@ -15,5 +15,7 @@ public interface Character {
     public int getMaxHealth();
 
     public int getInteractingEntity();
+
+    String getName();
 }
 

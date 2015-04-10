@@ -10,6 +10,6 @@ public class Player extends Character {
     }
 
     public String getName(){
-        return this.getName();
+        return getAccessor().getName();
     }
 }
