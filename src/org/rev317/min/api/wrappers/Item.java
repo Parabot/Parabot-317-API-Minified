@@ -56,7 +56,7 @@ public class Item {
      * @param option
      */
     public void interact(Items.Option option) {
-        Menu.interact(this, option.getActionId());
+        Menu.interact(this, option);
     }
 
     /**
@@ -65,7 +65,38 @@ public class Item {
      * @param interfaceParentId
      */
     public void transform(Items.Option option, int interfaceParentId) {
-        Menu.transformItem(this, option.getActionId(), interfaceParentId);
+        Menu.transformItem(this, option, interfaceParentId);
     }
 
+    /**
+     * Interacts with this item
+     *
+     * @deprecated
+     *
+     * @param i
+     */
+    public void interact(int i) {
+        Menu.interact(this, i);
+    }
+
+    /**
+     * Interacts with this item
+     *
+     * @deprecated
+     *
+     * @param s
+     */
+    public void interact(String s){
+        Menu.interact(this, s);
+    }
+
+    /**
+     * @deprecated
+     *
+     * @param actionIndex
+     * @param interfaceParentId
+     */
+    public void transform(int actionIndex, int interfaceParentId) {
+        Menu.transformItem(this, actionIndex, interfaceParentId);
+    }
 }

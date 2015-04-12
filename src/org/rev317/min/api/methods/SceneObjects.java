@@ -233,16 +233,20 @@ public class SceneObjects {
         DEPOSIT(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
         USE(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
         SEARCH(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        CLOSE(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        CROSS(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
 
         SECOND(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
         TELEPORT(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
         STEAL_FROM(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
         PRAY(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
         USE_QUICKLY(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
+        INSPECT(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
 
         THIRD(Integer.parseInt(settings.getProperty("menu_scene_object_third_interaction"))),
 
         FOURTH(Integer.parseInt(settings.getProperty("menu_scene_object_fourth_interaction"))),
+        GUIDE(Integer.parseInt(settings.getProperty("menu_scene_object_fourth_interaction"))),
 
         FIFTH(Integer.parseInt(settings.getProperty("menu_scene_object_fifth_interaction"))),
 

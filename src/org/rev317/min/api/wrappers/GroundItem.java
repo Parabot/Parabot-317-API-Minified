@@ -51,7 +51,18 @@ public class GroundItem implements Locatable {
      * @param option
      */
     public void interact(GroundItems.Option option) {
-        Menu.interact(this, option.getActionId());
+        Menu.interact(this, option);
+    }
+
+    /**
+     * Interacts with this ground item
+     *
+     * @deprecated
+     *
+     * @param actionIndex
+     */
+    public void interact(int actionIndex) {
+        Menu.interact(this, actionIndex);
     }
 
     /**

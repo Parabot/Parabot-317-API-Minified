@@ -113,7 +113,7 @@ public class Players {
 
         ATTACK(Integer.parseInt(settings.getProperty("menu_character_attack"))),
         CHALLENGE(Integer.parseInt(settings.getProperty("menu_character_attack"))),
-        
+
         EXAMINE(Integer.parseInt(settings.getProperty("menu_character_examine")));
 
         int actionId;

@@ -151,16 +151,23 @@ public class Npcs {
         SECOND(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
         TALK_TO(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
         INTERACT(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
+        BAIT(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
+        CAGE(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
+        NET(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
 
         THIRD(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
         TRADE(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
         BANK(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
         PICKPOCKET(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
+        HARPOON(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
+        GET_TASK(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
 
         FOURTH(Integer.parseInt(settings.getProperty("menu_character_fourth_interaction"))),
         COLLECT(Integer.parseInt(settings.getProperty("menu_character_fourth_interaction"))),
+        CHANGE_CLOTHES(Integer.parseInt(settings.getProperty("menu_character_fourth_interaction"))),
 
         FIFTH(Integer.parseInt(settings.getProperty("menu_character_fifth_interaction"))),
+        REWARD(Integer.parseInt(settings.getProperty("menu_character_fifth_interaction"))),
 
         EXAMINE(Integer.parseInt(settings.getProperty("menu_character_examine")));
 

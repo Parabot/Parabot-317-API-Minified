@@ -5,6 +5,7 @@ import org.rev317.min.Loader;
 import org.rev317.min.api.interfaces.Locatable;
 import org.rev317.min.api.methods.Calculations;
 import org.rev317.min.api.methods.Game;
+import org.rev317.min.api.methods.Menu;
 import org.rev317.min.api.methods.Players;
 
 /**
@@ -109,6 +110,17 @@ public class Character implements Locatable {
     public boolean isInCombat() {
         return accessor.getLoopCycleStatus() > Loader.getClient()
                 .getLoopCycle();
+    }
+
+    /**
+     * Interacts with this character
+     *
+     * @deprecated
+     *
+     * @param i
+     */
+    public void interact(int i) {
+        Menu.interact(this, i);
     }
 
     /**
