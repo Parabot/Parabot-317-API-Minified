@@ -110,7 +110,10 @@ public class Players {
         FIFTH(Integer.parseInt(settings.getProperty("menu_character_fifth_interaction"))),
 
         TRADE(Integer.parseInt(settings.getProperty("menu_character_trade"))),
+
         ATTACK(Integer.parseInt(settings.getProperty("menu_character_attack"))),
+        CHALLENGE(Integer.parseInt(settings.getProperty("menu_character_attack"))),
+        
         EXAMINE(Integer.parseInt(settings.getProperty("menu_character_examine")));
 
         int actionId;
