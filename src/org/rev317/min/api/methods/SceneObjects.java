@@ -1,18 +1,16 @@
 package org.rev317.min.api.methods;
 
+import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Ground;
 import org.rev317.min.accessors.SceneObjectTile;
 import org.rev317.min.api.wrappers.SceneObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
+import java.util.*;
 
 /**
- * @author Everel
+ * @author Everel, JKetelaar
  */
 public class SceneObjects {
 
@@ -33,6 +31,7 @@ public class SceneObjects {
         }
 
     };
+    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets the most important scene objects in game which can be interacted with, filters out: 'walls, wall
@@ -184,7 +183,7 @@ public class SceneObjects {
             for (final SceneObjectTile interactiveObject : interactiveObjects) {
                 if (interactiveObject != null) {
                     if (sceneObjects == null) {
-                        sceneObjects = new ArrayList<SceneObject>();
+                        sceneObjects = new ArrayList<>();
                     }
                     sceneObjects.add(new SceneObject(interactiveObject, SceneObject.TYPE_INTERACTIVE));
                 }
@@ -193,7 +192,7 @@ public class SceneObjects {
         SceneObjectTile sceneObjectTile = sceneTile.getWallObject();
         if (sceneObjectTile != null) {
             if (sceneObjects == null) {
-                sceneObjects = new ArrayList<SceneObject>();
+                sceneObjects = new ArrayList<>();
             }
             sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_WALL));
         }
@@ -201,7 +200,7 @@ public class SceneObjects {
         sceneObjectTile = sceneTile.getWallDecoration();
         if (sceneObjectTile != null) {
             if (sceneObjects == null) {
-                sceneObjects = new ArrayList<SceneObject>();
+                sceneObjects = new ArrayList<>();
             }
             sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_WALLDECORATION));
         }
@@ -209,7 +208,7 @@ public class SceneObjects {
         sceneObjectTile = sceneTile.getGroundDecoration();
         if (sceneObjectTile != null) {
             if (sceneObjects == null) {
-                sceneObjects = new ArrayList<SceneObject>();
+                sceneObjects = new ArrayList<>();
             }
             sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_GROUNDDECORATION));
         }
@@ -217,11 +216,47 @@ public class SceneObjects {
         sceneObjectTile = sceneTile.getGroundItem();
         if (sceneObjectTile != null) {
             if (sceneObjects == null) {
-                sceneObjects = new ArrayList<SceneObject>();
+                sceneObjects = new ArrayList<>();
             }
             sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_GROUNDITEM));
         }
         return sceneObjects;
+    }
+
+    public enum Option{
+        FIRST(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        TALK_TO(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        CHOP_DOWN(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        CRAFT_RUNE(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        PRAY_AT(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        OPEN(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        DEPOSIT(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        USE(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        SEARCH(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+
+        SECOND(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
+        TELEPORT(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
+        STEAL_FROM(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
+        PRAY(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
+        USE_QUICKLY(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
+
+        THIRD(Integer.parseInt(settings.getProperty("menu_scene_object_third_interaction"))),
+
+        FOURTH(Integer.parseInt(settings.getProperty("menu_scene_object_fourth_interaction"))),
+
+        FIFTH(Integer.parseInt(settings.getProperty("menu_scene_object_fifth_interaction"))),
+
+        EXAMINE(Integer.parseInt(settings.getProperty("menu_scene_object_examine")));
+
+        int actionId;
+
+        Option(int actionId) {
+            this.actionId = actionId;
+        }
+
+        public int getActionId() {
+            return actionId;
+        }
     }
 
 }

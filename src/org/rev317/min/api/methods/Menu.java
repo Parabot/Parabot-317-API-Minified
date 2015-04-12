@@ -8,43 +8,22 @@ import org.rev317.min.api.wrappers.GroundItem;
 import org.rev317.min.api.wrappers.Item;
 import org.rev317.min.api.wrappers.SceneObject;
 
-import java.util.HashMap;
+import java.util.Properties;
 
 /**
- * @author Everel
+ * @author JKetelaar, Everel
  */
 public class Menu {
-    public static final int ACTION_CLICK_BUTTON = 646;
-    public static final int ACTION_DROP_ITEM = 847;
-    public static final int ACTION_TAKE_ITEM = 234;
 
-    private static HashMap<String, String> constants;
+    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Interacts with a sceneobject
      *
      * @param object
-     * @param actionIndex
+     * @param actionId
      */
-    public static void interact(SceneObject object, int actionIndex) {
-        int actionId = 502;
-        switch (actionIndex) {
-            case 0:
-                actionId = 502;
-                break;
-            case 1:
-                actionId = 900;
-                break;
-            case 2:
-                actionId = 113;
-                break;
-            case 3:
-                actionId = 872;
-                break;
-            case 4:
-                actionId = 1062;
-                break;
-        }
+    public static void interact(SceneObject object, int actionId) {
         if (Game.hasAction4()) {
             sendAction(actionId, object.getHash(), object.getLocalRegionX(), object.getLocalRegionY(), object.getId(), 0);
         } else {
@@ -56,27 +35,9 @@ public class Menu {
      * Interacts with a character
      *
      * @param character
-     * @param actionIndex
+     * @param actionId
      */
-    public static void interact(Character character, int actionIndex) {
-        int actionId = 20;
-        switch (actionIndex) {
-            case 0:
-                actionId = 20;
-                break;
-            case 1:
-                actionId = 412;
-                break;
-            case 2:
-                actionId = 225;
-                break;
-            case 3:
-                actionId = 965;
-                break;
-            case 4:
-                actionId = 478;
-                break;
-        }
+    public static void interact(Character character, int actionId) {
         sendAction(actionId, character.getIndex(), 0, 0);
     }
 
@@ -84,30 +45,12 @@ public class Menu {
      * Interacts with an item when it has the following menu Transform-1 Transform-5 Transform-10 etc..
      *
      * @param item
-     * @param actionIndex
+     * @param actionId
      * @param interfaceParentId
      */
-    public static void transformItem(Item item, int actionIndex,
+    public static void transformItem(Item item, int actionId,
                                      int interfaceParentId) {
-        int actionId = 632;
-        switch (actionIndex) {
-            case 0:
-                actionId = 632;
-                break;
-            case 1:
-                actionId = 78;
-                break;
-            case 2:
-                actionId = 867;
-                break;
-            case 3:
-                actionId = 431;
-                break;
-            case 4:
-                actionId = 53;
-                break;
-        }
-        sendAction(actionId, (int) item.getId() - 1, item.getSlot(),
+        sendAction(actionId, item.getId() - 1, item.getSlot(),
                 interfaceParentId);
     }
 
@@ -117,78 +60,20 @@ public class Menu {
      * @param item
      */
     public static void take(GroundItem item) {
-        sendAction(ACTION_TAKE_ITEM, item.getId(), item.getX(), item.getY());
+        sendAction(Integer.parseInt(settings.getProperty("button_take_item")), item.getId(), item.getX(), item.getY());
     }
 
     /**
      * Interacts with a ground item
      *
      * @param item
-     * @param action
+     * @param actionId
      */
-    public static void interact(GroundItem item, int action) {
-        int actionId = 652;
-        switch (action) {
-            case 0:
-                actionId = 652;
-                break;
-            case 1:
-                actionId = 567;
-                break;
-            case 2:
-                actionId = 234;
-                break;
-            case 3:
-                actionId = 244;
-                break;
-            case 4:
-                actionId = 213;
-                break;
-        }
+    public static void interact(GroundItem item, int actionId) {
         sendAction(actionId, item.getId(), item.getX(), item.getY());
     }
 
-    public static void interact(Item item, int action){
-        int actionId = 447;
-        switch (action){
-            case 0:
-                actionId = 447;
-                break;
-            case 1:
-                actionId = 847;
-                break;
-            case 2:
-                actionId = 1125;
-                break;
-            case 3:
-                actionId = 1107;
-                break;
-        }
-        sendAction(actionId, item.getId() - 1, item.getSlot(), 3214);
-    }
-
-    public static void interact(Item item, String action){
-        int actionId = 447;
-        switch (action.toLowerCase()){
-            case "use":
-                actionId = 447;
-                break;
-            case "drop":
-                actionId = 847;
-                break;
-            case "examine":
-                actionId = 1125;
-                break;
-            case "cancel":
-                actionId = 1107;
-                break;
-            case "wear":
-                actionId = 454;
-                break;
-            case "use with":
-                actionId = 870;
-                break;
-        }
+    public static void interact(Item item, int actionId){
         sendAction(actionId, item.getId() - 1, item.getSlot(), 3214);
     }
 
@@ -198,8 +83,8 @@ public class Menu {
      * @param item
      */
     public static void drop(Item item) {
-        sendAction(ACTION_DROP_ITEM, (int) item.getId() - 1, item.getSlot(),
-                Inventory.INVENTORY_INDEX);
+        sendAction(Integer.parseInt(settings.getProperty("button_drop_item")), item.getId() - 1, item.getSlot(),
+                Integer.parseInt(settings.getProperty("inventory_index")));
     }
 
     /**
@@ -208,7 +93,7 @@ public class Menu {
      * @param id
      */
     public static void clickButton(int id) {
-        sendAction(ACTION_CLICK_BUTTON, 0, 0, id);
+        sendAction(Integer.parseInt(settings.getProperty("button_action_click")), 0, 0, id);
     }
 
     /**
@@ -247,9 +132,6 @@ public class Menu {
      * @param index
      */
     public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int cmd4, int index) {
-        if (constants == null) {
-            constants = Context.getInstance().getHookParser().getConstants();
-        }
 
         Client client = Loader.getClient();
 
@@ -264,6 +146,4 @@ public class Menu {
 
         client.doAction(index);
     }
-
 }
-

@@ -1,5 +1,6 @@
 package org.rev317.min.api.methods;
 
+import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
@@ -8,9 +9,10 @@ import org.rev317.min.api.wrappers.Player;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Properties;
 
 /**
- * @author Everel
+ * @author Everel, JKetelaar
  */
 public class Players {
 
@@ -31,6 +33,7 @@ public class Players {
         }
 
     };
+    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all players except local player
@@ -95,4 +98,29 @@ public class Players {
         return new Player(Loader.getClient().getMyPlayer(), -1);
     }
 
+    public enum Option{
+        FIRST(Integer.parseInt(settings.getProperty("menu_character_first_interaction"))),
+
+        SECOND(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
+
+        THIRD(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
+
+        FOURTH(Integer.parseInt(settings.getProperty("menu_character_fourth_interaction"))),
+
+        FIFTH(Integer.parseInt(settings.getProperty("menu_character_fifth_interaction"))),
+
+        TRADE(Integer.parseInt(settings.getProperty("menu_character_trade"))),
+        ATTACK(Integer.parseInt(settings.getProperty("menu_character_attack"))),
+        EXAMINE(Integer.parseInt(settings.getProperty("menu_character_examine")));
+
+        int actionId;
+
+        Option(int actionId) {
+            this.actionId = actionId;
+        }
+
+        public int getActionId() {
+            return actionId;
+        }
+    }
 }

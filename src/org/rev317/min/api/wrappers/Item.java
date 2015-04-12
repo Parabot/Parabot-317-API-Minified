@@ -1,5 +1,6 @@
 package org.rev317.min.api.wrappers;
 
+import org.rev317.min.api.methods.Items;
 import org.rev317.min.api.methods.Menu;
 
 /**
@@ -52,27 +53,19 @@ public class Item {
     /**
      * Interacts with this item
      *
-     * @param i
+     * @param option
      */
-    public void interact(int i) {
-        Menu.interact(this, i);
-    }
-
-    /**
-     * Interacts with this item
-     * @param s
-     */
-    public void interact(String s){
-        Menu.interact(this, s);
+    public void interact(Items.Option option) {
+        Menu.interact(this, option.getActionId());
     }
 
     /**
      *
-     * @param actionIndex
+     * @param option
      * @param interfaceParentId
      */
-    public void transform(int actionIndex, int interfaceParentId) {
-        Menu.transformItem(this, actionIndex, interfaceParentId);
+    public void transform(Items.Option option, int interfaceParentId) {
+        Menu.transformItem(this, option.getActionId(), interfaceParentId);
     }
 
 }

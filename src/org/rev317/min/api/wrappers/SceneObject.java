@@ -6,6 +6,7 @@ import org.rev317.min.api.interfaces.Locatable;
 import org.rev317.min.api.methods.Calculations;
 import org.rev317.min.api.methods.Game;
 import org.rev317.min.api.methods.Menu;
+import org.rev317.min.api.methods.SceneObjects;
 
 /**
  * @author Everel
@@ -91,10 +92,10 @@ public class SceneObject implements Locatable {
     /**
      * Interacts with this object
      *
-     * @param actionIndex
+     * @param option
      */
-    public void interact(int actionIndex) {
-        Menu.interact(this, actionIndex);
+    public void interact(SceneObjects.Option option) {
+        Menu.interact(this, option.getActionId());
     }
 
     /**

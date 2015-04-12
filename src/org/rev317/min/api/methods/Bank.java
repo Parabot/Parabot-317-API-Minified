@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 /**
- * @author Everel
- * @author Matt123337
+ * @author Everel, Matt123337, JKetelaar
  */
 public class Bank {
     public static final int[] BANKERS = new int[]{44, 45, 494, 495, 498, 499,
@@ -25,25 +24,7 @@ public class Bank {
             10517, 11402, 11758, 12759, 14367, 19230, 20325, 24914, 25808,
             26972, 29085, 52589, 34752, 35647, 36786, 2012, 2015, 2019, 693,
             4483, 12308, 20607, 21301, 27663, 42192};
-    public static int BANK_INTERFACE = 5292;
-    public static int ITEM_INTERFACE = 5382;
-    public static int BUTTON_DEPOSIT_ALL = 5386;
-    public static int INV_PARENT_ID = 5064;
-    public static int BANK_OPEN_INDEX = 1;
-    static {
-
-        Properties p = Context.getInstance().getServerProviderInfo().getProperties();
-        if (p.containsKey("bankInterface"))
-            BANK_INTERFACE = Integer.parseInt(p.getProperty("bankInterface"));
-        if (p.containsKey("bankItemInterface"))
-            ITEM_INTERFACE = Integer.parseInt(p.getProperty("bankItemInterface"));
-        if (p.containsKey("bankDepositAll"))
-            BUTTON_DEPOSIT_ALL = Integer.parseInt(p.getProperty("bankDepositAll"));
-        if (p.containsKey("bankInvParent"))
-            INV_PARENT_ID = Integer.parseInt(p.getProperty("bankInvParent"));
-        if (p.containsKey("bankOpenIndex"))
-            BANK_OPEN_INDEX = Integer.parseInt(p.getProperty("bankOpenIndex"));
-    }
+    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets nearest banker
@@ -90,10 +71,10 @@ public class Bank {
         Npc banker = getBanker();
 
         if (bank != null) {
-            bank.interact(BANK_OPEN_INDEX);
+            bank.interact(SceneObjects.Option.USE);
             return true;
         } else if (banker != null) {
-            banker.interact(BANK_OPEN_INDEX);
+            banker.interact(Npcs.Option.BANK);
             return true;
         }
 
@@ -104,7 +85,7 @@ public class Bank {
      * Deposits all items
      */
     public static void depositAll() {
-        Menu.clickButton(BUTTON_DEPOSIT_ALL);
+        Menu.clickButton(Integer.parseInt(settings.getProperty("button_deposit_all")));
     }
 
     /**
@@ -114,7 +95,6 @@ public class Bank {
      * @param amount
      */
     public static void withdraw(int id, int amount, int sleep) {
-
         if (!isOpen()) {
             return;
         }
@@ -126,15 +106,15 @@ public class Bank {
         }
 
         if (amount == 1) {
-            b.transform(0, ITEM_INTERFACE);
+            b.transform(Items.Option.TRANSFORM_ONE, Integer.parseInt(settings.getProperty("item_interface_id")));
         } else if (amount == 5) {
-            b.transform(1, ITEM_INTERFACE);
+            b.transform(Items.Option.TRANSFORM_FIVE, Integer.parseInt(settings.getProperty("item_interface_id")));
         } else if (amount == 10) {
-            b.transform(2, ITEM_INTERFACE);
+            b.transform(Items.Option.TRANSFORM_TEN, Integer.parseInt(settings.getProperty("item_interface_id")));
         } else if (amount == 0) {
-            b.transform(3, ITEM_INTERFACE);
+            b.transform(Items.Option.TRANSFORM_ALL, Integer.parseInt(settings.getProperty("item_interface_id")));
         } else {
-            b.transform(4, ITEM_INTERFACE);
+            b.transform(Items.Option.TRANSFORM_X, Integer.parseInt(settings.getProperty("item_interface_id")));
             Time.sleep(1500 + sleep);
             Keyboard.getInstance().sendKeys("" + amount);
         }
@@ -148,14 +128,16 @@ public class Bank {
      * @return bank item
      */
     public static Item getItem(int id) {
-
         if (!isOpen()) {
             return null;
         }
 
-        for (Item i : Bank.getBankItems()) {
-            if (i.getId() == id) {
-                return i;
+        Item[] items;
+        if ((items = Bank.getBankItems()) != null) {
+            for (Item i : items) {
+                if (i.getId() == id) {
+                    return i;
+                }
             }
         }
         return null;
@@ -172,7 +154,8 @@ public class Bank {
         if (!isOpen()) {
             return 0;
         }
-        return getItem(id).getStackSize();
+        Item item;
+        return ((item = getItem(id)) != null ? item.getStackSize() : 0);
     }
 
     /**
@@ -180,17 +163,22 @@ public class Bank {
      *
      * @param bank booth
      */
-    public static void open(SceneObject bank) {
-
+    public static void open(final SceneObject bank) {
         if (isOpen()) {
             return;
         }
 
         if (bank.getLocation().distanceTo() > 8) {
             bank.getLocation().walkTo();
+            Time.sleep(new SleepCondition() {
+                @Override
+                public boolean isValid() {
+                    return bank.distanceTo() < 8;
+                }
+            }, 5000);
             return;
         }
-        bank.interact(BANK_OPEN_INDEX);
+        bank.interact(SceneObjects.Option.USE);
     }
 
 
@@ -201,8 +189,7 @@ public class Bank {
         if (!isOpen()) {
             return;
         }
-        //[index: 1, action1: -1, action2: -1, action3: 5384, id: 200]
-        Menu.sendAction(200, -1, -1, 5384);
+        Menu.sendAction(200, -1, -1, Integer.parseInt(settings.getProperty("button_close_bank")));
     }
 
     /**
@@ -220,7 +207,7 @@ public class Bank {
             for (Item i : Inventory.getItems()) {
                 if (!ignored.contains(i.getId())) {
                     while (Bank.isOpen() && Inventory.getCount(i.getId()) > 0) {
-                        i.transform(3, INV_PARENT_ID);
+                        i.transform(Items.Option.TRANSFORM_ALL, Integer.parseInt(settings.getProperty("inventory_parent_id")));
                         ignored.add(i.getId());
                         final int previous = Inventory.getCount(true);
                         Time.sleep(new SleepCondition() {
@@ -244,7 +231,7 @@ public class Bank {
         if (!isOpen()) {
             return null;
         }
-        return Loader.getClient().getInterfaceCache()[5382].getItems();
+        return Loader.getClient().getInterfaceCache()[Integer.parseInt(settings.getProperty("item_interface_id"))].getItems();
     }
 
     /**
@@ -256,7 +243,7 @@ public class Bank {
         if (!isOpen()) {
             return null;
         }
-        return Loader.getClient().getInterfaceCache()[5382].getStackSizes();
+        return Loader.getClient().getInterfaceCache()[Integer.parseInt(settings.getProperty("item_interface_id"))].getStackSizes();
     }
 
     /**
@@ -271,12 +258,14 @@ public class Bank {
         ArrayList<Item> items = new ArrayList<Item>();
         int[] ids = getBankItemIDs();
         int[] stacks = getBankStacks();
-        for (int i = 0; i < ids.length; i++) {
-            if (ids[i] > 0) {
-                items.add(new Item(ids[i], stacks[i], i));
+        if (ids != null && stacks != null) {
+            for (int i = 0; i < ids.length; i++) {
+                if (ids[i] > 0) {
+                    items.add(new Item(ids[i], stacks[i], i));
+                }
             }
         }
-        return (Item[]) items.toArray(new Item[items.size()]);
+        return items.toArray(new Item[items.size()]);
     }
 
     /**
@@ -288,7 +277,8 @@ public class Bank {
         if (!isOpen()) {
             return 0;
         }
-        return getBankItemIDs().length;
+        int[] items;
+        return ((items = getBankItemIDs()) != null ? items.length : 0);
     }
 
     /**
@@ -297,7 +287,7 @@ public class Bank {
      * @return <b>true</b> if bank is open
      */
     public static boolean isOpen() {
-        return Loader.getClient().getOpenInterfaceId() == BANK_INTERFACE;
+        return Loader.getClient().getOpenInterfaceId() == Integer.parseInt(settings.getProperty("bank_interface_id"));
     }
 
 }

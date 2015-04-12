@@ -1,5 +1,6 @@
 package org.rev317.min.api.methods;
 
+import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
@@ -8,13 +9,15 @@ import org.rev317.min.accessors.Interface;
 import org.rev317.min.api.wrappers.Item;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 
 /**
  * @author Everel, JKetelaar, Fryslan
  */
 public class Inventory {
-    public static final int INVENTORY_INDEX = 3214;
+
+    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     private static final Filter<Item> ALL_FILTER = new Filter<Item>() {
 
@@ -56,7 +59,7 @@ public class Inventory {
      * @return interface of inventory
      */
     public static Interface getInterface() {
-        return Loader.getClient().getInterfaceCache()[INVENTORY_INDEX];
+        return Loader.getClient().getInterfaceCache()[Integer.parseInt(settings.getProperty("inventory_index"))];
     }
 
     /**
@@ -178,7 +181,7 @@ public class Inventory {
         }
         final int[] items = inventory.getItems();
         final int[] stackSizes = inventory.getStackSizes();
-        final ArrayList<Item> invItems = new ArrayList<Item>(28);
+        final ArrayList<Item> invItems = new ArrayList<>(28);
         for (int i = 0; i < items.length; i++) {
             final int itemId = items[i];
             if (itemId < 1) {
@@ -257,9 +260,9 @@ public class Inventory {
 
         if (io != null) {
             if (it != null) {
-                Menu.interact(io, "use");
+                Menu.interact(io, Items.Option.USE.getActionId());
                 Time.sleep(50, 100);
-                Menu.interact(it, "use with");
+                Menu.interact(it, Items.Option.USE_WITH.getActionId());
                 Time.sleep(50, 100);
                 return true;
             }
@@ -282,9 +285,9 @@ public class Inventory {
 
         if (io != null) {
             if (it != null) {
-                Menu.interact(io, "use");
+                Menu.interact(io, Items.Option.USE.getActionId());
                 Time.sleep(50, 100);
-                Menu.interact(it, "use with");
+                Menu.interact(it, Items.Option.USE_WITH.getActionId());
                 Time.sleep(50, 100);
                 sleepCondition.isValid();
                 return true;

@@ -5,7 +5,6 @@ import org.rev317.min.Loader;
 import org.rev317.min.api.interfaces.Locatable;
 import org.rev317.min.api.methods.Calculations;
 import org.rev317.min.api.methods.Game;
-import org.rev317.min.api.methods.Menu;
 import org.rev317.min.api.methods.Players;
 
 /**
@@ -73,15 +72,6 @@ public class Character implements Locatable {
      */
     public int distanceTo() {
         return (int) Calculations.distanceTo(getLocation());
-    }
-
-    /**
-     * Interacts with this character
-     *
-     * @param i
-     */
-    public void interact(int i) {
-        Menu.interact(this, i);
     }
 
     /**

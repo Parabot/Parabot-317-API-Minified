@@ -1,5 +1,6 @@
 package org.rev317.min.api.methods;
 
+import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
@@ -10,9 +11,10 @@ import org.rev317.min.api.wrappers.GroundItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Properties;
 
 /**
- * @author Everel
+ * @author Everel, JKetelaar
  */
 public class GroundItems {
     private static final Comparator<GroundItem> NEAREST_SORTER = new Comparator<GroundItem>() {
@@ -32,6 +34,7 @@ public class GroundItems {
 
     };
     private static Client client;
+    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all loaded ground items
@@ -43,7 +46,7 @@ public class GroundItems {
         if (client == null) {
             client = Loader.getClient();
         }
-        final ArrayList<GroundItem> items = new ArrayList<GroundItem>();
+        final ArrayList<GroundItem> items = new ArrayList<>();
         for (int x = 0; x < 104; x++) {
             for (int y = 0; y < 104; y++) {
                 final GroundItem[] groundItemsAtTile = getGroundItemsAt(x, y);
@@ -76,14 +79,11 @@ public class GroundItems {
             if (deque == null) {
                 return null;
             }
-            ArrayList<GroundItem> list = null;
+            ArrayList<GroundItem> list = new ArrayList<>();
             final Node holder = deque.getHead();
             Node curNode = holder.getNext();
             while (curNode != null && curNode != holder
                     && curNode != deque.getHead()) {
-                if (list == null) {
-                    list = new ArrayList<GroundItem>();
-                }
                 final org.rev317.min.accessors.Item groundItem = (org.rev317.min.accessors.Item) curNode;
                 list.add(new GroundItem(groundItem, x, y));
                 curNode = curNode.getNext();
@@ -149,4 +149,28 @@ public class GroundItems {
         });
     }
 
+    public enum Option{
+        FIRST(Integer.parseInt(settings.getProperty("menu_ground_item_first_interaction"))),
+
+        SECOND(Integer.parseInt(settings.getProperty("menu_ground_item_second_interaction"))),
+
+        THIRD(Integer.parseInt(settings.getProperty("menu_ground_item_third_interaction"))),
+        TAKE(Integer.parseInt(settings.getProperty("menu_ground_item_third_interaction"))),
+
+        FOURTH(Integer.parseInt(settings.getProperty("menu_ground_item_fourth_interaction"))),
+
+        FIFTH(Integer.parseInt(settings.getProperty("menu_ground_item_fifth_interaction"))),
+
+        EXAMINE(Integer.parseInt(settings.getProperty("menu_ground_item_examine_interaction")));
+
+        int actionId;
+
+        Option(int actionId) {
+            this.actionId = actionId;
+        }
+
+        public int getActionId() {
+            return actionId;
+        }
+    }
 }

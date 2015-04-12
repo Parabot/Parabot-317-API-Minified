@@ -1,6 +1,8 @@
 package org.rev317.min.api.wrappers;
 
 import org.parabot.core.reflect.RefClass;
+import org.rev317.min.api.methods.Menu;
+import org.rev317.min.api.methods.Npcs;
 
 /**
  * @author Everel
@@ -30,6 +32,15 @@ public final class Npc extends Character {
      */
     public RefClass getRefClass() {
         return new RefClass(this.accessor);
+    }
+
+    /**
+     * Interacts with this character
+     *
+     * @param option
+     */
+    public void interact(Npcs.Option option) {
+        Menu.interact(this, option.getActionId());
     }
 
 }
