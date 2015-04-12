@@ -38,12 +38,13 @@ public class Items {
 
         SECOND(Integer.parseInt(settings.getProperty("menu_item_second_interaction"))),
         CONSUME(Integer.parseInt(settings.getProperty("menu_item_second_interaction"))),
+        DRINK(Integer.parseInt(settings.getProperty("menu_item_second_interaction"))),
 
         THIRD(Integer.parseInt(settings.getProperty("menu_item_third_interaction"))),
-        EMPTY(Integer.parseInt(settings.getProperty("menu_item_third_interaction"))),
+        USE(Integer.parseInt(settings.getProperty("menu_item_third_interaction"))),
 
         FOURTH(Integer.parseInt(settings.getProperty("menu_item_fourth_interaction"))),
-        USE(Integer.parseInt(settings.getProperty("menu_item_fourth_interaction"))),
+        EMPTY(Integer.parseInt(settings.getProperty("menu_item_fourth_interaction"))),
 
         FIFTH(Integer.parseInt(settings.getProperty("menu_item_fifth_interaction"))),
         DROP(Integer.parseInt(settings.getProperty("menu_item_fifth_interaction"))),

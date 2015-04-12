@@ -4,9 +4,7 @@ import org.parabot.core.Context;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Character;
-import org.rev317.min.api.wrappers.GroundItem;
-import org.rev317.min.api.wrappers.Item;
-import org.rev317.min.api.wrappers.SceneObject;
+import org.rev317.min.api.wrappers.*;
 
 import java.util.Properties;
 
@@ -21,9 +19,43 @@ public class Menu {
      * Interacts with a sceneobject
      *
      * @param object
-     * @param actionId
+     * @param action
      */
-    public static void interact(SceneObject object, int actionId) {
+    public static void interact(SceneObject object, SceneObjects.Option action) {
+        if (Game.hasAction4()) {
+            sendAction(action.getActionId(), object.getHash(), object.getLocalRegionX(), object.getLocalRegionY(), object.getId(), 0);
+        } else {
+            sendAction(action.getActionId(), object.getHash(), object.getLocalRegionX(), object.getLocalRegionY());
+        }
+    }
+
+    /**
+     * Interacts with a sceneobject
+     *
+     * @deprecated
+     *
+     * @param object
+     * @param actionIndex
+     */
+    public static void interact(SceneObject object, int actionIndex) {
+        int actionId = SceneObjects.Option.FIRST.getActionId();
+        switch (actionIndex) {
+            case 0:
+                actionId = SceneObjects.Option.FIRST.getActionId();
+                break;
+            case 1:
+                actionId = SceneObjects.Option.SECOND.getActionId();
+                break;
+            case 2:
+                actionId = SceneObjects.Option.THIRD.getActionId();
+                break;
+            case 3:
+                actionId = SceneObjects.Option.FOURTH.getActionId();
+                break;
+            case 4:
+                actionId = SceneObjects.Option.FIFTH.getActionId();
+                break;
+        }
         if (Game.hasAction4()) {
             sendAction(actionId, object.getHash(), object.getLocalRegionX(), object.getLocalRegionY(), object.getId(), 0);
         } else {
@@ -35,9 +67,49 @@ public class Menu {
      * Interacts with a character
      *
      * @param character
-     * @param actionId
+     * @param action
      */
-    public static void interact(Character character, int actionId) {
+    public static void interact(Npc character, Npcs.Option action) {
+        sendAction(action.getActionId(), character.getIndex(), 0, 0);
+    }
+
+    /**
+     * Interacts with a character
+     *
+     * @param character
+     * @param action
+     */
+    public static void interact(Player character, Players.Option action) {
+        sendAction(action.getActionId(), character.getIndex(), 0, 0);
+    }
+
+    /**
+     * Interacts with a character
+     *
+     * @deprecated
+     *
+     * @param character
+     * @param actionIndex
+     */
+    public static void interact(Character character, int actionIndex) {
+        int actionId = 20;
+        switch (actionIndex) {
+            case 0:
+                actionId = 20;
+                break;
+            case 1:
+                actionId = 412;
+                break;
+            case 2:
+                actionId = 225;
+                break;
+            case 3:
+                actionId = 965;
+                break;
+            case 4:
+                actionId = 478;
+                break;
+        }
         sendAction(actionId, character.getIndex(), 0, 0);
     }
 
@@ -45,11 +117,44 @@ public class Menu {
      * Interacts with an item when it has the following menu Transform-1 Transform-5 Transform-10 etc..
      *
      * @param item
-     * @param actionId
+     * @param action
      * @param interfaceParentId
      */
-    public static void transformItem(Item item, int actionId,
+    public static void transformItem(Item item, Items.Option action,
                                      int interfaceParentId) {
+        sendAction(action.getActionId(), item.getId() - 1, item.getSlot(),
+                interfaceParentId);
+    }
+
+    /**
+     * Interacts with an item when it has the following menu Transform-1 Transform-5 Transform-10 etc..
+     *
+     * @deprecated
+     *
+     * @param item
+     * @param actionIndex
+     * @param interfaceParentId
+     */
+    public static void transformItem(Item item, int actionIndex,
+                                     int interfaceParentId) {
+        int actionId = Items.Option.TRANSFORM_FIRST.getActionId();
+        switch (actionIndex) {
+            case 0:
+                actionId = Items.Option.TRANSFORM_FIRST.getActionId();
+                break;
+            case 1:
+                actionId = Items.Option.TRANSFORM_SECOND.getActionId();
+                break;
+            case 2:
+                actionId = Items.Option.TRANSFORM_THIRD.getActionId();
+                break;
+            case 3:
+                actionId = Items.Option.TRANSFORM_FOURTH.getActionId();
+                break;
+            case 4:
+                actionId = Items.Option.TRANSFORM_FIFTH.getActionId();
+                break;
+        }
         sendAction(actionId, item.getId() - 1, item.getSlot(),
                 interfaceParentId);
     }
@@ -67,13 +172,93 @@ public class Menu {
      * Interacts with a ground item
      *
      * @param item
-     * @param actionId
+     * @param action
      */
-    public static void interact(GroundItem item, int actionId) {
+    public static void interact(GroundItem item, GroundItems.Option action) {
+        sendAction(action.getActionId(), item.getId(), item.getX(), item.getY());
+    }
+
+    /**
+     * Interacts with a ground item
+     *
+     * @deprecated
+     *
+     * @param item
+     * @param action
+     */
+    public static void interact(GroundItem item, int action) {
+        int actionId = GroundItems.Option.FIRST.getActionId();
+        switch (action) {
+            case 0:
+                actionId = GroundItems.Option.FIRST.getActionId();
+                break;
+            case 1:
+                actionId = GroundItems.Option.SECOND.getActionId();
+                break;
+            case 2:
+                actionId = GroundItems.Option.THIRD.getActionId();
+                break;
+            case 3:
+                actionId = GroundItems.Option.FOURTH.getActionId();
+                break;
+            case 4:
+                actionId = GroundItems.Option.FIFTH.getActionId();
+                break;
+        }
         sendAction(actionId, item.getId(), item.getX(), item.getY());
     }
 
-    public static void interact(Item item, int actionId){
+    public static void interact(Item item, Items.Option action){
+        sendAction(action.getActionId(), item.getId() - 1, item.getSlot(), 3214);
+    }
+
+    /**
+     * @deprecated
+     */
+    public static void interact(Item item, int action){
+        int actionId = 447;
+        switch (action){
+            case 0:
+                actionId = 447;
+                break;
+            case 1:
+                actionId = 847;
+                break;
+            case 2:
+                actionId = 1125;
+                break;
+            case 3:
+                actionId = 1107;
+                break;
+        }
+        sendAction(actionId, item.getId() - 1, item.getSlot(), 3214);
+    }
+
+    /**
+     * @deprecated
+     */
+    public static void interact(Item item, String action){
+        int actionId = 447;
+        switch (action.toLowerCase()){
+            case "use":
+                actionId = 447;
+                break;
+            case "drop":
+                actionId = 847;
+                break;
+            case "examine":
+                actionId = 1125;
+                break;
+            case "cancel":
+                actionId = 1107;
+                break;
+            case "wear":
+                actionId = 454;
+                break;
+            case "use with":
+                actionId = 870;
+                break;
+        }
         sendAction(actionId, item.getId() - 1, item.getSlot(), 3214);
     }
 
