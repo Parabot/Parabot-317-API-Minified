@@ -109,6 +109,8 @@ public class Players {
 
         FIFTH(Integer.parseInt(settings.getProperty("menu_character_fifth_interaction"))),
 
+        FOLLOW(Integer.parseInt(settings.getProperty("menu_character_follow"))),
+
         TRADE(Integer.parseInt(settings.getProperty("menu_character_trade"))),
 
         ATTACK(Integer.parseInt(settings.getProperty("menu_character_attack"))),
