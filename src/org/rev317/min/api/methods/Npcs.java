@@ -6,10 +6,7 @@ import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Npc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * @author Everel, JKetelaar
@@ -33,7 +30,7 @@ public class Npcs {
         }
 
     };
-    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all Npcs except local Npc
@@ -145,31 +142,31 @@ public class Npcs {
     }
 
     public enum Option{
-        FIRST(Integer.parseInt(settings.getProperty("menu_character_first_interaction"))),
-        ATTACK(Integer.parseInt(settings.getProperty("menu_character_first_interaction"))),
+        FIRST(settings.get("menu_character_first_interaction")),
+        ATTACK(settings.get("menu_character_first_interaction")),
 
-        SECOND(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
-        TALK_TO(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
-        INTERACT(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
-        BAIT(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
-        CAGE(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
-        NET(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
+        SECOND(settings.get("menu_character_second_interaction")),
+        TALK_TO(settings.get("menu_character_second_interaction")),
+        INTERACT(settings.get("menu_character_second_interaction")),
+        BAIT(settings.get("menu_character_second_interaction")),
+        CAGE(settings.get("menu_character_second_interaction")),
+        NET(settings.get("menu_character_second_interaction")),
 
-        THIRD(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
-        TRADE(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
-        BANK(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
-        PICKPOCKET(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
-        HARPOON(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
-        GET_TASK(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
+        THIRD(settings.get("menu_character_third_interaction")),
+        TRADE(settings.get("menu_character_third_interaction")),
+        BANK(settings.get("menu_character_third_interaction")),
+        PICKPOCKET(settings.get("menu_character_third_interaction")),
+        HARPOON(settings.get("menu_character_third_interaction")),
+        GET_TASK(settings.get("menu_character_third_interaction")),
 
-        FOURTH(Integer.parseInt(settings.getProperty("menu_character_fourth_interaction"))),
-        COLLECT(Integer.parseInt(settings.getProperty("menu_character_fourth_interaction"))),
-        CHANGE_CLOTHES(Integer.parseInt(settings.getProperty("menu_character_fourth_interaction"))),
+        FOURTH(settings.get("menu_character_fourth_interaction")),
+        COLLECT(settings.get("menu_character_fourth_interaction")),
+        CHANGE_CLOTHES(settings.get("menu_character_fourth_interaction")),
 
-        FIFTH(Integer.parseInt(settings.getProperty("menu_character_fifth_interaction"))),
-        REWARD(Integer.parseInt(settings.getProperty("menu_character_fifth_interaction"))),
+        FIFTH(settings.get("menu_character_fifth_interaction")),
+        REWARD(settings.get("menu_character_fifth_interaction")),
 
-        EXAMINE(Integer.parseInt(settings.getProperty("menu_character_examine")));
+        EXAMINE(settings.get("menu_character_examine"));
 
         int actionId;
 

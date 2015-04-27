@@ -11,7 +11,7 @@ import org.rev317.min.api.wrappers.GroundItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Properties;
+import java.util.HashMap;
 
 /**
  * @author Everel, JKetelaar
@@ -34,7 +34,7 @@ public class GroundItems {
 
     };
     private static Client client;
-    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all loaded ground items
@@ -150,18 +150,18 @@ public class GroundItems {
     }
 
     public enum Option{
-        FIRST(Integer.parseInt(settings.getProperty("menu_ground_item_first_interaction"))),
+        FIRST(settings.get("menu_ground_item_first_interaction")),
 
-        SECOND(Integer.parseInt(settings.getProperty("menu_ground_item_second_interaction"))),
+        SECOND(settings.get("menu_ground_item_second_interaction")),
 
-        THIRD(Integer.parseInt(settings.getProperty("menu_ground_item_third_interaction"))),
-        TAKE(Integer.parseInt(settings.getProperty("menu_ground_item_third_interaction"))),
+        THIRD(settings.get("menu_ground_item_third_interaction")),
+        TAKE(settings.get("menu_ground_item_third_interaction")),
 
-        FOURTH(Integer.parseInt(settings.getProperty("menu_ground_item_fourth_interaction"))),
+        FOURTH(settings.get("menu_ground_item_fourth_interaction")),
 
-        FIFTH(Integer.parseInt(settings.getProperty("menu_ground_item_fifth_interaction"))),
+        FIFTH(settings.get("menu_ground_item_fifth_interaction")),
 
-        EXAMINE(Integer.parseInt(settings.getProperty("menu_ground_item_examine_interaction")));
+        EXAMINE(settings.get("menu_ground_item_examine_interaction"));
 
         int actionId;
 

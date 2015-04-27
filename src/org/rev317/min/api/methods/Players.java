@@ -6,10 +6,7 @@ import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * @author Everel, JKetelaar
@@ -33,7 +30,7 @@ public class Players {
         }
 
     };
-    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all players except local player
@@ -99,24 +96,24 @@ public class Players {
     }
 
     public enum Option{
-        FIRST(Integer.parseInt(settings.getProperty("menu_character_first_interaction"))),
+        FIRST(settings.get("menu_character_first_interaction")),
 
-        SECOND(Integer.parseInt(settings.getProperty("menu_character_second_interaction"))),
+        SECOND(settings.get("menu_character_second_interaction")),
 
-        THIRD(Integer.parseInt(settings.getProperty("menu_character_third_interaction"))),
+        THIRD(settings.get("menu_character_third_interaction")),
 
-        FOURTH(Integer.parseInt(settings.getProperty("menu_character_fourth_interaction"))),
+        FOURTH(settings.get("menu_character_fourth_interaction")),
 
-        FIFTH(Integer.parseInt(settings.getProperty("menu_character_fifth_interaction"))),
+        FIFTH(settings.get("menu_character_fifth_interaction")),
 
-        FOLLOW(Integer.parseInt(settings.getProperty("menu_character_follow"))),
+        FOLLOW(settings.get("menu_character_follow")),
 
-        TRADE(Integer.parseInt(settings.getProperty("menu_character_trade"))),
+        TRADE(settings.get("menu_character_trade")),
 
-        ATTACK(Integer.parseInt(settings.getProperty("menu_character_attack"))),
-        CHALLENGE(Integer.parseInt(settings.getProperty("menu_character_attack"))),
+        ATTACK(settings.get("menu_character_attack")),
+        CHALLENGE(settings.get("menu_character_attack")),
 
-        EXAMINE(Integer.parseInt(settings.getProperty("menu_character_examine")));
+        EXAMINE(settings.get("menu_character_examine"));
 
         int actionId;
 

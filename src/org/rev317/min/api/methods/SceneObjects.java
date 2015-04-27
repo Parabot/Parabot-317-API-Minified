@@ -31,7 +31,7 @@ public class SceneObjects {
         }
 
     };
-    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets the most important scene objects in game which can be interacted with, filters out: 'walls, wall
@@ -224,33 +224,33 @@ public class SceneObjects {
     }
 
     public enum Option{
-        FIRST(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        TALK_TO(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        CHOP_DOWN(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        CRAFT_RUNE(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        PRAY_AT(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        OPEN(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        DEPOSIT(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        USE(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        SEARCH(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        CLOSE(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
-        CROSS(Integer.parseInt(settings.getProperty("menu_scene_object_first_interaction"))),
+        FIRST(settings.get("menu_scene_object_first_interaction")),
+        TALK_TO(settings.get("menu_scene_object_first_interaction")),
+        CHOP_DOWN(settings.get("menu_scene_object_first_interaction")),
+        CRAFT_RUNE(settings.get("menu_scene_object_first_interaction")),
+        PRAY_AT(settings.get("menu_scene_object_first_interaction")),
+        OPEN(settings.get("menu_scene_object_first_interaction")),
+        DEPOSIT(settings.get("menu_scene_object_first_interaction")),
+        USE(settings.get("menu_scene_object_first_interaction")),
+        SEARCH(settings.get("menu_scene_object_first_interaction")),
+        CLOSE(settings.get("menu_scene_object_first_interaction")),
+        CROSS(settings.get("menu_scene_object_first_interaction")),
 
-        SECOND(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
-        TELEPORT(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
-        STEAL_FROM(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
-        PRAY(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
-        USE_QUICKLY(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
-        INSPECT(Integer.parseInt(settings.getProperty("menu_scene_object_second_interaction"))),
+        SECOND(settings.get("menu_scene_object_second_interaction")),
+        TELEPORT(settings.get("menu_scene_object_second_interaction")),
+        STEAL_FROM(settings.get("menu_scene_object_second_interaction")),
+        PRAY(settings.get("menu_scene_object_second_interaction")),
+        USE_QUICKLY(settings.get("menu_scene_object_second_interaction")),
+        INSPECT(settings.get("menu_scene_object_second_interaction")),
 
-        THIRD(Integer.parseInt(settings.getProperty("menu_scene_object_third_interaction"))),
+        THIRD(settings.get("menu_scene_object_third_interaction")),
 
-        FOURTH(Integer.parseInt(settings.getProperty("menu_scene_object_fourth_interaction"))),
-        GUIDE(Integer.parseInt(settings.getProperty("menu_scene_object_fourth_interaction"))),
+        FOURTH(settings.get("menu_scene_object_fourth_interaction")),
+        GUIDE(settings.get("menu_scene_object_fourth_interaction")),
 
-        FIFTH(Integer.parseInt(settings.getProperty("menu_scene_object_fifth_interaction"))),
+        FIFTH(settings.get("menu_scene_object_fifth_interaction")),
 
-        EXAMINE(Integer.parseInt(settings.getProperty("menu_scene_object_examine")));
+        EXAMINE(settings.get("menu_scene_object_examine"));
 
         int actionId;
 

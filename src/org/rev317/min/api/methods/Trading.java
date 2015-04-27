@@ -9,14 +9,14 @@ import org.rev317.min.accessors.Interface;
 import org.rev317.min.api.wrappers.Item;
 
 import java.util.ArrayList;
-import java.util.Properties;
+import java.util.HashMap;
 
 /**
  * @author JKetelaar
  */
 public class Trading {
 
-    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Checks if the first or the second screen is open, based on the given boolean
@@ -24,7 +24,7 @@ public class Trading {
      * @return True if the requested screen is open
      */
     public static boolean isOpen(boolean first){
-        return Loader.getClient().getOpenInterfaceId() == (first ? Integer.parseInt(settings.getProperty("first_trade_interface_id")) : Integer.parseInt(settings.getProperty("second_trade_interface_id")));
+        return Loader.getClient().getOpenInterfaceId() == (first ? settings.get("first_trade_interface_id") : settings.get("second_trade_interface_id"));
     }
 
     /**
@@ -32,7 +32,7 @@ public class Trading {
      * @return True if open, false if not open
      */
     public static boolean isOpen(){
-        return Loader.getClient().getOpenInterfaceId() == Integer.parseInt(settings.getProperty("first_trade_interface_id")) || Loader.getClient().getOpenInterfaceId() == Integer.parseInt(settings.getProperty("second_trade_interface_id"));
+        return Loader.getClient().getOpenInterfaceId() == settings.get("first_trade_interface_id") || Loader.getClient().getOpenInterfaceId() == settings.get("second_trade_interface_id");
     }
 
     /**
@@ -51,8 +51,8 @@ public class Trading {
 
     public static Item[] getMyOffer() {
         ArrayList<Item> items = new ArrayList<>();
-        int[] ids = getItemIDs(Integer.parseInt(settings.getProperty("my_offer_interface_id")));
-        int[] stacks = getItemStacks(Integer.parseInt(settings.getProperty("my_offer_interface_id")));
+        int[] ids = getItemIDs(settings.get("my_offer_interface_id"));
+        int[] stacks = getItemStacks(settings.get("my_offer_interface_id"));
         for (int i = 0; i < ids.length; i++) {
             if (ids[i] > 0) {
                 items.add(new Item(ids[i], stacks[i], i));
@@ -63,8 +63,8 @@ public class Trading {
 
     public static Item[] getOpponentsOffer() {
         ArrayList<Item> items = new ArrayList<>();
-        int[] ids = getItemIDs(Integer.parseInt(settings.getProperty("opponent_offer_interface_id")));
-        int[] stacks = getItemStacks(Integer.parseInt(settings.getProperty("opponent_offer_interface_id")));
+        int[] ids = getItemIDs(settings.get("opponent_offer_interface_id"));
+        int[] stacks = getItemStacks(settings.get("opponent_offer_interface_id"));
         for (int i = 0; i < ids.length; i++) {
             if (ids[i] > 0) {
                 items.add(new Item(ids[i], stacks[i], i));

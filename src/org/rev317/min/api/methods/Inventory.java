@@ -9,7 +9,7 @@ import org.rev317.min.accessors.Interface;
 import org.rev317.min.api.wrappers.Item;
 
 import java.util.ArrayList;
-import java.util.Properties;
+import java.util.HashMap;
 
 
 /**
@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 public class Inventory {
 
-    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     private static final Filter<Item> ALL_FILTER = new Filter<Item>() {
 
@@ -59,7 +59,7 @@ public class Inventory {
      * @return interface of inventory
      */
     public static Interface getInterface() {
-        return Loader.getClient().getInterfaceCache()[Integer.parseInt(settings.getProperty("inventory_index"))];
+        return Loader.getClient().getInterfaceCache()[settings.get("inventory_index")];
     }
 
     /**

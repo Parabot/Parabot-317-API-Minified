@@ -6,14 +6,14 @@ import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Character;
 import org.rev317.min.api.wrappers.*;
 
-import java.util.Properties;
+import java.util.HashMap;
 
 /**
  * @author JKetelaar, Everel
  */
 public class Menu {
 
-    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Interacts with a sceneobject
@@ -165,7 +165,7 @@ public class Menu {
      * @param item
      */
     public static void take(GroundItem item) {
-        sendAction(Integer.parseInt(settings.getProperty("button_take_item")), item.getId(), item.getX(), item.getY());
+        sendAction(settings.get("button_take_item"), item.getId(), item.getX(), item.getY());
     }
 
     /**
@@ -268,8 +268,8 @@ public class Menu {
      * @param item
      */
     public static void drop(Item item) {
-        sendAction(Integer.parseInt(settings.getProperty("button_drop_item")), item.getId() - 1, item.getSlot(),
-                Integer.parseInt(settings.getProperty("inventory_index")));
+        sendAction(settings.get("button_drop_item"), item.getId() - 1, item.getSlot(),
+                settings.get("inventory_index"));
     }
 
     /**
@@ -278,7 +278,7 @@ public class Menu {
      * @param id
      */
     public static void clickButton(int id) {
-        sendAction(Integer.parseInt(settings.getProperty("button_action_click")), 0, 0, id);
+        sendAction(settings.get("button_action_click"), 0, 0, id);
     }
 
     /**

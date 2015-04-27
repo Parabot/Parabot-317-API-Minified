@@ -10,7 +10,7 @@ import org.rev317.min.api.wrappers.Npc;
 import org.rev317.min.api.wrappers.SceneObject;
 
 import java.util.ArrayList;
-import java.util.Properties;
+import java.util.HashMap;
 
 /**
  * @author Everel, Matt123337, JKetelaar
@@ -24,7 +24,7 @@ public class Bank {
             10517, 11402, 11758, 12759, 14367, 19230, 20325, 24914, 25808,
             26972, 29085, 52589, 34752, 35647, 36786, 2012, 2015, 2019, 693,
             4483, 12308, 20607, 21301, 27663, 42192};
-    private static Properties settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets nearest banker
@@ -85,7 +85,7 @@ public class Bank {
      * Deposits all items
      */
     public static void depositAll() {
-        Menu.clickButton(Integer.parseInt(settings.getProperty("button_deposit_all")));
+        Menu.clickButton(settings.get("button_deposit_all"));
     }
 
     /**
@@ -106,15 +106,15 @@ public class Bank {
         }
 
         if (amount == 1) {
-            b.transform(Items.Option.TRANSFORM_ONE, Integer.parseInt(settings.getProperty("item_interface_id")));
+            b.transform(Items.Option.TRANSFORM_ONE, settings.get("item_interface_id"));
         } else if (amount == 5) {
-            b.transform(Items.Option.TRANSFORM_FIVE, Integer.parseInt(settings.getProperty("item_interface_id")));
+            b.transform(Items.Option.TRANSFORM_FIVE, settings.get("item_interface_id"));
         } else if (amount == 10) {
-            b.transform(Items.Option.TRANSFORM_TEN, Integer.parseInt(settings.getProperty("item_interface_id")));
+            b.transform(Items.Option.TRANSFORM_TEN, settings.get("item_interface_id"));
         } else if (amount == 0) {
-            b.transform(Items.Option.TRANSFORM_ALL, Integer.parseInt(settings.getProperty("item_interface_id")));
+            b.transform(Items.Option.TRANSFORM_ALL, settings.get("item_interface_id"));
         } else {
-            b.transform(Items.Option.TRANSFORM_X, Integer.parseInt(settings.getProperty("item_interface_id")));
+            b.transform(Items.Option.TRANSFORM_X, settings.get("item_interface_id"));
             Time.sleep(1500 + sleep);
             Keyboard.getInstance().sendKeys("" + amount);
         }
@@ -189,7 +189,7 @@ public class Bank {
         if (!isOpen()) {
             return;
         }
-        Menu.sendAction(200, -1, -1, Integer.parseInt(settings.getProperty("button_close_bank")));
+        Menu.sendAction(200, -1, -1, settings.get("button_close_bank"));
     }
 
     /**
@@ -207,7 +207,7 @@ public class Bank {
             for (Item i : Inventory.getItems()) {
                 if (!ignored.contains(i.getId())) {
                     while (Bank.isOpen() && Inventory.getCount(i.getId()) > 0) {
-                        i.transform(Items.Option.TRANSFORM_ALL, Integer.parseInt(settings.getProperty("inventory_parent_id")));
+                        i.transform(Items.Option.TRANSFORM_ALL, settings.get("inventory_parent_id"));
                         ignored.add(i.getId());
                         final int previous = Inventory.getCount(true);
                         Time.sleep(new SleepCondition() {
@@ -231,7 +231,7 @@ public class Bank {
         if (!isOpen()) {
             return null;
         }
-        return Loader.getClient().getInterfaceCache()[Integer.parseInt(settings.getProperty("item_interface_id"))].getItems();
+        return Loader.getClient().getInterfaceCache()[settings.get("item_interface_id")].getItems();
     }
 
     /**
@@ -243,7 +243,7 @@ public class Bank {
         if (!isOpen()) {
             return null;
         }
-        return Loader.getClient().getInterfaceCache()[Integer.parseInt(settings.getProperty("item_interface_id"))].getStackSizes();
+        return Loader.getClient().getInterfaceCache()[settings.get("item_interface_id")].getStackSizes();
     }
 
     /**
@@ -287,7 +287,7 @@ public class Bank {
      * @return <b>true</b> if bank is open
      */
     public static boolean isOpen() {
-        return Loader.getClient().getOpenInterfaceId() == Integer.parseInt(settings.getProperty("bank_interface_id"));
+        return Loader.getClient().getOpenInterfaceId() == settings.get("bank_interface_id");
     }
 
 }
