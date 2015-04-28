@@ -22,6 +22,6 @@ public class Player extends Character {
      * @param option
      */
     public void interact(Players.Option option) {
-        Menu.interact(this, option.getActionId());
+        Menu.interact(this, option);
     }
 }

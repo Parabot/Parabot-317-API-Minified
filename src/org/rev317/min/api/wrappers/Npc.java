@@ -40,7 +40,7 @@ public final class Npc extends Character {
      * @param option
      */
     public void interact(Npcs.Option option) {
-        Menu.interact(this, option.getActionId());
+        Menu.interact(this, option);
     }
 
 }
