@@ -178,47 +178,49 @@ public class SceneObjects {
     public static final Collection<SceneObject> getSceneObjectsAtTile(int x, int y, boolean useCached) {
         Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
         ArrayList<SceneObject> sceneObjects = null;
-        final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
-        if (interactiveObjects != null) {
-            for (final SceneObjectTile interactiveObject : interactiveObjects) {
-                if (interactiveObject != null) {
-                    if (sceneObjects == null) {
-                        sceneObjects = new ArrayList<>();
+        if (sceneTile != null) {
+            final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
+            if (interactiveObjects != null) {
+                for (final SceneObjectTile interactiveObject : interactiveObjects) {
+                    if (interactiveObject != null) {
+                        if (sceneObjects == null) {
+                            sceneObjects = new ArrayList<>();
+                        }
+                        sceneObjects.add(new SceneObject(interactiveObject, SceneObject.TYPE_INTERACTIVE));
                     }
-                    sceneObjects.add(new SceneObject(interactiveObject, SceneObject.TYPE_INTERACTIVE));
                 }
             }
-        }
-        SceneObjectTile sceneObjectTile = sceneTile.getWallObject();
-        if (sceneObjectTile != null) {
-            if (sceneObjects == null) {
-                sceneObjects = new ArrayList<>();
+            SceneObjectTile sceneObjectTile = sceneTile.getWallObject();
+            if (sceneObjectTile != null) {
+                if (sceneObjects == null) {
+                    sceneObjects = new ArrayList<>();
+                }
+                sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_WALL));
             }
-            sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_WALL));
-        }
 
-        sceneObjectTile = sceneTile.getWallDecoration();
-        if (sceneObjectTile != null) {
-            if (sceneObjects == null) {
-                sceneObjects = new ArrayList<>();
+            sceneObjectTile = sceneTile.getWallDecoration();
+            if (sceneObjectTile != null) {
+                if (sceneObjects == null) {
+                    sceneObjects = new ArrayList<>();
+                }
+                sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_WALLDECORATION));
             }
-            sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_WALLDECORATION));
-        }
 
-        sceneObjectTile = sceneTile.getGroundDecoration();
-        if (sceneObjectTile != null) {
-            if (sceneObjects == null) {
-                sceneObjects = new ArrayList<>();
+            sceneObjectTile = sceneTile.getGroundDecoration();
+            if (sceneObjectTile != null) {
+                if (sceneObjects == null) {
+                    sceneObjects = new ArrayList<>();
+                }
+                sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_GROUNDDECORATION));
             }
-            sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_GROUNDDECORATION));
-        }
 
-        sceneObjectTile = sceneTile.getGroundItem();
-        if (sceneObjectTile != null) {
-            if (sceneObjects == null) {
-                sceneObjects = new ArrayList<>();
+            sceneObjectTile = sceneTile.getGroundItem();
+            if (sceneObjectTile != null) {
+                if (sceneObjects == null) {
+                    sceneObjects = new ArrayList<>();
+                }
+                sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_GROUNDITEM));
             }
-            sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_GROUNDITEM));
         }
         return sceneObjects;
     }
