@@ -237,6 +237,8 @@ public class SceneObjects {
         SEARCH(settings.get("menu_scene_object_first_interaction")),
         CLOSE(settings.get("menu_scene_object_first_interaction")),
         CROSS(settings.get("menu_scene_object_first_interaction")),
+        MINE(settings.get("menu_scene_object_first_interaction")),
+        SMELT(settings.get("menu_scene_object_first_interaction")),
 
         SECOND(settings.get("menu_scene_object_second_interaction")),
         TELEPORT(settings.get("menu_scene_object_second_interaction")),
