@@ -5,6 +5,7 @@ import org.parabot.environment.scripts.framework.SleepCondition;
 
 /**
  * @author JKetelaar, Fryslan
+ * TODO Set the actual names and level requirements
  */
 public enum Prayer {
     THICK_SKIN(83, 5609, "name", 1),
