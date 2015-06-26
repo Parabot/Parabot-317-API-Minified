@@ -92,29 +92,29 @@ public enum Prayer {
         return setting;
     }
 
-    public boolean isActive(){
+    public boolean isEnabled(){
         return Game.getSetting(setting) == 1;
     }
 
     public void enable() {
-        if (!isActive()) {
+        if (!isEnabled()) {
             Menu.sendAction(169, -1, -1, action);
             Time.sleep(new SleepCondition() {
                 @Override
                 public boolean isValid() {
-                    return isActive();
+                    return isEnabled();
                 }
             }, 1500);
         }
     }
 
     public void disable() {
-        if (isActive()) {
+        if (isEnabled()) {
             Menu.sendAction(169, -1, -1, action);
             Time.sleep(new SleepCondition() {
                 @Override
                 public boolean isValid() {
-                    return !isActive();
+                    return !isEnabled();
                 }
             }, 1500);
         }
