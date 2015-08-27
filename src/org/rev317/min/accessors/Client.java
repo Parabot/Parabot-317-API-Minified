@@ -47,6 +47,8 @@ public interface Client {
 
     public void doAction(int i);
 
+    public void dropClient();
+
     public int[] getCurrentStats();
 
     public int[] getSettings();

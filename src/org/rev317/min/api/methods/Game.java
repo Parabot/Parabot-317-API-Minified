@@ -1,5 +1,7 @@
 package org.rev317.min.api.methods;
 
+import org.parabot.environment.api.utils.Time;
+import org.parabot.environment.scripts.framework.SleepCondition;
 import org.rev317.min.Loader;
 
 /**
@@ -111,6 +113,21 @@ public class Game {
      */
     public static boolean isLoggedIn() {
         return Loader.getClient().isLoggedIn();
+    }
+
+    /**
+     * Drops the client and returns if the game is logged out or not
+     * @return True if game is logged out, false if not
+     */
+    public static boolean dropClient(){
+        Loader.getClient().dropClient();
+        Time.sleep(new SleepCondition() {
+            @Override
+            public boolean isValid() {
+                return isLoggedIn();
+            }
+        }, 2500);
+        return !isLoggedIn();
     }
 
 }

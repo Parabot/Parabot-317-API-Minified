@@ -18,41 +18,47 @@ public class BotMenu implements ActionListener {
 
         JMenu debug = new JMenu("Debug");
 
-        JMenuItem inventory = newItem("Inventory");
-        JMenuItem bank = newItem("Bank");
-        JMenuItem map = newItem("Map");
+        JMenuItem actions = newItem("Actions");
         JMenuItem animation = newItem("Animation");
-        JMenuItem objects = newItem("Objects");
-        JMenuItem npcs = newItem("Npcs");
+        JMenuItem bank = newItem("Bank");
+        JMenuItem flags = newItem("Collision flags");
         JMenuItem items = newItem("GroundItems");
         JMenuItem interfaces = newItem("Interfaces");
-        JMenuItem flags = newItem("Collision flags");
-        JMenuItem actions = newItem("Actions");
+        JMenuItem inventory = newItem("Inventory");
+        JMenuItem map = newItem("Map");
+        JMenuItem messages = newItem("Messages");
         JMenuItem mouse = newItem("Mouse");
+        JMenuItem npcs = newItem("Npcs");
+        JMenuItem objects = newItem("Objects");
+        JMenuItem players = newItem("Players");
 
         debugger.addDebugger("Actions", new DActions());
         debugger.addDebugger("Animation", new DAnimation());
-        debugger.addDebugger("Inventory", new DInventory());
         debugger.addDebugger("Bank", new DBank());
-        debugger.addDebugger("Map", new DMap());
-        debugger.addDebugger("Objects", new DSceneObjects());
-        debugger.addDebugger("Npcs", new DNpcs());
+        debugger.addDebugger("Collision flags", new DCollisionFlags());
         debugger.addDebugger("GroundItems", new DGroundItems());
         debugger.addDebugger("Interfaces", new DInterfaces());
-        debugger.addDebugger("Collision flags", new DCollisionFlags());
+        debugger.addDebugger("Inventory", new DInventory());
+        debugger.addDebugger("Map", new DMap());
+        debugger.addDebugger("Messages", new DMessages());
         debugger.addDebugger("Mouse", new DMouse());
+        debugger.addDebugger("Npcs", new DNpcs());
+        debugger.addDebugger("Objects", new DSceneObjects());
+        debugger.addDebugger("Players", new DPlayers());
 
         debug.add(actions);
-        debug.add(map);
         debug.add(animation);
-        debug.add(objects);
-        debug.add(npcs);
+        debug.add(bank);
+        debug.add(flags);
         debug.add(items);
         debug.add(interfaces);
-        debug.add(flags);
         debug.add(inventory);
-        debug.add(bank);
+        debug.add(map);
+        debug.add(messages);
         debug.add(mouse);
+        debug.add(npcs);
+        debug.add(objects);
+        debug.add(players);
 
         bar.add(debug);
     }

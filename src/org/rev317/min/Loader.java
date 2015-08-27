@@ -99,6 +99,5 @@ public class Loader extends ServerProvider {
 
     @Override
     public void init() {
-
     }
 }
