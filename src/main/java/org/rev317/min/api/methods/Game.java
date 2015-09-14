@@ -116,10 +116,17 @@ public class Game {
     }
 
     /**
+     * Just simply drops the client
+     */
+    public static void dropClient(){
+        Loader.getClient().dropClient();
+    }
+
+    /**
      * Drops the client and returns if the game is logged out or not
      * @return True if game is logged out, false if not
      */
-    public static boolean dropClient(){
+    public static boolean confirmedDropClient(){
         Loader.getClient().dropClient();
         Time.sleep(new SleepCondition() {
             @Override
