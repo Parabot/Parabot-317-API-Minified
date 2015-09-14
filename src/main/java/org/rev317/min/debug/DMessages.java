@@ -47,6 +47,6 @@ public class DMessages extends AbstractDebugger implements MessageListener {
         message = event.getMessage();
         sender = event.getSender();
         type = event.getType();
-        System.out.printf("\"%s\" from \"%s\" with type %d", message, sender, type);
+        System.out.printf("\"%s\" from \"%s\" with type %d\n", message, sender, type);
     }
 }
