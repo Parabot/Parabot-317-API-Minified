@@ -3,21 +3,26 @@ package org.rev317.min.api.methods;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 
+import java.util.ArrayList;
+
 /**
  * @author JKetelaar, Fryslan
- * TODO Set the actual level requirements
- * TODO Set curses setting and action ids.
+ *         TODO Set the actual level requirements
+ *         TODO Set curses setting and action ids.
  */
 public class Prayer {
 
-    public interface Book{
+    public interface Book {
         public int getSetting();
+
         public int getAction();
+
         public int getLevel();
+
         public String getName();
     }
 
-    public enum Normal implements Book{
+    public enum Normal implements Book {
         THICK_SKIN(83, 5609, 1),
         BURST_OF_STRENGTH(84, 5610, 1),
         CLARITY_OF_THOUGHT(85, 5611, 1),
@@ -99,7 +104,7 @@ public class Prayer {
 
     }
 
-    public enum Curse implements Book{
+    public enum Curse implements Book {
         PROTECT_ITEM_CURSE(0, 0, 50),
         SAP_WARRIOR(0, 0, 50),
         SAP_RANGER(0, 0, 52),
@@ -172,11 +177,11 @@ public class Prayer {
     }
 
 
-    public boolean isEnabled(Book book){
+    public static boolean isEnabled(Book book) {
         return Game.getSetting(book.getSetting()) == 1;
     }
 
-    public void enable(final Book book) {
+    public static void enable(final Book book) {
         if (!isEnabled(book)) {
             Menu.sendAction(169, -1, -1, book.getAction());
             Time.sleep(new SleepCondition() {
@@ -188,7 +193,7 @@ public class Prayer {
         }
     }
 
-    public void disable(final Book book) {
+    public static void disable(final Book book) {
         if (isEnabled(book)) {
             Menu.sendAction(169, -1, -1, book.getAction());
             Time.sleep(new SleepCondition() {
@@ -197,6 +202,36 @@ public class Prayer {
                     return !isEnabled(book);
                 }
             }, 1500);
+        }
+    }
+
+    public static Book[] getActivePrayers() {
+        ArrayList<Book> prayers = new ArrayList<>();
+        for (Book normal : Normal.values()) {
+            if (isEnabled(normal)) {
+                prayers.add(normal);
+            }
+        }
+        for (Book curse : Curse.values()) {
+            if (isEnabled(curse)) {
+                prayers.add(curse);
+            }
+        }
+        return prayers.toArray(new Book[prayers.size()]);
+    }
+
+    public static void setActivePrayers(Book[] prayers) {
+        for (Book book : prayers) {
+            for (Book normal : Normal.values()) {
+                if (!isEnabled(normal) && normal.equals(book)) {
+                    enable(normal);
+                }
+            }
+            for (Book curse : Curse.values()) {
+                if (!isEnabled(curse) && curse.equals(book)) {
+                    enable(curse);
+                }
+            }
         }
     }
 }
