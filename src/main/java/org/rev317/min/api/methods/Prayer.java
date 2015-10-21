@@ -99,7 +99,7 @@ public class Prayer {
 
     }
 
-    public enum Curses implements Book{
+    public enum Curse implements Book{
         PROTECT_ITEM_CURSE(0, 0, 50),
         SAP_WARRIOR(0, 0, 50),
         SAP_RANGER(0, 0, 52),
@@ -125,7 +125,7 @@ public class Prayer {
         private int action;
         private int level;
 
-        Curses(int setting, int action, int level) {
+        Curse(int setting, int action, int level) {
             this.setting = setting;
             this.action = action;
             this.level = level;
