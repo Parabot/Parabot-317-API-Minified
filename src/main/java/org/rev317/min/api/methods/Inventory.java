@@ -260,9 +260,9 @@ public class Inventory {
 
         if (io != null) {
             if (it != null) {
-                Menu.interact(io, Items.Option.USE.getActionId());
+                io.interact(Items.Option.USE);
                 Time.sleep(50, 100);
-                Menu.interact(it, Items.Option.USE_WITH.getActionId());
+                it.interact(Items.Option.USE_WITH);
                 Time.sleep(50, 100);
                 return true;
             }
@@ -285,9 +285,9 @@ public class Inventory {
 
         if (io != null) {
             if (it != null) {
-                Menu.interact(io, Items.Option.USE.getActionId());
+                io.interact(Items.Option.USE);
                 Time.sleep(50, 100);
-                Menu.interact(it, Items.Option.USE_WITH.getActionId());
+                it.interact(Items.Option.USE_WITH);
                 Time.sleep(50, 100);
                 sleepCondition.isValid();
                 return true;
