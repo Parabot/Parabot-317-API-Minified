@@ -7,6 +7,7 @@ import org.rev317.min.accessors.Client;
 import org.rev317.min.accessors.Deque;
 import org.rev317.min.accessors.Node;
 import org.rev317.min.api.wrappers.GroundItem;
+import org.rev317.min.api.wrappers.Tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,9 +38,9 @@ public class GroundItems {
     private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
-     * Gets all loaded ground items
+     * Gets all loaded GroundItems within an radius of 52 Tiles.
      *
-     * @return ground item array
+     * @return GroundItem array
      */
     public final static GroundItem[] getGroundItems(
             final Filter<GroundItem> filter) {
@@ -63,12 +64,12 @@ public class GroundItems {
     }
 
     /**
-     * Gets a ground item
+     * Gets GroundItems at a specific tile using x and y location.
      *
      * @param x - local region x
      * @param y - local region y
      *
-     * @return ground item array
+     * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getGroundItemsAt(final int x, final int y) {
         try {
@@ -96,20 +97,60 @@ public class GroundItems {
     }
 
     /**
+     * Gets GroundItems at a specific tile using x and y location.
+     *
+     * @param tile Tile to get the GroundItems from.
+     * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
+     */
+    public static final GroundItem[] getGroundItemsAt(final Tile tile) {
+        return getGroundItemsAt(tile.getX(),tile.getY());
+    }
+
+    /**
      * Gets all ground items in game
      *
-     * @return ground items
+     * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getGroundItems() {
         return getGroundItems(ALL_FILTER);
     }
 
     /**
-     * Returns array of GroundItems with the first index to be the nearest
+     * Gets the closest GroundItem which matches the given filter.
      *
-     * @param filter
+     * @param filter Filter that should be applied to the GroundItem.
      *
-     * @return GroundItems
+     * @return closest GroundItem
+     */
+    public static final GroundItem getClosest(final Filter<GroundItem> filter) {
+        GroundItem[] objects = getNearest(filter);
+        if (objects == null || objects.length == 0) {
+            return null;
+        }
+        return objects[0];
+    }
+
+    /**
+     * Gets the closest GroundItems which matches the given ids.
+     *
+     * @param ids ID's of the GroundItems to look for.
+     *
+     * @return closest GroundItems
+     */
+    public static final GroundItem getClosest(int... ids) {
+        GroundItem[] objects = getNearest(ids);
+        if (objects == null || objects.length == 0) {
+            return null;
+        }
+        return objects[0];
+    }
+
+    /**
+     * Returns Array of GroundItems with the first index to be the nearest.
+     *
+     * @param filter Filter that should be applied to the GroundItem.
+     *
+     * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest(Filter<GroundItem> filter) {
         final GroundItem[] objects = getGroundItems(filter);
@@ -118,20 +159,20 @@ public class GroundItems {
     }
 
     /**
-     * Returns array of GroundItems with the first index to be the nearest
+     * Returns Array of GroundItems with the first index to be the nearest.
      *
-     * @return GroundItems
+     * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest() {
         return getNearest(ALL_FILTER);
     }
 
     /**
-     * Returns nearest ground items with given id
+     * Returns Array of GroundItems with the first index to be the nearest.
      *
-     * @param ids
+     * @param ids GroundItem ID's to look for.
      *
-     * @return GroundItems
+     * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest(final int... ids) {
         return getNearest(new Filter<GroundItem>() {
