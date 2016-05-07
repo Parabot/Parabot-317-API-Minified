@@ -2,6 +2,7 @@ package org.rev317.min.ui;
 
 import org.parabot.core.Context;
 import org.parabot.core.paint.PaintDebugger;
+import org.rev317.min.callback.MenuAction;
 import org.rev317.min.debug.*;
 
 import javax.swing.*;
@@ -18,7 +19,9 @@ public class BotMenu implements ActionListener {
 
         JMenu debug = new JMenu("Debug");
 
-        JMenuItem actions = newItem("Actions");
+        JMenu actions = new JMenu("Actions");
+        JMenuItem enableActions = newItem("Enable Actions");
+
         JMenuItem animation = newItem("Animation");
         JMenuItem bank = newItem("Bank");
         JMenuItem flags = newItem("Collision flags");
@@ -32,7 +35,7 @@ public class BotMenu implements ActionListener {
         JMenuItem objects = newItem("Objects");
         JMenuItem players = newItem("Players");
 
-        debugger.addDebugger("Actions", new DActions());
+        debugger.addDebugger("Enable Actions", new DActions());
         debugger.addDebugger("Animation", new DAnimation());
         debugger.addDebugger("Bank", new DBank());
         debugger.addDebugger("Collision flags", new DCollisionFlags());
@@ -47,6 +50,7 @@ public class BotMenu implements ActionListener {
         debugger.addDebugger("Players", new DPlayers());
 
         debug.add(actions);
+        actions.add(enableActions);
         debug.add(animation);
         debug.add(bank);
         debug.add(flags);
@@ -59,6 +63,22 @@ public class BotMenu implements ActionListener {
         debug.add(npcs);
         debug.add(objects);
         debug.add(players);
+
+        actions.addSeparator();
+        for (int i = 0; i < MenuAction.getOutputs().length; i++){
+            final int index = i;
+            JMenuItem debugOutput = new JCheckBoxMenuItem("Output: " + index);
+            debugOutput.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    MenuAction.setCurrentOutputIndex(index);
+                }
+            });
+            if (i == 0){
+                debugOutput.setEnabled(true);
+            }
+            actions.add(debugOutput);
+        }
 
         bar.add(debug);
     }

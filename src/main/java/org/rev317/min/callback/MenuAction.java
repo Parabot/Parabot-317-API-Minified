@@ -9,11 +9,26 @@ import org.rev317.min.script.ScriptEngine;
 
 /**
  * @author Everel
+ * @author JKetelaar
  * @author Matt123337
  */
 public class MenuAction {
 
+    private static final String[][] outputs = {
+            {
+                    "[index: %d, action1: %d, action2: %d, action3: %d, action4: %d, id: %d]",
+                    "[id: %d, action1: %d, action2: %d, action3: %d, action4: %d, index: %d]"
+            },
+            {
+                    "[index: %d, action1: %d, action2: %d, action3: %d, id: %d]",
+                    "[id: %d, action1: %d, action2: %d, action3: %d, index: %d]"
+            }
+    };
+    private static int currentOutputIndex = 0;
+
     public static void intercept(int index) {
+        int outputIndex = 0;
+
         Client client = Loader.getClient();
         int action1 = client.getMenuAction1()[index];
         int action2 = client.getMenuAction2()[index];
@@ -23,9 +38,9 @@ public class MenuAction {
         if (DActions.debugActions()) {
             if (Game.hasAction4()) {
                 action4 = client.getMenuAction4()[index];
-                System.out.println(String.format("[index: %d, action1: %d, action2: %d, action3: %d, action4: %d, id: %d]", index, action1, action2, action3, action4, actionId));
+                System.out.println(String.format(outputs[0][outputIndex], index, action1, action2, action3, action4, actionId));
             } else {
-                System.out.println(String.format("[index: %d, action1: %d, action2: %d, action3: %d, id: %d]", index, action1, action2, action3, actionId));
+                System.out.println(String.format(outputs[1][outputIndex], index, action1, action2, action3, actionId));
             }
         }
 
@@ -33,4 +48,19 @@ public class MenuAction {
         ScriptEngine.getInstance().dispatch(actionEvent);
     }
 
+    /**
+     * Sets the current output index
+     *
+     * @param currentOutputIndex
+     */
+    public static void setCurrentOutputIndex(int currentOutputIndex) {
+        if (currentOutputIndex > outputs.length - 1) {
+            currentOutputIndex = 0;
+        }
+        MenuAction.currentOutputIndex = currentOutputIndex;
+    }
+
+    public static String[][] getOutputs() {
+        return outputs;
+    }
 }
