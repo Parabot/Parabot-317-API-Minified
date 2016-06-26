@@ -18,6 +18,7 @@
 
     <properties>
         <jdk.version>1.7</jdk.version>
+        <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 
     <repositories>
