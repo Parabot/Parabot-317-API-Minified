@@ -2,8 +2,8 @@ package org.rev317.min.accessors;
 
 public interface Deque {
 
-    public Node getHead();
+    Node getHead();
 
-    public Node getCurrent();
+    Node getCurrent();
 
 }
