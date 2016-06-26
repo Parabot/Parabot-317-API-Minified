@@ -49,5 +49,38 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>2.10</version>
+            </extension>
+        </extensions>
     </build>
+
+    <distributionManagement>
+        <downloadUrl>https://maven.parabot.org/</downloadUrl>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>parabot-maven</id>
+            <name>Custom Maven Repository</name>
+            <url>ftp://maven.parabot.org</url>
+            <layout>default</layout>
+        </repository>
+        <site>
+            <id>parabot-maven</id>
+            <name>Frontend Parabot Maven</name>
+            <url>ftp://maven.parabot.org/docs/${artifactId}/</url>
+        </site>
+    </distributionManagement>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
