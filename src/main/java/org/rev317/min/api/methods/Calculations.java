@@ -223,4 +223,15 @@ public class Calculations {
         return pathDistanceBetween(Players.getMyPlayer().getLocation(), tile, isObject);
     }
 
+    /**
+     * Compares Coordinate data from the first and second tile data.
+     *
+     * @param first  First tile.
+     * @param second Second tile.
+     * @return True if Coordinate data from first and second tiles match.
+     */
+    public static boolean isSameTile(Tile first, Tile second) {
+        return first.getX() == second.getX() && first.getY() == second.getY() && first.getPlane() == second.getPlane();
+    }
+
 }
