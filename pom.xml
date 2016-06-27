@@ -7,6 +7,7 @@
     <groupId>org.parabot</groupId>
     <artifactId>317-api-minified</artifactId>
     <version>1.14</version>
+    <name>Parabot 317-API-Minified</name>
 
     <licenses>
         <license>
@@ -18,13 +19,14 @@
 
     <properties>
         <jdk.version>1.7</jdk.version>
+        <additionalparam>-Xdoclint:none</additionalparam>
     </properties>
 
     <repositories>
         <repository>
-            <id>git-parabot</id>
-            <name>Parabot's Git based repo</name>
-            <url>https://github.com/parabot/Maven-Repository/raw/master/</url>
+            <id>parabot-maven</id>
+            <name>Parabot its Maven Repository</name>
+            <url>http://maven.parabot.org/</url>
         </repository>
     </repositories>
 
@@ -32,7 +34,7 @@
         <dependency>
             <groupId>org.parabot</groupId>
             <artifactId>client</artifactId>
-            <version>2.2.32</version>
+            <version>2.6</version>
         </dependency>
     </dependencies>
 
@@ -50,21 +52,37 @@
             </plugin>
         </plugins>
 
-        <resources>
-            <resource>
-                <directory>deploy</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>deploy.bat</exclude>
-                    <exclude>package.bat</exclude>
-                    <exclude>clean.bat</exclude>
-                </excludes>
-                <!--<includes>-->
-                    <!--<include>deploy.bat</include>-->
-                    <!--<include>package.bat</include>-->
-                    <!--<include>clean.bat</include>-->
-                <!--</includes>-->
-            </resource>
-        </resources>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>2.10</version>
+            </extension>
+        </extensions>
     </build>
+
+    <distributionManagement>
+        <downloadUrl>https://maven.parabot.org/</downloadUrl>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>parabot-maven</id>
+            <name>Custom Maven Repository</name>
+            <url>ftp://maven.parabot.org</url>
+            <layout>default</layout>
+        </repository>
+        <site>
+            <id>parabot-maven</id>
+            <name>Frontend Parabot Maven</name>
+            <url>ftp://maven.parabot.org/docs/${artifactId}/</url>
+        </site>
+    </distributionManagement>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
