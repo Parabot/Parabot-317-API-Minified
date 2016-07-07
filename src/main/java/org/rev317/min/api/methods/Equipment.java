@@ -6,7 +6,7 @@ import org.rev317.min.Loader;
 import org.rev317.min.api.wrappers.Item;
 
 /**
- * Created by Piet Jetse Heeringa on 27-6-2016.
+ * @author Piet Jetse Heeringa
  */
 
 public class Equipment {
@@ -30,9 +30,9 @@ public class Equipment {
     }
 
     /**
-     * UnEquips an Item based on the ID of that item.
+     * Unequips an Item based on the ID of that item.
      *
-     * @param id Item ID to UnEquip.
+     * @param id Item ID to Unequip.
      */
     public static void unequip(int id) {
         for (Slot slot : Slot.values()) {
@@ -43,9 +43,9 @@ public class Equipment {
     }
 
     /**
-     * UnEquips the item from the given Slot.
+     * Unequips the item from the given Slot.
      *
-     * @param slot Slot to UnEquip the item from.
+     * @param slot Slot to Unequip the item from.
      */
     public static void unequip(final Slot slot) {
         Menu.sendAction(632, slot.id() - 1, slot.slot, 1688, -1, 3);
