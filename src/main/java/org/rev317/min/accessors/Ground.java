@@ -2,14 +2,14 @@ package org.rev317.min.accessors;
 
 public interface Ground {
 
-    public SceneObjectTile getWallObject();
+    SceneObjectTile getWallObject();
 
-    public SceneObjectTile getWallDecoration();
+    SceneObjectTile getWallDecoration();
 
-    public SceneObjectTile getGroundDecoration();
+    SceneObjectTile getGroundDecoration();
 
-    public SceneObjectTile getGroundItem();
+     SceneObjectTile getGroundItem();
 
-    public SceneObjectTile[] getInteractiveObjects();
+     SceneObjectTile[] getInteractiveObjects();
 
 }

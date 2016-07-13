@@ -2,17 +2,17 @@ package org.rev317.min.accessors;
 
 public interface Interface {
 
-    public int[] getItems();
+    int[] getItems();
 
-    public int[] getStackSizes();
+    int[] getStackSizes();
 
     /**
      * This is meant for the clients that have a long value as their stacksizes, simply because they have no logic...
      *
      * @return long version of #getStackSizes
      */
-    public long[] getLongStackSizes();
+    long[] getLongStackSizes();
 
-    public String getMessage();
+    String getMessage();
 
 }

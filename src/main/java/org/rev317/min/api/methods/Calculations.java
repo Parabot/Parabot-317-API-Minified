@@ -11,7 +11,6 @@ public class Calculations {
      * Calculates distance between local player and given tile
      *
      * @param tile
-     *
      * @return distance between local player and given tile
      */
     public static final double distanceTo(Tile tile) {
@@ -23,7 +22,6 @@ public class Calculations {
      *
      * @param a
      * @param b
-     *
      * @return distance between a and b
      */
     public static final double distanceBetween(Tile a, Tile b) {
@@ -39,7 +37,6 @@ public class Calculations {
      * @param destX        the destX (0 < destX < 104)
      * @param destY        the destY (0 < destY < 104)
      * @param findAdjacent if it's an object, it will find path which touches it.
-     *
      * @return The distance of the shortest path to the destination; or -1 if no valid path to the destination was
      * found.
      */
@@ -153,6 +150,88 @@ public class Calculations {
         }
     }
 
+    /**
+     * Uses Dijkstra path finding algorithm to find shortest path returns false if path isn't found.
+     *
+     * @param from Start Tile.
+     * @param to   Destination Tile.
+     * @return True if Path is found.
+     */
+    public static boolean foundPath(Tile from, Tile to) {
+        return dijkstraDist(from.getX(), from.getY(), to.getX(), to.getY(), false) != -1;
+    }
 
+    /**
+     * Uses Dijkstra path finding algorithm to find shortest path returns false if path isn't found.
+     *
+     * @param from     Start Tile.
+     * @param to       Destination Tile.
+     * @param isObject Is destination an  Object.
+     * @return True if Path is found.
+     */
+    public static boolean foundPath(Tile from, Tile to, boolean isObject) {
+        return dijkstraDist(from.getX(), from.getY(), to.getX(), to.getY(), isObject) != -1;
+    }
+
+    /**
+     * Gets the Shortest Path distance between two tiles.
+     *
+     * @param from Start Tile.
+     * @param to   Destination Tile.
+     * @return Shortest Path distance between two tiles using Dijkstra algorithm, returns -1 if path isn't found.
+     */
+    public static int pathDistanceBetween(Tile from, Tile to) {
+        if (foundPath(from, to)) {
+            return dijkstraDist(from.getX(), from.getY(), to.getX(), to.getY(), false);
+        }
+        return -1;
+    }
+
+    /**
+     * Gets the Shortest Path distance between two tiles.
+     *
+     * @param from     Start Tile.
+     * @param to       Destination Tile.
+     * @param isObject Is destination an Object.
+     * @return Shortest Path distance between two tiles using Dijkstra algorithm, returns -1 if path isn't found.
+     */
+    public static int pathDistanceBetween(Tile from, Tile to, boolean isObject) {
+        if (foundPath(from, to)) {
+            return dijkstraDist(from.getX(), from.getY(), to.getX(), to.getY(), isObject);
+        }
+        return -1;
+    }
+
+    /**
+     * Gets the shortest distance to a tile.
+     *
+     * @param tile Destination Tile.
+     * @return Shortest distance to tile.
+     */
+    public static int pathDistanceTo(Tile tile) {
+        return pathDistanceBetween(Players.getMyPlayer().getLocation(), tile);
+    }
+
+    /**
+     * Gets the shortest distance to a tile.
+     *
+     * @param tile     Destination Tile.
+     * @param isObject Is destination an Object.
+     * @return Shortest distance to tile.
+     */
+    public static int pathDistanceTo(Tile tile, boolean isObject) {
+        return pathDistanceBetween(Players.getMyPlayer().getLocation(), tile, isObject);
+    }
+
+    /**
+     * Compares Coordinate data from the first and second tile data.
+     *
+     * @param first  First tile.
+     * @param second Second tile.
+     * @return True if Coordinate data from first and second tiles match.
+     */
+    public static boolean isSameTile(Tile first, Tile second) {
+        return first.getX() == second.getX() && first.getY() == second.getY() && first.getPlane() == second.getPlane();
+    }
 
 }

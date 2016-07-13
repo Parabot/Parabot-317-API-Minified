@@ -12,13 +12,13 @@ public interface Locatable {
      *
      * @return location
      */
-    public Tile getLocation();
+    Tile getLocation();
 
     /**
      * Gets distance to this locatable instance
      *
      * @return distance from player to locatable
      */
-    public int distanceTo();
+    int distanceTo();
 
 }

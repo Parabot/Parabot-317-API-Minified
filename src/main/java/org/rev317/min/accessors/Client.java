@@ -2,56 +2,56 @@ package org.rev317.min.accessors;
 
 public interface Client {
 
-    public Scene getScene();
+    Scene getScene();
 
-    public Player getMyPlayer();
+    Player getMyPlayer();
 
-    public Interface[] getInterfaceCache();
+    Interface[] getInterfaceCache();
 
-    public Npc[] getNpcs();
+    Npc[] getNpcs();
 
-    public Player[] getPlayers();
+    Player[] getPlayers();
 
-    public int getOpenInterfaceId();
+    int getOpenInterfaceId();
 
-    public int getBaseX();
+    int getBaseX();
 
-    public int getBaseY();
+    int getBaseY();
 
-    public void setInterface(int id);
+    void setInterface(int id);
 
-    public int[] getCurrentExp();
+    int[] getCurrentExp();
 
-    public Deque[][][] getGroundItems();
+    Deque[][][] getGroundItems();
 
-    public int getLoopCycle();
+    int getLoopCycle();
 
-    public int getBackDialogId();
+    int getBackDialogId();
 
-    public int getPlane();
+    int getPlane();
 
-    public int[] getMenuActionId();
+    int[] getMenuActionId();
 
-    public int[] getMenuAction1();
+    int[] getMenuAction1();
 
-    public int[] getMenuAction2();
+    int[] getMenuAction2();
 
-    public int[] getMenuAction3();
+    int[] getMenuAction3();
 
-    public int[] getMenuAction4();
+    int[] getMenuAction4();
 
-    public CollisionMap[] getCollisionMap();
+    CollisionMap[] getCollisionMap();
 
     // args switched
-    public boolean walkTo(int clickType, int sizeX, int sizeY, int startX, int startY, int destX, int destY, int type, int face, boolean arbitrary, int rotation);
+    boolean walkTo(int clickType, int sizeX, int sizeY, int startX, int startY, int destX, int destY, int type, int face, boolean arbitrary, int rotation);
 
-    public void doAction(int i);
+    void doAction(int i);
 
-    public void dropClient();
+    void dropClient();
 
-    public int[] getCurrentStats();
+    int[] getCurrentStats();
 
-    public int[] getSettings();
+    int[] getSettings();
 
-    public boolean isLoggedIn();
+    boolean isLoggedIn();
 }

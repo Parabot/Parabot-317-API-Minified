@@ -2,19 +2,19 @@ package org.rev317.min.accessors;
 
 public interface Character {
 
-    public int getX();
+    int getX();
 
-    public int getY();
+    int getY();
 
-    public int getAnimation();
+    int getAnimation();
 
-    public int getLoopCycleStatus();
+    int getLoopCycleStatus();
 
-    public int getCurrentHealth();
+    int getCurrentHealth();
 
-    public int getMaxHealth();
+    int getMaxHealth();
 
-    public int getInteractingEntity();
+    int getInteractingEntity();
 
     String getName();
 }
