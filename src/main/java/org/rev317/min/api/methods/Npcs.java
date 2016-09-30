@@ -119,9 +119,11 @@ public class Npcs {
 
             @Override
             public boolean accept(Npc npc) {
-                for (final int id : ids) {
-                    if (id == npc.getDef().getId()) {
-                        return true;
+                if (npc.getDef() != null){
+                    for (final int id : ids) {
+                        if (id == npc.getDef().getId()) {
+                            return true;
+                        }
                     }
                 }
                 return false;
