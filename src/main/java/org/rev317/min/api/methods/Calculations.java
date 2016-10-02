@@ -1,5 +1,6 @@
 package org.rev317.min.api.methods;
 
+import org.parabot.environment.api.utils.Timer;
 import org.rev317.min.api.wrappers.Tile;
 
 /**
@@ -231,7 +232,40 @@ public class Calculations {
      * @return True if Coordinate data from first and second tiles match.
      */
     public static boolean isSameTile(Tile first, Tile second) {
-        return first.getX() == second.getX() && first.getY() == second.getY() && first.getPlane() == second.getPlane();
+        return distanceBetween(first, second) == 0 && first.getPlane() == second.getPlane();
+    }
+
+    /**
+     * Checks if player is at the destination tile.
+     *
+     * @param destination destination tile.
+     * @return true if players location equals destination tile.
+     */
+    public static boolean atTile(Tile destination) {
+        return isSameTile(Players.getMyPlayer().getLocation(), destination);
+    }
+
+    /**
+     * Get's the difference between start and current.
+     *
+     * @param start   Starting value.
+     * @param current Current value.
+     * @return difference between start and current.
+     */
+    public static int gained(int start, int current) {
+        return start - current;
+    }
+
+    /**
+     * Get's the hourly difference between start and current.
+     *
+     * @param runtime Timer used for calculating hourly difference.
+     * @param start   Starting value.
+     * @param current Current value.
+     * @return Hourly difference between start and current.
+     */
+    public static int gainedPerHour(Timer runtime, int start, int current) {
+        return runtime.getPerHour(gained(start, current));
     }
 
 }
