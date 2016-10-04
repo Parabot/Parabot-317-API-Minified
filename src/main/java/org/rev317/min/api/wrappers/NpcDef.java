@@ -18,7 +18,10 @@ public class NpcDef {
      * @return id of this item
      */
     public int getId() {
-        return accessor.getId();
+        if (accessor != null) {
+            return accessor.getId();
+        }
+        return -1;
     }
 
     /**
