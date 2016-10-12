@@ -105,26 +105,26 @@ public class Prayer {
     }
 
     public enum Curse implements Book {
-        PROTECT_ITEM_CURSE(0, 0, 50),
-        SAP_WARRIOR(0, 0, 50),
-        SAP_RANGER(0, 0, 52),
-        SAP_MAGE(0, 0, 54),
-        SAP_SPIRIT(0, 0, 56),
-        BERSERKER(0, 0, 59),
-        DEFLECT_SUMMONING(0, 0, 62),
-        DEFLECT_MAGIC(0, 0, 65),
-        DEFLECT_MISSILE(0, 0, 68),
-        DEFLECT_MELEE(0, 0, 71),
-        LEECH_ATTACK(0, 0, 74),
-        LEECH_RANGE(0, 0, 76),
-        LEECH_MAGIC(0, 0, 78),
-        LEECH_DEFENCE(0, 0, 80),
-        LEECH_STRENGTH(0, 0, 82),
-        LEECH_ENERGY(0, 0, 84),
-        LEECH_SPECIAL_ATTACK(0, 0, 86),
-        WRATH(0, 0, 89),
-        SOUL_SPLIT(0, 0, 92),
-        TURMOIL(0, 0, 95);
+        PROTECT_ITEM_CURSE(601, 22503, 50),
+        SAP_WARRIOR(611, 22505, 50),
+        SAP_RANGER(612, 22507, 52),
+        SAP_MAGE(613, 22509, 54),
+        SAP_SPIRIT(614, 22511, 56),
+        BERSERKER(615, 22513, 59),
+        DEFLECT_SUMMONING(616, 22515, 62),
+        DEFLECT_MAGIC(617, 22517, 65),
+        DEFLECT_MISSILE(618, 22519, 68),
+        DEFLECT_MELEE(619, 22521, 71),
+        LEECH_ATTACK(620, 22523, 74),
+        LEECH_RANGE(621, 22525, 76),
+        LEECH_MAGIC(622, 22527, 78),
+        LEECH_DEFENCE(623, 22529, 80),
+        LEECH_STRENGTH(624, 22531, 82),
+        LEECH_ENERGY(625, 22533, 84),
+        LEECH_SPECIAL_ATTACK(626, 22535, 86),
+        WRATH(627, 22537, 89),
+        SOUL_SPLIT(628, 22539, 92),
+        TURMOIL(629, 22541, 95);
 
         private int setting;
         private int action;
