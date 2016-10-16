@@ -36,6 +36,18 @@ public class Game {
         return Loader.getClient().getOpenInterfaceId();
     }
 
+
+    /**
+     * Get open back dialog id
+     *
+     * @return back dialog id
+     * @deprecated Use {@link Interfaces #getBackDialogId()} instead.
+     */
+    @Deprecated
+    public static int getOpenBackDialogId() {
+        return Loader.getClient().getBackDialogId();
+    }
+
     /**
      * Gets loop cycle
      *
@@ -81,10 +93,9 @@ public class Game {
      * Returns the settings within the client
      *
      * @param index The index of the setting you want to gather
-     *
      * @return The specific setting for the given index
      */
-    public static int getSetting(int index){
+    public static int getSetting(int index) {
         return Loader.getClient().getSettings()[index];
     }
 
@@ -93,7 +104,7 @@ public class Game {
      *
      * @return All settings
      */
-    public static int[] getSettings(){
+    public static int[] getSettings() {
         return Loader.getClient().getSettings();
     }
 
@@ -109,15 +120,16 @@ public class Game {
     /**
      * Just simply drops the client
      */
-    public static void dropClient(){
+    public static void dropClient() {
         Loader.getClient().dropClient();
     }
 
     /**
      * Drops the client and returns if the game is logged out or not
+     *
      * @return True if game is logged out, false if not
      */
-    public static boolean confirmedDropClient(){
+    public static boolean confirmedDropClient() {
         Loader.getClient().dropClient();
         Time.sleep(new SleepCondition() {
             @Override
