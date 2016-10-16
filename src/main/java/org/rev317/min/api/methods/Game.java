@@ -37,23 +37,6 @@ public class Game {
     }
 
     /**
-     * Get open back dialog id
-     *
-     * @return back dialog id
-     */
-    public static int getOpenBackDialogId() {
-        return Loader.getClient().getBackDialogId();
-    }
-
-    /**
-     * Get current input dialog state
-     * @return input dialog state
-     */
-    public static int getInputDialogState() {
-        return Loader.getClient().getInputDialogState();
-    }
-
-    /**
      * Gets loop cycle
      *
      * @return loop cycle

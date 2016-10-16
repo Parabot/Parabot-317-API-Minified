@@ -6,8 +6,6 @@ import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Character;
 import org.rev317.min.api.wrappers.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 
 /**
@@ -34,10 +32,9 @@ public class Menu {
     /**
      * Interacts with a sceneobject
      *
-     * @deprecated
-     *
      * @param object
      * @param actionIndex
+     * @deprecated
      */
     public static void interact(SceneObject object, int actionIndex) {
         int actionId = SceneObjects.Option.FIRST.getActionId();
@@ -88,10 +85,9 @@ public class Menu {
     /**
      * Interacts with a character
      *
-     * @deprecated
-     *
      * @param character
      * @param actionIndex
+     * @deprecated
      */
     public static void interact(Character character, int actionIndex) {
         int actionId = 20;
@@ -131,11 +127,10 @@ public class Menu {
     /**
      * Interacts with an item when it has the following menu Transform-1 Transform-5 Transform-10 etc..
      *
-     * @deprecated
-     *
      * @param item
      * @param actionIndex
      * @param interfaceParentId
+     * @deprecated
      */
     public static void transformItem(Item item, int actionIndex,
                                      int interfaceParentId) {
@@ -183,10 +178,9 @@ public class Menu {
     /**
      * Interacts with a ground item
      *
-     * @deprecated
-     *
      * @param item
      * @param action
+     * @deprecated
      */
     public static void interact(GroundItem item, int action) {
         int actionId = GroundItems.Option.FIRST.getActionId();
@@ -210,16 +204,16 @@ public class Menu {
         sendAction(actionId, item.getId(), item.getX(), item.getY());
     }
 
-    public static void interact(Item item, Items.Option action){
+    public static void interact(Item item, Items.Option action) {
         sendAction(action.getActionId(), item.getId() - 1, item.getSlot(), 3214);
     }
 
     /**
      * @deprecated
      */
-    public static void interact(Item item, int action){
+    public static void interact(Item item, int action) {
         int actionId = 447;
-        switch (action){
+        switch (action) {
             case 0:
                 actionId = 447;
                 break;
@@ -239,9 +233,9 @@ public class Menu {
     /**
      * @deprecated
      */
-    public static void interact(Item item, String action){
+    public static void interact(Item item, String action) {
         int actionId = 447;
-        switch (action.toLowerCase()){
+        switch (action.toLowerCase()) {
             case "use":
                 actionId = 447;
                 break;
@@ -319,19 +313,7 @@ public class Menu {
      * @param index
      */
     public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int cmd4, int index) {
-
         Client client = Loader.getClient();
-
-        try {
-            Method doAction = client.getClass().getDeclaredMethod("doAction", int.class);
-            doAction.setAccessible(true);
-
-            doAction.invoke(client, 0);
-
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
 
         client.getMenuAction1()[index] = cmd1;
         client.getMenuAction2()[index] = cmd2;
