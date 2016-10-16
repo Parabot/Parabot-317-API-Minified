@@ -6,6 +6,8 @@ import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Character;
 import org.rev317.min.api.wrappers.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 
 /**
@@ -319,6 +321,17 @@ public class Menu {
     public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int cmd4, int index) {
 
         Client client = Loader.getClient();
+
+        try {
+            Method doAction = client.getClass().getDeclaredMethod("doAction", int.class);
+            doAction.setAccessible(true);
+
+            doAction.invoke(client, 0);
+
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
 
         client.getMenuAction1()[index] = cmd1;
         client.getMenuAction2()[index] = cmd2;

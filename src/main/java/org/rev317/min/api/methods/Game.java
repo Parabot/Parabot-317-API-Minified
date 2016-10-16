@@ -46,6 +46,14 @@ public class Game {
     }
 
     /**
+     * Get current input dialog state
+     * @return input dialog state
+     */
+    public static int getInputDialogState() {
+        return Loader.getClient().getInputDialogState();
+    }
+
+    /**
      * Gets loop cycle
      *
      * @return loop cycle

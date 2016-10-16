@@ -37,6 +37,14 @@ public class Interfaces {
     }
 
     /**
+     * Sets the int by the given Amount
+     * @param amount Amount to set
+     */
+    public static void setAmountOrNameInput(int amount) {
+        Loader.getClient().setAmountOrNameInput(amount);
+    }
+
+    /**
      * Get's the Open Interface ID.
      * @return The ID of the Open Interface , will be -1 if all Interfaces are closed.
      */
