@@ -20,6 +20,8 @@ public interface Client {
 
     void setInterface(int id);
 
+    void setAmountOrNameInput(int amount);
+
     int[] getCurrentExp();
 
     Deque[][][] getGroundItems();
@@ -27,6 +29,8 @@ public interface Client {
     int getLoopCycle();
 
     int getBackDialogId();
+
+    int getInputDialogState();
 
     int getPlane();
 
