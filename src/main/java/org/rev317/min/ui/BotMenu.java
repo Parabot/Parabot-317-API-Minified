@@ -68,6 +68,7 @@ public class BotMenu implements ActionListener {
         for (int i = 0; i < MenuAction.getOutputs().length; i++){
             final int index = i;
             JMenuItem debugOutput = new JCheckBoxMenuItem("Output: " + index);
+            debugOutput.setEnabled(false);
             debugOutput.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {

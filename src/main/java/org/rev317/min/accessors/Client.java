@@ -20,6 +20,8 @@ public interface Client {
 
     void setInterface(int id);
 
+    void setAmountOrNameInput(int amount);
+
     int[] getCurrentExp();
 
     Deque[][][] getGroundItems();
@@ -27,6 +29,8 @@ public interface Client {
     int getLoopCycle();
 
     int getBackDialogId();
+
+    int getInputDialogState();
 
     int getPlane();
 
@@ -44,6 +48,8 @@ public interface Client {
 
     // args switched
     boolean walkTo(int clickType, int sizeX, int sizeY, int startX, int startY, int destX, int destY, int type, int face, boolean arbitrary, int rotation);
+
+    boolean walkToPKH(boolean flag1, boolean flag2, int clickType, int sizeX, int sizeY, int startX, int startY, int destX, int destY, int type, int face, boolean arbitrary, int rotation);
 
     void doAction(int i);
 
