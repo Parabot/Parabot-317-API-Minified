@@ -31,7 +31,9 @@ public class Game {
      * Gets open interface id
      *
      * @return interface id
+     * @deprecated Use {@link Interfaces #getOpenInterfaceId()} instead
      */
+    @Deprecated
     public static int getOpenInterfaceId() {
         return Loader.getClient().getOpenInterfaceId();
     }
@@ -41,7 +43,7 @@ public class Game {
      * Get open back dialog id
      *
      * @return back dialog id
-     * @deprecated Use {@link Interfaces #getBackDialogId()} instead.
+     * @deprecated Use {@link Interfaces #getBackDialogId()} instead
      */
     @Deprecated
     public static int getOpenBackDialogId() {

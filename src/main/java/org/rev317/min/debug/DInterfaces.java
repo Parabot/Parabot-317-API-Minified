@@ -14,7 +14,7 @@ public class DInterfaces extends AbstractDebugger {
     @Override
     public void paint(Graphics g) {
         PaintDebugger p = Context.getInstance().getPaintDebugger();
-        p.addLine("Open interface: " + Game.getOpenInterfaceId());
+        p.addLine("Open interface: " + Interfaces.getOpenInterfaceId());
         p.addLine("Open back dialog: " + Interfaces.getBackDialogId());
     }
 
