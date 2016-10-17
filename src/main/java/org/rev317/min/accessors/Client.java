@@ -55,6 +55,8 @@ public interface Client {
 
     void dropClient();
 
+    void login(String username, String password, boolean reconnecting);
+
     int[] getCurrentStats();
 
     int[] getSettings();

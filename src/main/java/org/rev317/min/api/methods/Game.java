@@ -142,4 +142,22 @@ public class Game {
         return !isLoggedIn();
     }
 
+    /**
+     * Login to a server
+     * @param username String
+     * @param password String
+     * @param reconnecting True if it's a retry, false if not
+     */
+    public static void login(String username, String password, boolean reconnecting) {
+        Loader.getClient().login(username, password, reconnecting);
+    }
+
+    /**
+     * Login to a server
+     * @param username String
+     * @param password String
+     */
+    public static void login(String username, String password) {
+        login(username, password, false);
+    }
 }

@@ -3,7 +3,6 @@ package org.rev317.min.debug;
 import org.parabot.core.Context;
 import org.parabot.core.paint.AbstractDebugger;
 import org.parabot.core.paint.PaintDebugger;
-import org.rev317.min.api.methods.Game;
 import org.rev317.min.api.methods.Interfaces;
 
 import java.awt.*;
