@@ -38,7 +38,7 @@ deploy:
   - provider: s3
     access_key_id: AKIAJDZLZNH2PIKHUKOA
     secret_access_key:
-      secure: m5kZDaOBSljVQJkXds5aK4aybtxnFJLNjS4qaCeNsDahxWxEBAbM/DJOYTYa4KN2hEiwFriuwVjwRws9Kgf7zDnL8CvTqWnSKtOc8UzTsBX+xw+hv9lEVKNia+ccMsW71omo4FXUX7ulaKOIY2KY92xRoK+ycYVxB6OI1jQa9Eo=
+      secure: Opk2uGg0CyBIeqDX5EIu6UBRjaxjZwfNVNsjGbsA8QWjIu2zIUwFe1ZWJEkqzF5jqrN8ykgHw74ofrgZyBKH2nhGn7MN4wWWktKN4iIeq2D6gf8Cq31tzZcpgEfUaJnARXtu0jjCKag2PqglQAEc/OgVEeEFuUapJ0I4ITDZWbk=
     bucket: parabot
     skip_cleanup: true
     local-dir: "./target/final/"
