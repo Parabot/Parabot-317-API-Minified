@@ -1,0 +1,52 @@
+language: java
+
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+
+before_install:
+  - chmod +x ./.travis/maven-build.sh
+  - chmod +x ./.travis/call-creation.sh
+  - mvn clean
+
+install:
+  - sudo apt-get update && sudo apt-get --assume-yes install zip unzip
+
+script: "./.travis/maven-build.sh"
+
+after_deploy: "./.travis/call-creation.sh"
+
+notifications:
+  email: false
+  slack:
+    secure: osWX769z0hSVPbeF1ZHSENgR4i+VKFTMGFNIV02RhvZ4a1BXsGUG5VCCDYUoBzWPCA5avJHg+FrN7nEEaoIjc5/qqFmZFGwOitZJsOzvR8C18QcgyuEX+35U4eQF4h5ITpruvwNNQ/7hIWyPl/fEPcAswHFDAccEb5iRNJeFNeM=
+  webhooks:
+    on_success: always
+    on_failure: always
+    on_start: never
+
+env:
+  global:
+    - PROVIDER_VERSION=1.201
+
+cache:
+  directories:
+    - ".autoconf"
+    - "$HOME/.m2"
+
+deploy:
+  - provider: s3
+    access_key_id: AKIAJDZLZNH2PIKHUKOA
+    secret_access_key:
+      secure: m5kZDaOBSljVQJkXds5aK4aybtxnFJLNjS4qaCeNsDahxWxEBAbM/DJOYTYa4KN2hEiwFriuwVjwRws9Kgf7zDnL8CvTqWnSKtOc8UzTsBX+xw+hv9lEVKNia+ccMsW71omo4FXUX7ulaKOIY2KY92xRoK+ycYVxB6OI1jQa9Eo=
+    bucket: parabot
+    skip_cleanup: true
+    local-dir: "./target/final/"
+    upload-dir: "artifacts/provider"
+    region: us-west-1
+    detect_encoding: true
+    acl: public_read
+    on:
+      repo: Parabot/Parabot-317-API-Minified
+      all_branches: true
+      jdk: 'oraclejdk7'
