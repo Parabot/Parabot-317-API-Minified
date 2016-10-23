@@ -65,18 +65,19 @@ public class BotMenu implements ActionListener {
         debug.add(players);
 
         actions.addSeparator();
+
+        ButtonGroup group = new ButtonGroup();
         for (int i = 0; i < MenuAction.getOutputs().length; i++){
             final int index = i;
-            JMenuItem debugOutput = new JCheckBoxMenuItem("Output: " + index);
+            JMenuItem debugOutput = new JRadioButtonMenuItem("Output: " + index);
             debugOutput.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     MenuAction.setCurrentOutputIndex(index);
+
                 }
             });
-            if (i == 0){
-                debugOutput.setEnabled(true);
-            }
+            group.add(debugOutput);
             actions.add(debugOutput);
         }
 
