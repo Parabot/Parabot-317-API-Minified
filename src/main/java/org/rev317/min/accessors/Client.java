@@ -30,11 +30,7 @@ public interface Client {
 
     int getBackDialogId();
 
-    int getInputDialogState();
-
     int getPlane();
-
-    long[] getFriendsListAsLong();
 
     int[] getMenuActionId();
 
@@ -64,4 +60,12 @@ public interface Client {
     int[] getSettings();
 
     boolean isLoggedIn();
+
+    int getInputDialogState();
+
+    long[] getFriendsListAsLong();
+
+    void addFriend(long id);
+
+    void deleteFriend(long id);
 }

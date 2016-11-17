@@ -1,11 +1,12 @@
 package org.rev317.min.api.methods;
 
+import org.parabot.api.misc.TextUtils;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 import org.rev317.min.Loader;
 
 /**
- * @author Everel, JKetelaar
+ * @author Everel, JKetelaar, EmmaStone
  */
 public class Game {
 
@@ -168,5 +169,21 @@ public class Game {
      */
     public static void login(String username, String password) {
         login(username, password, false);
+    }
+
+    /**
+     * Adds friend
+     * @param username String
+     */
+    public static void addFriend(String username) {
+        Loader.getClient().addFriend(TextUtils.longForName(TextUtils.fixName(username)));
+    }
+
+    /**
+     * Deletes friend
+     * @param username String
+     */
+    public static void deleteFriend(String username) {
+        Loader.getClient().deleteFriend(TextUtils.longForName(TextUtils.fixName(username)));
     }
 }
