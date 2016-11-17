@@ -78,6 +78,15 @@ public class Game {
     }
 
     /**
+     * Gets the friends list long values
+     *
+     * @return long values of friends list
+     */
+    public static long[] getFriendsListAsLong() {
+        return Loader.getClient().getFriendsListAsLong();
+    }
+
+    /**
      * Determines whether this client has action 4 hooked
      *
      * @return <code>true</code> if action 4 is hooked

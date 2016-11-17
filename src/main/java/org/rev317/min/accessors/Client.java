@@ -34,6 +34,8 @@ public interface Client {
 
     int getPlane();
 
+    long[] getFriendsListAsLong();
+
     int[] getMenuActionId();
 
     int[] getMenuAction1();
