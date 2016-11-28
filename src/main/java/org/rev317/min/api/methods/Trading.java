@@ -24,7 +24,7 @@ public class Trading {
      * @return True if the requested screen is open
      */
     public static boolean isOpen(boolean first){
-        return Loader.getClient().getOpenInterfaceId() == (first ? settings.get("first_trade_interface_id") : settings.get("second_trade_interface_id"));
+        return Interfaces.getOpenInterfaceId() == (first ? settings.get("first_trade_interface_id") : settings.get("second_trade_interface_id"));
     }
 
     /**
@@ -32,7 +32,7 @@ public class Trading {
      * @return True if open, false if not open
      */
     public static boolean isOpen(){
-        return Loader.getClient().getOpenInterfaceId() == settings.get("first_trade_interface_id") || Loader.getClient().getOpenInterfaceId() == settings.get("second_trade_interface_id");
+        return Interfaces.getOpenInterfaceId() == settings.get("first_trade_interface_id") || Interfaces.getOpenInterfaceId() == settings.get("second_trade_interface_id");
     }
 
     /**
@@ -75,7 +75,7 @@ public class Trading {
 
     private static int[] getItemIDs(int interfaceID) {
         Interface i;
-        if ((i = Loader.getClient().getInterfaceCache()[interfaceID]) != null) {
+        if ((i = Interfaces.getInterfaces()[interfaceID]) != null) {
             int[] items;
             if ((items = i.getItems()) != null && items.length > 0) {
                 return items;
@@ -87,7 +87,7 @@ public class Trading {
     private static int[] getItemStacks(int interfaceID) {
         Interface i;
 
-        if ((i = Loader.getClient().getInterfaceCache()[interfaceID]) != null) {
+        if ((i = Interfaces.getInterfaces()[interfaceID]) != null) {
             int[] stacks;
             if ((stacks = i.getStackSizes()) != null && stacks.length > 0) {
                 return stacks;
@@ -97,22 +97,32 @@ public class Trading {
     }
 
     /**
-     * TODO Figure a way to use packets instead
+     * TODO: Add the id into the settings
+     *
      * Accepts the offer and hits the button to continue to the second screen
      */
     public static void acceptOffer() {
-        Time.sleep(500, 750);
-        Mouse.getInstance().click(260, 190, true);
-        Time.sleep(500, 750);
+        Menu.clickButton(3420);
+        Time.sleep(new SleepCondition() {
+            @Override
+            public boolean isValid() {
+                return Interfaces.getOpenInterfaceId() == settings.get("second_trade_interface_id");
+            }
+        }, 2500);
     }
 
     /**
-     * TODO Figure a way to use packets instead
+     * TODO: Add the id into the settings
+     *
      * Accepts the trade and hits the button to complete the trade
      */
     public static void acceptTrade() {
-        Time.sleep(500, 750);
-        Mouse.getInstance().click(230, 310, true);
-        Time.sleep(500, 750);
+        Menu.clickButton(3546);
+        Time.sleep(new SleepCondition() {
+            @Override
+            public boolean isValid() {
+                return !isOpen();
+            }
+        }, 2500);
     }
 }
