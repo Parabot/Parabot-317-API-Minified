@@ -24,5 +24,4 @@ public class DActions extends AbstractDebugger {
     public void toggle() {
         enabled = !enabled;
     }
-
 }

@@ -146,9 +146,10 @@ public class Game {
         Time.sleep(new SleepCondition() {
             @Override
             public boolean isValid() {
-                return isLoggedIn();
+                return !isLoggedIn();
             }
         }, 2500);
+
         return !isLoggedIn();
     }
 

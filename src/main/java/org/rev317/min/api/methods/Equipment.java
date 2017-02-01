@@ -69,6 +69,7 @@ public class Equipment {
                 return true;
             }
         }
+
         return false;
     }
 

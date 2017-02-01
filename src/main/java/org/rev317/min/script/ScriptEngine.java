@@ -20,7 +20,7 @@ import java.util.HashMap;
  * @author matt123337
  */
 public class ScriptEngine {
-    private static HashMap<Context, ScriptEngine> instances = new HashMap<Context, ScriptEngine>();
+    private static HashMap<Context, ScriptEngine> instances = new HashMap<>();
     private ArrayList<MouseListener> mouseListeners;
     private ArrayList<MouseMotionListener> mouseMotionListeners;
     private ArrayList<MessageListener> messageListeners;
@@ -29,10 +29,10 @@ public class ScriptEngine {
     private Script script = null;
 
     private ScriptEngine() {
-        this.mouseListeners = new ArrayList<MouseListener>();
-        this.mouseMotionListeners = new ArrayList<MouseMotionListener>();
-        this.messageListeners = new ArrayList<MessageListener>();
-        this.actionListeners = new ArrayList<GameActionListener>();
+        this.mouseListeners = new ArrayList<>();
+        this.mouseMotionListeners = new ArrayList<>();
+        this.messageListeners = new ArrayList<>();
+        this.actionListeners = new ArrayList<>();
         instances.put(Context.getInstance(), this);
     }
 
@@ -103,6 +103,7 @@ public class ScriptEngine {
         if (script instanceof Paintable) {
             Context.getInstance().removePaintable((Paintable) script);
         }
+
         this.script = null;
     }
 
@@ -134,6 +135,7 @@ public class ScriptEngine {
         if (!(event instanceof MouseEvent)) {
             return;
         }
+
         final MouseEvent e = (MouseEvent) event;
         for (final MouseListener m : mouseListeners) {
             switch (e.getID()) {
@@ -176,6 +178,4 @@ public class ScriptEngine {
             a.onGameAction(event);
         }
     }
-
 }
-

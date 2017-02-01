@@ -52,6 +52,7 @@ public class Prayer {
                 prayers.add(curse);
             }
         }
+
         return prayers.toArray(new Book[prayers.size()]);
     }
 
@@ -225,12 +226,12 @@ public class Prayer {
     }
 
     public interface Book {
-        public int getSetting();
+        int getSetting();
 
-        public int getAction();
+        int getAction();
 
-        public int getLevel();
+        int getLevel();
 
-        public String getName();
+        String getName();
     }
 }

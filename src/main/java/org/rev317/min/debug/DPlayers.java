@@ -24,6 +24,5 @@ public class DPlayers extends AbstractDebugger {
 
     @Override
     public void paint(Graphics graphics) {
-
     }
 }

@@ -11,5 +11,4 @@ public interface Ground {
     SceneObjectTile getGroundItem();
 
     SceneObjectTile[] getInteractiveObjects();
-
 }

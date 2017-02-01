@@ -116,6 +116,7 @@ public final class Tile implements TileFlags, Locatable {
         hash = 31 * hash + this.x;
         hash = 31 * hash + this.y;
         hash = 31 * hash + this.z;
+
         return hash;
     }
 
@@ -171,5 +172,4 @@ public final class Tile implements TileFlags, Locatable {
     public Tile getLocation() {
         return this;
     }
-
 }

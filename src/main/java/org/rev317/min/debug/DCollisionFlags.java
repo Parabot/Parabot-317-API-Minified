@@ -35,5 +35,4 @@ public class DCollisionFlags extends AbstractDebugger {
     public void toggle() {
         enabled = !enabled;
     }
-
 }

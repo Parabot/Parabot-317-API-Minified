@@ -23,12 +23,13 @@ public class NpcDef {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return -1;
     }
 
     private long getLongId() {
         if (accessor != null) {
-            if (accessor.getId() < Integer.MAX_VALUE) {
+            if (accessor.getLongId() < Integer.MAX_VALUE) {
                 return (long) accessor.getId();
             }
         }
@@ -45,5 +46,4 @@ public class NpcDef {
     public RefClass getRefClass() {
         return new RefClass(this.accessor);
     }
-
 }

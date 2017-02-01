@@ -54,6 +54,7 @@ public class Npcs {
                 npcList.add(npc);
             }
         }
+
         return npcList.toArray(new Npc[npcList.size()]);
     }
 
@@ -77,6 +78,7 @@ public class Npcs {
         if (npcs == null || npcs.length == 0) {
             return null;
         }
+
         return npcs[0];
     }
 
@@ -91,6 +93,7 @@ public class Npcs {
         if (npcs == null || npcs.length == 0) {
             return null;
         }
+
         return npcs[0];
     }
 
@@ -103,6 +106,7 @@ public class Npcs {
     public static final Npc[] getNearest(final Filter<Npc> filter) {
         final Npc[] npcs = getNpcs(filter);
         Arrays.sort(npcs, NEAREST_SORTER);
+
         return npcs;
     }
 
@@ -124,11 +128,13 @@ public class Npcs {
                         }
                     }
                 }
+
                 return false;
             }
 
         });
         Arrays.sort(npcs, NEAREST_SORTER);
+
         return npcs;
     }
 
@@ -168,7 +174,7 @@ public class Npcs {
 
         EXAMINE(settings.get("menu_character_examine"));
 
-        int actionId;
+        private int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;

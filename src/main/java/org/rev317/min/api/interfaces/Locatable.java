@@ -20,5 +20,4 @@ public interface Locatable {
      * @return distance from player to locatable
      */
     int distanceTo();
-
 }

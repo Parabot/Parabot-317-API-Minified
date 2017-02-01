@@ -29,5 +29,4 @@ public final class MessageEvent {
     public final String getSender() {
         return name;
     }
-
 }

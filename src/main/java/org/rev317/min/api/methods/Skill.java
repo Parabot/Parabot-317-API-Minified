@@ -66,6 +66,7 @@ public enum Skill {
         if (level > 99 || level < 1) {
             return 0;
         }
+
         return EXPERIENCE[level];
     }
 
@@ -81,6 +82,7 @@ public enum Skill {
                 return i;
             }
         }
+
         return 1;
     }
 
@@ -95,6 +97,7 @@ public enum Skill {
         if (level >= 99 || level < 1) {
             return 0;
         }
+
         return EXPERIENCE[(level + 1)] - getCurrentExperience(index);
     }
 
@@ -111,11 +114,12 @@ public enum Skill {
                 || nextLevel < 1) {
             return 0;
         }
+
         return (int) (100f * ((float) getCurrentExperience(index) / (float) EXPERIENCE[nextLevel]));
     }
 
     /**
-     * @Deprecated use Skill.ordinal() instead Returns the skill's index.
+     * @deprecated use Skill.ordinal() instead Returns the skill's index.
      */
     public int getIndex() {
         return ordinal();
@@ -125,22 +129,21 @@ public enum Skill {
      * Returns the name of the skill.
      */
     public final String getName() {
-        return Character.toUpperCase(name().charAt(0))
-                + name().toLowerCase().substring(1);
+        return Character.toUpperCase(name().charAt(0)) + name().toLowerCase().substring(1);
     }
 
     /**
      * Returns the current experience.
      */
     public final int getExperience() {
-        return Skill.getCurrentExperience(this.getIndex());
+        return Skill.getCurrentExperience(this.ordinal());
     }
 
     /**
      * Returns the real level.
      */
     public final int getRealLevel() {
-        return Skill.getRealLevel(this.getIndex());
+        return Skill.getRealLevel(this.ordinal());
     }
 
     /**
@@ -148,21 +151,21 @@ public enum Skill {
      * stat; it will return the buffed level.) Done by Bears
      */
     public final int getLevel() {
-        return Skill.getCurrentLevel(this.getIndex());
+        return Skill.getCurrentLevel(this.ordinal());
     }
 
     /**
      * Returns the remaining experience until the next level.
      */
     public final int getRemaining() {
-        return Skill.getRemainingExperience(this.getIndex());
+        return Skill.getRemainingExperience(this.ordinal());
     }
 
     /**
      * Returns the percentage until the next level.
      */
     public final int getPercentage() {
-        return Skill.getPercentToNextLevel(this.getIndex());
+        return Skill.getPercentToNextLevel(this.ordinal());
     }
 
     /**
@@ -170,7 +173,6 @@ public enum Skill {
      */
     @Override
     public final String toString() {
-        return "Skill: [" + this.getName() + ": " + this.getLevel() + " / "
-                + this.getRealLevel() + "]";
+        return "Skill: [" + this.getName() + ": " + this.getLevel() + " / " + this.getRealLevel() + "]";
     }
 }

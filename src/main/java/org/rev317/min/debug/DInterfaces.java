@@ -26,5 +26,4 @@ public class DInterfaces extends AbstractDebugger {
     public void toggle() {
         enabled = !enabled;
     }
-
 }

@@ -121,5 +121,4 @@ public class SceneObject implements Locatable {
     public String toString() {
         return String.format("[ID: %d, X: %d, Y: %d]", getId(), getLocalRegionX(), getLocalRegionY());
     }
-
 }

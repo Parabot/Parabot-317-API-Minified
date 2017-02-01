@@ -42,5 +42,4 @@ public final class Npc extends Character {
     public void interact(Npcs.Option option) {
         Menu.interact(this, option);
     }
-
 }
