@@ -60,7 +60,6 @@ public class Item {
     }
 
     /**
-     *
      * @param option
      * @param interfaceParentId
      */
@@ -71,9 +70,8 @@ public class Item {
     /**
      * Interacts with this item
      *
-     * @deprecated
-     *
      * @param i
+     * @deprecated
      */
     public void interact(int i) {
         Menu.interact(this, i);
@@ -82,19 +80,17 @@ public class Item {
     /**
      * Interacts with this item
      *
-     * @deprecated
-     *
      * @param s
+     * @deprecated
      */
-    public void interact(String s){
+    public void interact(String s) {
         Menu.interact(this, s);
     }
 
     /**
-     * @deprecated
-     *
      * @param actionIndex
      * @param interfaceParentId
+     * @deprecated
      */
     public void transform(int actionIndex, int interfaceParentId) {
         Menu.transformItem(this, actionIndex, interfaceParentId);

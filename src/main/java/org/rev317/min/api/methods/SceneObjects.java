@@ -66,7 +66,6 @@ public class SceneObjects {
      * Returns array of sceneobjects with the first index to be the nearest
      *
      * @param filter
-     *
      * @return sceneobjects
      */
     public static final SceneObject[] getNearest(Filter<SceneObject> filter) {
@@ -88,7 +87,6 @@ public class SceneObjects {
      * Returns nearest objects with given id
      *
      * @param ids
-     *
      * @return sceneobjects
      */
     public static final SceneObject[] getNearest(final int... ids) {
@@ -172,7 +170,6 @@ public class SceneObjects {
      * @param x
      * @param y
      * @param useCached
-     *
      * @return array of sceneobjects, or null if there aren't any
      */
     public static final Collection<SceneObject> getSceneObjectsAtTile(int x, int y, boolean useCached) {
@@ -225,7 +222,7 @@ public class SceneObjects {
         return sceneObjects;
     }
 
-    public enum Option{
+    public enum Option {
         FIRST(settings.get("menu_scene_object_first_interaction")),
         TALK_TO(settings.get("menu_scene_object_first_interaction")),
         CHOP_DOWN(settings.get("menu_scene_object_first_interaction")),

@@ -124,7 +124,6 @@ public class Bank {
      * Gets bank item with given id
      *
      * @param id
-     *
      * @return bank item
      */
     public static Item getItem(int id) {
@@ -147,7 +146,6 @@ public class Bank {
      * Counts the amount of items with given id in bank
      *
      * @param id
-     *
      * @return count
      */
     public static int getCount(int id) {

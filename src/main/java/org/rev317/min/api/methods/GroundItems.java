@@ -68,7 +68,6 @@ public class GroundItems {
      *
      * @param x - local region x
      * @param y - local region y
-     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getGroundItemsAt(final int x, final int y) {
@@ -103,7 +102,7 @@ public class GroundItems {
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getGroundItemsAt(final Tile tile) {
-        return getGroundItemsAt(tile.getX(),tile.getY());
+        return getGroundItemsAt(tile.getX(), tile.getY());
     }
 
     /**
@@ -119,7 +118,6 @@ public class GroundItems {
      * Gets the closest GroundItem which matches the given filter.
      *
      * @param filter Filter that should be applied to the GroundItem.
-     *
      * @return closest GroundItem
      */
     public static final GroundItem getClosest(final Filter<GroundItem> filter) {
@@ -134,7 +132,6 @@ public class GroundItems {
      * Gets the closest GroundItems which matches the given ids.
      *
      * @param ids ID's of the GroundItems to look for.
-     *
      * @return closest GroundItems
      */
     public static final GroundItem getClosest(int... ids) {
@@ -149,7 +146,6 @@ public class GroundItems {
      * Returns Array of GroundItems with the first index to be the nearest.
      *
      * @param filter Filter that should be applied to the GroundItem.
-     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest(Filter<GroundItem> filter) {
@@ -171,7 +167,6 @@ public class GroundItems {
      * Returns Array of GroundItems with the first index to be the nearest.
      *
      * @param ids GroundItem ID's to look for.
-     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest(final int... ids) {
@@ -190,7 +185,7 @@ public class GroundItems {
         });
     }
 
-    public enum Option{
+    public enum Option {
         FIRST(settings.get("menu_ground_item_first_interaction")),
 
         SECOND(settings.get("menu_ground_item_second_interaction")),

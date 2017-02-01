@@ -30,7 +30,6 @@ public enum Skill {
      * Returns the experience of the provided skill.
      *
      * @param index the skill index.
-     *
      * @return the experience.
      */
     public static final int getCurrentExperience(int index) {
@@ -41,7 +40,6 @@ public enum Skill {
      * Returns the real level of the provided skill.
      *
      * @param index the skill index.
-     *
      * @return the real skill level.
      */
     public static final int getRealLevel(int index) {
@@ -52,7 +50,6 @@ public enum Skill {
      * Returns the current level of the provided skill. (Will return de-buffed/buffed levels)
      *
      * @param index the skill index.
-     *
      * @return the current skill level. Done by Bears
      */
     public static final int getCurrentLevel(int index) {
@@ -63,7 +60,6 @@ public enum Skill {
      * Returns the exact experience at the provided level.
      *
      * @param level the level.
-     *
      * @return the experience at the provided level.
      */
     public static final int getExperienceByLevel(int level) {
@@ -77,7 +73,6 @@ public enum Skill {
      * Returns the exact level with the provided experience.
      *
      * @param experience the experience.
-     *
      * @return the level at the provided experience.
      */
     public static final int getLevelByExperience(int experience) {
@@ -93,7 +88,6 @@ public enum Skill {
      * Returns the remaining experience for the provided skill to level up.
      *
      * @param index the skill index.
-     *
      * @return the remaining experience.
      */
     public static final int getRemainingExperience(int index) {
@@ -108,7 +102,6 @@ public enum Skill {
      * Returns the percentage to the next level for the provided skill.
      *
      * @param index the skill index.
-     *
      * @return the remaining percentage.
      */
     public static final int getPercentToNextLevel(int index) {

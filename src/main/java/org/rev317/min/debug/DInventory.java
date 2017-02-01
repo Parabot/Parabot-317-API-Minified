@@ -41,9 +41,9 @@ public class DInventory extends AbstractDebugger {
         }
     }
 
-    public int getSlotItemID(int slot){
-        for (Item item : Inventory.getItems()){
-            if (item.getSlot() == slot){
+    public int getSlotItemID(int slot) {
+        for (Item item : Inventory.getItems()) {
+            if (item.getSlot() == slot) {
                 return item.getId();
             }
         }

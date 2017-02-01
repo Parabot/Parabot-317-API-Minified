@@ -8,8 +8,8 @@ public interface Ground {
 
     SceneObjectTile getGroundDecoration();
 
-     SceneObjectTile getGroundItem();
+    SceneObjectTile getGroundItem();
 
-     SceneObjectTile[] getInteractiveObjects();
+    SceneObjectTile[] getInteractiveObjects();
 
 }

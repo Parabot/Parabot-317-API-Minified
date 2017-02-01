@@ -3,7 +3,7 @@ package org.rev317.min.api.wrappers;
 import org.parabot.core.reflect.RefClass;
 
 /**
- * @author Everel
+ * @author Everel, JKetelaar, EmmaStone
  */
 public class NpcDef {
     private org.rev317.min.accessors.NpcDef accessor;
@@ -18,11 +18,24 @@ public class NpcDef {
      * @return id of this item
      */
     public int getId() {
-        if (accessor != null) {
-            return accessor.getId();
+        try {
+            return (int) getLongId();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return -1;
     }
+
+    private long getLongId() {
+        if (accessor != null) {
+            if (accessor.getId() < Integer.MAX_VALUE) {
+                return (long) accessor.getId();
+            }
+        }
+
+        return -1;
+    }
+
 
     /**
      * Gets the accessor class
@@ -34,4 +47,3 @@ public class NpcDef {
     }
 
 }
-

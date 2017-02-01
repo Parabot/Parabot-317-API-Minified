@@ -6,7 +6,10 @@ import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 
 /**
  * @author Everel, JKetelaar
@@ -36,7 +39,6 @@ public class Players {
      * Gets all players except local player
      *
      * @param filter
-     *
      * @return all players
      */
     public static final Player[] getPlayers(final Filter<Player> filter) {
@@ -68,7 +70,6 @@ public class Players {
      * Returns array with the first index to be the nearest player
      *
      * @param filter
-     *
      * @return nearest players
      */
     public static final Player[] getNearest(final Filter<Player> filter) {
@@ -95,7 +96,7 @@ public class Players {
         return new Player(Loader.getClient().getMyPlayer(), -1);
     }
 
-    public enum Option{
+    public enum Option {
         FIRST(settings.get("menu_character_first_interaction")),
 
         SECOND(settings.get("menu_character_second_interaction")),

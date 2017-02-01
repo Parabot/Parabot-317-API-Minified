@@ -67,7 +67,7 @@ public class BotMenu implements ActionListener {
         actions.addSeparator();
 
         ButtonGroup group = new ButtonGroup();
-        for (int i = 0; i < MenuAction.getOutputs().length; i++){
+        for (int i = 0; i < MenuAction.getOutputs().length; i++) {
             final int index = i;
             JMenuItem debugOutput = new JRadioButtonMenuItem("Output: " + index);
             debugOutput.addActionListener(new ActionListener() {

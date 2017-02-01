@@ -2,9 +2,7 @@ package org.rev317.min.api.methods;
 
 import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Time;
-import org.parabot.environment.input.Mouse;
 import org.parabot.environment.scripts.framework.SleepCondition;
-import org.rev317.min.Loader;
 import org.rev317.min.accessors.Interface;
 import org.rev317.min.api.wrappers.Item;
 
@@ -20,26 +18,28 @@ public class Trading {
 
     /**
      * Checks if the first or the second screen is open, based on the given boolean
+     *
      * @param first If true, the first trade screen will be checked. If false, the second screen will be checked
      * @return True if the requested screen is open
      */
-    public static boolean isOpen(boolean first){
+    public static boolean isOpen(boolean first) {
         return Interfaces.getOpenInterfaceId() == (first ? settings.get("first_trade_interface_id") : settings.get("second_trade_interface_id"));
     }
 
     /**
      * Checks if any of the trade screens are open
+     *
      * @return True if open, false if not open
      */
-    public static boolean isOpen(){
+    public static boolean isOpen() {
         return Interfaces.getOpenInterfaceId() == settings.get("first_trade_interface_id") || Interfaces.getOpenInterfaceId() == settings.get("second_trade_interface_id");
     }
 
     /**
      * Still in development
-     *      For now it simply walks away from the trade by walking to the location of the player
+     * For now it simply walks away from the trade by walking to the location of the player
      */
-    public static void close(){
+    public static void close() {
         Players.getMyPlayer().getLocation().walkTo();
         Time.sleep(new SleepCondition() {
             @Override
@@ -98,7 +98,7 @@ public class Trading {
 
     /**
      * TODO: Add the id into the settings
-     *
+     * <p>
      * Accepts the offer and hits the button to continue to the second screen
      */
     public static void acceptOffer() {
@@ -113,7 +113,7 @@ public class Trading {
 
     /**
      * TODO: Add the id into the settings
-     *
+     * <p>
      * Accepts the trade and hits the button to complete the trade
      */
     public static void acceptTrade() {

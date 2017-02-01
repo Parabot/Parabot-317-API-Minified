@@ -12,7 +12,7 @@ import java.awt.*;
 public class DPlayers extends AbstractDebugger {
     @Override
     public void toggle() {
-        for (Player player : Players.getNearest()){
+        for (Player player : Players.getNearest()) {
             System.out.println("Username: " + player.getName() + " Index: " + player.getIndex() + " Distance: " + player.distanceTo() + " Location: " + player.getLocation().toString());
         }
     }

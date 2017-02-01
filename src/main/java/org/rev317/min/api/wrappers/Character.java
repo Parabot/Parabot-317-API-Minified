@@ -115,9 +115,8 @@ public class Character implements Locatable {
     /**
      * Interacts with this character
      *
-     * @deprecated
-     *
      * @param i
+     * @deprecated
      */
     public void interact(int i) {
         Menu.interact(this, i);

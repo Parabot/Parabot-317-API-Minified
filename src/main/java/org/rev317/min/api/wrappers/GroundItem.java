@@ -2,7 +2,10 @@ package org.rev317.min.api.wrappers;
 
 import org.parabot.core.reflect.RefClass;
 import org.rev317.min.api.interfaces.Locatable;
-import org.rev317.min.api.methods.*;
+import org.rev317.min.api.methods.Calculations;
+import org.rev317.min.api.methods.Game;
+import org.rev317.min.api.methods.GroundItems;
+import org.rev317.min.api.methods.Menu;
 
 /**
  * @author Everel
@@ -57,9 +60,8 @@ public class GroundItem implements Locatable {
     /**
      * Interacts with this ground item
      *
-     * @deprecated
-     *
      * @param actionIndex
+     * @deprecated
      */
     public void interact(int actionIndex) {
         Menu.interact(this, actionIndex);
