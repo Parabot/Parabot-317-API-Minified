@@ -6,6 +6,9 @@ public interface Interface {
 
     int[] getStackSizes();
 
+    /**
+     * @return long version of #getStackSizes
+     */
     long[] getLongStackSizes();
 
     String getMessage();
