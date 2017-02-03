@@ -18,25 +18,44 @@ public class NpcDef {
      * @return id of this item
      */
     public int getId() {
-        try {
-            return (int) getLongId();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return -1;
+        return getId(false);
     }
 
-    private long getLongId() {
-        if (accessor != null) {
-            if (accessor.getLongId() < Integer.MAX_VALUE) {
-                return (long) accessor.getId();
+    /**
+     * Gets id of this item
+     *
+     * @param avoidLong defines if it should check if long id exists
+     * @return id of this item
+     */
+    private int getId(boolean avoidLong) {
+        if (avoidLong) {
+            return accessor.getId();
+        } else {
+            try {
+                long id = getLongId();
+                if (id > Integer.MAX_VALUE){
+                    throw new NoSuchMethodException("This server only supports long ids; change NpcDef#getId to NpcDef#getLongId");
+                }
+                return (int) id;
+            } catch (Exception e) {
+                return accessor.getId();
             }
         }
-
-        return -1;
     }
 
+    /**
+     * Gets id of this item
+     * Meant for servers with longs as ids, instead of ints
+     *
+     * @return id of this item
+     */
+    private long getLongId() {
+        try {
+            return accessor.getLongId();
+        } catch (Exception e) {
+            return getId(true);
+        }
+    }
 
     /**
      * Gets the accessor class
