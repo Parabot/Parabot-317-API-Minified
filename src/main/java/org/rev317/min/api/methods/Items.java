@@ -40,9 +40,11 @@ public class Items {
                         return name;
                     }
                 }
-            } catch (MalformedURLException | ParseException ignored) {
+            } catch (MalformedURLException | ParseException e) {
+                e.printStackTrace();
             }
         }
+
         return null;
     }
 
@@ -60,8 +62,10 @@ public class Items {
                     return ids;
                 }
             }
-        } catch (MalformedURLException | ParseException ignored) {
+        } catch (MalformedURLException | ParseException e) {
+            e.printStackTrace();
         }
+
         return new int[0];
     }
 
@@ -85,8 +89,10 @@ public class Items {
                     return ids;
                 }
             }
-        } catch (MalformedURLException | ParseException ignored) {
+        } catch (MalformedURLException | ParseException e) {
+            e.printStackTrace();
         }
+
         return new int[0];
     }
 
@@ -110,8 +116,10 @@ public class Items {
                     return ids;
                 }
             }
-        } catch (MalformedURLException | ParseException ignored) {
+        } catch (MalformedURLException | ParseException e) {
+            e.printStackTrace();
         }
+
         return new int[0];
     }
 
@@ -130,7 +138,8 @@ public class Items {
                         return price;
                     }
                 }
-            } catch (MalformedURLException | ParseException ignored) {
+            } catch (MalformedURLException | ParseException e) {
+                e.printStackTrace();
             }
         }
         return 0;
@@ -181,7 +190,7 @@ public class Items {
         SEVENTH(settings.get("menu_item_seventh_interaction")),
         USE_WITH(settings.get("menu_item_seventh_interaction"));
 
-        int actionId;
+        private int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;

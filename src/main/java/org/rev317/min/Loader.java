@@ -40,9 +40,11 @@ public class Loader extends ServerProvider {
             final ASMClassLoader classLoader = context.getASMClassLoader();
             final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
             Object instance = clientClass.newInstance();
+
             return (Applet) instance;
         } catch (Exception e) {
             e.printStackTrace();
+
             return null;
         }
     }

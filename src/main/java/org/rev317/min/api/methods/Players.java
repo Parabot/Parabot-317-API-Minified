@@ -43,7 +43,7 @@ public class Players {
      */
     public static final Player[] getPlayers(final Filter<Player> filter) {
         final Client client = Loader.getClient();
-        ArrayList<Player> playerList = new ArrayList<Player>();
+        ArrayList<Player> playerList = new ArrayList<>();
         final org.rev317.min.accessors.Player[] accPlayers = client.getPlayers();
         for (int i = 0; i < accPlayers.length; i++) {
             if (accPlayers[i] == null) {
@@ -54,6 +54,7 @@ public class Players {
                 playerList.add(player);
             }
         }
+
         return playerList.toArray(new Player[playerList.size()]);
     }
 
@@ -116,7 +117,7 @@ public class Players {
 
         EXAMINE(settings.get("menu_character_examine"));
 
-        int actionId;
+        private int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;

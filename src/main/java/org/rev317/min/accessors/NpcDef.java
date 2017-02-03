@@ -4,4 +4,5 @@ public interface NpcDef {
 
     int getId();
 
+    long getLongId();
 }

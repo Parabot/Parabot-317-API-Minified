@@ -19,12 +19,10 @@ import java.util.HashMap;
  */
 public class GroundItems {
     private static final Comparator<GroundItem> NEAREST_SORTER = new Comparator<GroundItem>() {
-
         @Override
         public int compare(GroundItem n1, GroundItem n2) {
             return n1.distanceTo() - n2.distanceTo();
         }
-
     };
     private static final Filter<GroundItem> ALL_FILTER = new Filter<GroundItem>() {
 
@@ -60,6 +58,7 @@ public class GroundItems {
                 }
             }
         }
+
         return items.toArray(new GroundItem[items.size()]);
     }
 
@@ -75,10 +74,12 @@ public class GroundItems {
             if (client == null) {
                 client = Loader.getClient();
             }
+
             final Deque deque = client.getGroundItems()[Game.getPlane()][x][y];
             if (deque == null) {
                 return null;
             }
+
             ArrayList<GroundItem> list = new ArrayList<>();
             final Node holder = deque.getHead();
             Node curNode = holder.getNext();
@@ -88,10 +89,12 @@ public class GroundItems {
                 list.add(new GroundItem(groundItem, x, y));
                 curNode = curNode.getNext();
             }
+
             return list.toArray(new GroundItem[list.size()]);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
@@ -125,6 +128,7 @@ public class GroundItems {
         if (objects == null || objects.length == 0) {
             return null;
         }
+
         return objects[0];
     }
 
@@ -139,6 +143,7 @@ public class GroundItems {
         if (objects == null || objects.length == 0) {
             return null;
         }
+
         return objects[0];
     }
 
@@ -151,6 +156,7 @@ public class GroundItems {
     public static final GroundItem[] getNearest(Filter<GroundItem> filter) {
         final GroundItem[] objects = getGroundItems(filter);
         Arrays.sort(objects, NEAREST_SORTER);
+
         return objects;
     }
 
@@ -171,7 +177,6 @@ public class GroundItems {
      */
     public static final GroundItem[] getNearest(final int... ids) {
         return getNearest(new Filter<GroundItem>() {
-
             @Override
             public boolean accept(GroundItem object) {
                 for (final int id : ids) {
@@ -179,9 +184,9 @@ public class GroundItems {
                         return true;
                     }
                 }
+
                 return false;
             }
-
         });
     }
 
@@ -199,7 +204,7 @@ public class GroundItems {
 
         EXAMINE(settings.get("menu_ground_item_examine_interaction"));
 
-        int actionId;
+        private int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;

@@ -37,8 +37,10 @@ public class Area {
      */
     public Tile[] getPoints() {
         Tile[] tiles = new Tile[p.npoints];
-        for (int i = 0; i < tiles.length; i++)
+        for (int i = 0; i < tiles.length; i++) {
             tiles[i] = new Tile(p.xpoints[i], p.ypoints[i]);
+        }
+
         return tiles;
     }
 
@@ -76,6 +78,7 @@ public class Area {
                 }
             }
         }
+
         return t.toArray(new Tile[t.size()]);
     }
 
@@ -107,7 +110,7 @@ public class Area {
                 result = !result;
             }
         }
+
         return result;
     }
-
 }

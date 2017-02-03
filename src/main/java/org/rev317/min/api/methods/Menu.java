@@ -108,6 +108,7 @@ public class Menu {
                 actionId = 478;
                 break;
         }
+
         sendAction(actionId, character.getIndex(), 0, 0);
     }
 
@@ -118,10 +119,8 @@ public class Menu {
      * @param action
      * @param interfaceParentId
      */
-    public static void transformItem(Item item, Items.Option action,
-                                     int interfaceParentId) {
-        sendAction(action.getActionId(), item.getId() - 1, item.getSlot(),
-                interfaceParentId);
+    public static void transformItem(Item item, Items.Option action, int interfaceParentId) {
+        sendAction(action.getActionId(), item.getId() - 1, item.getSlot(), interfaceParentId);
     }
 
     /**
@@ -132,8 +131,7 @@ public class Menu {
      * @param interfaceParentId
      * @deprecated
      */
-    public static void transformItem(Item item, int actionIndex,
-                                     int interfaceParentId) {
+    public static void transformItem(Item item, int actionIndex, int interfaceParentId) {
         int actionId = Items.Option.TRANSFORM_FIRST.getActionId();
         switch (actionIndex) {
             case 0:
@@ -264,8 +262,7 @@ public class Menu {
      * @param item
      */
     public static void drop(Item item) {
-        sendAction(settings.get("button_drop_item"), item.getId() - 1, item.getSlot(),
-                settings.get("inventory_index"));
+        sendAction(settings.get("button_drop_item"), item.getId() - 1, item.getSlot(), settings.get("inventory_index"));
     }
 
     /**
@@ -322,7 +319,6 @@ public class Menu {
             client.getMenuAction4()[index] = cmd4;
         }
         client.getMenuActionId()[index] = action;
-
 
         client.doAction(index);
     }

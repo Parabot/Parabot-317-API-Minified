@@ -100,5 +100,4 @@ public class GroundItem implements Locatable {
     public RefClass getRefClass() {
         return new RefClass(this.accessor);
     }
-
 }

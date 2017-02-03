@@ -10,5 +10,4 @@ public class MessageCallback {
         final MessageEvent messageEvent = new MessageEvent(type, name, message);
         ScriptEngine.getInstance().dispatch(messageEvent);
     }
-
 }

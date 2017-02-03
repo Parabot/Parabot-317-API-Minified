@@ -87,6 +87,7 @@ public class BotMenu implements ActionListener {
     private JMenuItem newItem(String name) {
         JMenuItem item = new JCheckBoxMenuItem(name);
         item.addActionListener(this);
+
         return item;
     }
 
@@ -94,5 +95,4 @@ public class BotMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Context.getInstance().getPaintDebugger().toggle(e.getActionCommand());
     }
-
 }

@@ -142,6 +142,7 @@ public class Character implements Locatable {
                 return Players.getMyPlayer();
             }
         }
+
         return null;
     }
 
@@ -161,26 +162,32 @@ public class Character implements Locatable {
         result = prime * result
                 + ((accessor == null) ? 0 : accessor.hashCode());
         result = prime * result + index;
+
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
+
         Character other = (Character) obj;
         if (accessor == null) {
-            if (other.accessor != null)
+            if (other.accessor != null) {
                 return false;
-        } else if (!accessor.equals(other.accessor))
+            }
+        } else if (!accessor.equals(other.accessor)) {
             return false;
-        if (index != other.index)
-            return false;
-        return true;
+        }
+
+        return index == other.index;
     }
 
     public org.rev317.min.accessors.Character getAccessor() {

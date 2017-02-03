@@ -47,6 +47,7 @@ public class DInventory extends AbstractDebugger {
                 return item.getId();
             }
         }
+
         return 0;
     }
 }
