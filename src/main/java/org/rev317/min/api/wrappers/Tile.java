@@ -73,7 +73,6 @@ public final class Tile implements TileFlags, Locatable {
         return z;
     }
 
-
     /**
      * {@inheritDoc}
      */

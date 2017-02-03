@@ -63,7 +63,7 @@ public class Character implements Locatable {
      * @return location
      */
     public Tile getLocation() {
-        return new Tile(Game.getBaseX() + getX(), Game.getBaseY() + getY());
+        return new Tile(Game.getBaseX() + getX(), Game.getBaseY() + getY(), Game.getPlane());
     }
 
     /**
