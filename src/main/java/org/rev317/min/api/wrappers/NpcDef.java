@@ -31,15 +31,15 @@ public class NpcDef {
         if (avoidLong) {
             return accessor.getId();
         } else {
-            try {
-                long id = getLongId();
-                if (id > Integer.MAX_VALUE){
-                    throw new NoSuchMethodException("This server only supports long ids; change NpcDef#getId to NpcDef#getLongId");
-                }
-                return (int) id;
-            } catch (Exception e) {
+//            try {
+//                long id = getLongId();
+//                if (id > Integer.MAX_VALUE){
+//                    throw new NoSuchMethodException("This server only supports long ids; change NpcDef#getId to NpcDef#getLongId");
+//                }
+//                return (int) id;
+//            } catch (Exception e) {
                 return accessor.getId();
-            }
+//            }
         }
     }
 
