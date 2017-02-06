@@ -31,5 +31,4 @@ public class DSceneObjects extends AbstractDebugger {
                             " Distance: " + objects[i].distanceTo());
         }
     }
-
 }

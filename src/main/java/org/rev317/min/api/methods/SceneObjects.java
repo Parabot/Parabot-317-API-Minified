@@ -40,16 +40,17 @@ public class SceneObjects {
      * @return scene objects
      */
     public static final SceneObject[] getSceneObjects(Filter<SceneObject> filter) {
-        ArrayList<SceneObject> sceneObjects = new ArrayList<SceneObject>();
+        ArrayList<SceneObject> sceneObjects = new ArrayList<>();
         for (int x = 0; x < 104; x++) {
             for (int y = 0; y < 104; y++) {
-                final SceneObject sceneObjectAtTile = getSceneObjectAtTile(x, y, true);
+                final SceneObject sceneObjectAtTile = getSceneObjectAtTile(x, y);
                 if (sceneObjectAtTile != null && filter.accept(sceneObjectAtTile)) {
                     sceneObjects.add(sceneObjectAtTile);
                 }
 
             }
         }
+
         return sceneObjects.toArray(new SceneObject[sceneObjects.size()]);
     }
 
@@ -66,12 +67,12 @@ public class SceneObjects {
      * Returns array of sceneobjects with the first index to be the nearest
      *
      * @param filter
-     *
      * @return sceneobjects
      */
     public static final SceneObject[] getNearest(Filter<SceneObject> filter) {
         final SceneObject[] objects = getSceneObjects(filter);
         Arrays.sort(objects, NEAREST_SORTER);
+
         return objects;
     }
 
@@ -88,7 +89,6 @@ public class SceneObjects {
      * Returns nearest objects with given id
      *
      * @param ids
-     *
      * @return sceneobjects
      */
     public static final SceneObject[] getNearest(final int... ids) {
@@ -101,6 +101,7 @@ public class SceneObjects {
                         return true;
                     }
                 }
+
                 return false;
             }
 
@@ -109,7 +110,6 @@ public class SceneObjects {
 
     public static final SceneObject getClosest(final int... ids) {
         SceneObject[] nearestObjects = getNearest(new Filter<SceneObject>() {
-
             @Override
             public boolean accept(SceneObject object) {
                 for (final int id : ids) {
@@ -117,34 +117,37 @@ public class SceneObjects {
                         return true;
                     }
                 }
+
                 return false;
             }
-
         });
         if (nearestObjects == null || nearestObjects.length == 0) {
             return null;
         }
+
         return nearestObjects[0];
     }
 
-    private static SceneObject getSceneObjectAtTile(int x, int y, boolean useCached) {
+    private static SceneObject getSceneObjectAtTile(int x, int y) {
         Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
         if (sceneTile == null) {
             return null;
         }
+
         final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
         if (interactiveObjects != null) {
             for (final SceneObjectTile interactiveObject : interactiveObjects) {
-                // get top
                 if (interactiveObject != null) {
                     return new SceneObject(interactiveObject, SceneObject.TYPE_INTERACTIVE);
                 }
             }
         }
+
         SceneObjectTile sceneObjectTile = sceneTile.getWallObject();
         if (sceneObjectTile != null) {
             return new SceneObject(sceneObjectTile, SceneObject.TYPE_WALL);
         }
+
         return null;
     }
 
@@ -154,15 +157,16 @@ public class SceneObjects {
      * @return every loaded scene object in game
      */
     public static final SceneObject[] getAllSceneObjects() {
-        ArrayList<SceneObject> sceneObjects = new ArrayList<SceneObject>();
+        ArrayList<SceneObject> sceneObjects = new ArrayList<>();
         for (int x = 0; x < 104; x++) {
             for (int y = 0; y < 104; y++) {
-                final Collection<SceneObject> sceneObjectsAtTile = getSceneObjectsAtTile(x, y, true);
+                final Collection<SceneObject> sceneObjectsAtTile = getSceneObjectsAtTile(x, y);
                 if (sceneObjectsAtTile != null && !sceneObjectsAtTile.isEmpty()) {
                     sceneObjects.addAll(sceneObjectsAtTile);
                 }
             }
         }
+
         return sceneObjects.toArray(new SceneObject[sceneObjects.size()]);
     }
 
@@ -171,11 +175,9 @@ public class SceneObjects {
      *
      * @param x
      * @param y
-     * @param useCached
-     *
      * @return array of sceneobjects, or null if there aren't any
      */
-    public static final Collection<SceneObject> getSceneObjectsAtTile(int x, int y, boolean useCached) {
+    public static final Collection<SceneObject> getSceneObjectsAtTile(int x, int y) {
         Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
         ArrayList<SceneObject> sceneObjects = null;
         if (sceneTile != null) {
@@ -222,10 +224,12 @@ public class SceneObjects {
                 sceneObjects.add(new SceneObject(sceneObjectTile, SceneObject.TYPE_GROUNDITEM));
             }
         }
+
         return sceneObjects;
     }
 
-    public enum Option{
+
+    public enum Option {
         FIRST(settings.get("menu_scene_object_first_interaction")),
         TALK_TO(settings.get("menu_scene_object_first_interaction")),
         CHOP_DOWN(settings.get("menu_scene_object_first_interaction")),
@@ -256,7 +260,7 @@ public class SceneObjects {
 
         EXAMINE(settings.get("menu_scene_object_examine"));
 
-        int actionId;
+        private int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;
@@ -266,6 +270,4 @@ public class SceneObjects {
             return actionId;
         }
     }
-
 }
-

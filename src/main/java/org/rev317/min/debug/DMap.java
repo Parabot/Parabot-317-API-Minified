@@ -27,5 +27,4 @@ public class DMap extends AbstractDebugger {
     public void toggle() {
         enabled = !enabled;
     }
-
 }

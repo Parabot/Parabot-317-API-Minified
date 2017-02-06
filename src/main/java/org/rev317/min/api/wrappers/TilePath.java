@@ -27,11 +27,12 @@ public class TilePath {
      */
     public final Tile getNextTile() {
         Tile next = null;
-        for (int x = 0; x < tiles.length; x++) {
-            if (tiles[x].isOnMinimap()) {
-                next = tiles[x];
+        for (Tile tile : tiles) {
+            if (tile.isOnMinimap()) {
+                next = tile;
             }
         }
+
         return next;
     }
 
@@ -61,6 +62,7 @@ public class TilePath {
         if (next == null) {
             return;
         }
+
         next.walkTo();
     }
 
@@ -71,10 +73,10 @@ public class TilePath {
      */
     public final TilePath reverse() {
         Tile[] newTiles = new Tile[tiles.length];
-        for (int i = 0; i < tiles.length; i++)
+        for (int i = 0; i < tiles.length; i++) {
             newTiles[i] = tiles[tiles.length - i - 1];
+        }
+
         return new TilePath(newTiles);
     }
-
 }
-

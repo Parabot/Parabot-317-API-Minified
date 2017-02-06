@@ -69,6 +69,7 @@ public class Equipment {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -115,8 +116,8 @@ public class Equipment {
         RING(12),
         AMMO(13);
 
-        private int slot;
         private final int INTERFACE_ID = 1688;
+        private int slot;
 
         Slot(int slot) {
             this.slot = slot;

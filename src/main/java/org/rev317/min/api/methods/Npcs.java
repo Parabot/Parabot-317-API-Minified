@@ -6,7 +6,10 @@ import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Npc;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 
 /**
  * @author Everel, JKetelaar
@@ -36,7 +39,6 @@ public class Npcs {
      * Gets all Npcs except local Npc
      *
      * @param filter
-     *
      * @return all Npcs
      */
     public static final Npc[] getNpcs(final Filter<Npc> filter) {
@@ -52,6 +54,7 @@ public class Npcs {
                 npcList.add(npc);
             }
         }
+
         return npcList.toArray(new Npc[npcList.size()]);
     }
 
@@ -68,7 +71,6 @@ public class Npcs {
      * Gets the closest npc which matches the given filter
      *
      * @param filter
-     *
      * @return closest npc
      */
     public static final Npc getClosest(final Filter<Npc> filter) {
@@ -76,6 +78,7 @@ public class Npcs {
         if (npcs == null || npcs.length == 0) {
             return null;
         }
+
         return npcs[0];
     }
 
@@ -83,7 +86,6 @@ public class Npcs {
      * Gets the closest npc which matches the given ids
      *
      * @param ids
-     *
      * @return closest npc
      */
     public static final Npc getClosest(int... ids) {
@@ -91,6 +93,7 @@ public class Npcs {
         if (npcs == null || npcs.length == 0) {
             return null;
         }
+
         return npcs[0];
     }
 
@@ -98,12 +101,12 @@ public class Npcs {
      * Returns array with the first index to be the nearest Npc
      *
      * @param filter
-     *
      * @return nearest Npcs
      */
     public static final Npc[] getNearest(final Filter<Npc> filter) {
         final Npc[] npcs = getNpcs(filter);
         Arrays.sort(npcs, NEAREST_SORTER);
+
         return npcs;
     }
 
@@ -111,7 +114,6 @@ public class Npcs {
      * Gets nearest npcs which hold given id(s)
      *
      * @param ids
-     *
      * @return array of npcs with the first index to be the nearest
      */
     public static final Npc[] getNearest(final int... ids) {
@@ -119,18 +121,20 @@ public class Npcs {
 
             @Override
             public boolean accept(Npc npc) {
-                if (npc.getDef() != null){
+                if (npc.getDef() != null) {
                     for (final int id : ids) {
                         if (id == npc.getDef().getId()) {
                             return true;
                         }
                     }
                 }
+
                 return false;
             }
 
         });
         Arrays.sort(npcs, NEAREST_SORTER);
+
         return npcs;
     }
 
@@ -143,7 +147,7 @@ public class Npcs {
         return getNearest(ALL_FILTER);
     }
 
-    public enum Option{
+    public enum Option {
         FIRST(settings.get("menu_character_first_interaction")),
         ATTACK(settings.get("menu_character_first_interaction")),
 
@@ -170,7 +174,7 @@ public class Npcs {
 
         EXAMINE(settings.get("menu_character_examine"));
 
-        int actionId;
+        private int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;

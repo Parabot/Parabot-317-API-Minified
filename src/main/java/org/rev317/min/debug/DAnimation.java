@@ -23,5 +23,4 @@ public class DAnimation extends AbstractDebugger {
     public void toggle() {
         enabled = !enabled;
     }
-
 }

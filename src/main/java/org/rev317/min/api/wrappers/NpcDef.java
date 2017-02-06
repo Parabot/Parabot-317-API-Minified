@@ -3,7 +3,7 @@ package org.rev317.min.api.wrappers;
 import org.parabot.core.reflect.RefClass;
 
 /**
- * @author Everel
+ * @author Everel, JKetelaar, EmmaStone
  */
 public class NpcDef {
     private org.rev317.min.accessors.NpcDef accessor;
@@ -18,10 +18,43 @@ public class NpcDef {
      * @return id of this item
      */
     public int getId() {
-        if (accessor != null) {
+        return getId(false);
+    }
+
+    /**
+     * Gets id of this item
+     *
+     * @param avoidLong defines if it should check if long id exists
+     * @return id of this item
+     */
+    private int getId(boolean avoidLong) {
+        if (avoidLong) {
             return accessor.getId();
+        } else {
+            try {
+                long id = getLongId();
+                if (id > Integer.MAX_VALUE){
+                    throw new NoSuchMethodException("This server only supports long ids; change NpcDef#getId to NpcDef#getLongId");
+                }
+                return (int) id;
+            } catch (Exception e) {
+                return accessor.getId();
+            }
         }
-        return -1;
+    }
+
+    /**
+     * Gets id of this item
+     * Meant for servers with longs as ids, instead of ints
+     *
+     * @return id of this item
+     */
+    private long getLongId() {
+        try {
+            return accessor.getLongId();
+        } catch (Exception e) {
+            return getId(true);
+        }
     }
 
     /**
@@ -32,6 +65,4 @@ public class NpcDef {
     public RefClass getRefClass() {
         return new RefClass(this.accessor);
     }
-
 }
-

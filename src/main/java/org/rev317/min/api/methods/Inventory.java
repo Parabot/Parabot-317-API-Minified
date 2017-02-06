@@ -17,8 +17,6 @@ import java.util.HashMap;
  */
 public class Inventory {
 
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
-
     private static final Filter<Item> ALL_FILTER = new Filter<Item>() {
 
         @Override
@@ -27,6 +25,7 @@ public class Inventory {
         }
 
     };
+    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Clears the inventory
@@ -75,7 +74,6 @@ public class Inventory {
      * Gets the amount of items with given ids in inventory, excludes the stack sizes
      *
      * @param ids
-     *
      * @return amount of items
      */
     public static int getCount(int... ids) {
@@ -86,7 +84,6 @@ public class Inventory {
      * Gets the amount of items in inventory
      *
      * @param includeStack - true for including stack sizes to the counting
-     *
      * @return amount of items
      */
     public static int getCount(final boolean includeStack) {
@@ -110,7 +107,6 @@ public class Inventory {
      *
      * @param includeStack - true for including stack sizes to the counting
      * @param ids
-     *
      * @return amount of items
      */
     public static int getCount(final boolean includeStack, int... ids) {
@@ -148,7 +144,6 @@ public class Inventory {
      * Gets all items with given ids
      *
      * @param ids
-     *
      * @return items
      */
     public static Item[] getItems(final int... ids) {
@@ -171,7 +166,6 @@ public class Inventory {
      * Gets all items accepted by filter
      *
      * @param filter
-     *
      * @return items
      */
     public static Item[] getItems(final Filter<Item> filter) {
@@ -218,7 +212,6 @@ public class Inventory {
      * Checks if an item exists in the inventory
      *
      * @param id The item id that will be looked for
-     *
      * @return True if the item exists in the inventory
      */
     public static boolean contains(int... id) {
@@ -234,7 +227,6 @@ public class Inventory {
      * Returns the item in the inventory based on the given id
      *
      * @param id The item id that will be used to find the item in the inventory
-     *
      * @return First found item in the inventory
      */
     public static Item getItem(int id) {
@@ -251,7 +243,6 @@ public class Inventory {
      *
      * @param itemOne The first item id that will be used to combine
      * @param itemTwo The second item id that will be used to combine
-     *
      * @return True if nothing unexpected happened
      */
     public static boolean combine(int itemOne, int itemTwo) {
@@ -273,10 +264,9 @@ public class Inventory {
     /**
      * Combines two items by using it on each other
      *
-     * @param itemOne The first item id that will be used to combine
-     * @param itemTwo The second item id that will be used to combine
+     * @param itemOne        The first item id that will be used to combine
+     * @param itemTwo        The second item id that will be used to combine
      * @param sleepCondition The sleep condition that will be used to check and wait until the condition is valid
-     *
      * @return True if the condition was true and nothing unexpected happened
      */
     public static boolean combine(int itemOne, int itemTwo, SleepCondition sleepCondition) {

@@ -42,6 +42,7 @@ public class Walking {
         if (tilePath.hasReached()) {
             return true;
         }
+
         tilePath.traverse();
         return false;
     }
@@ -61,8 +62,7 @@ public class Walking {
             tile = new Tile((loc.getX() + tile.getX()) / 2,
                     (loc.getY() + tile.getY()) / 2);
         }
+
         return null;
     }
-
 }
-

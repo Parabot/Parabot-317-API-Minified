@@ -12,14 +12,63 @@ import java.util.ArrayList;
  */
 public class Prayer {
 
-    public interface Book {
-        public int getSetting();
+    public static boolean isEnabled(Book book) {
+        return Game.getSetting(book.getSetting()) == 1;
+    }
 
-        public int getAction();
+    public static void enable(final Book book) {
+        if (!isEnabled(book)) {
+            Menu.sendAction(169, -1, -1, book.getAction());
+            Time.sleep(new SleepCondition() {
+                @Override
+                public boolean isValid() {
+                    return isEnabled(book);
+                }
+            }, 1500);
+        }
+    }
 
-        public int getLevel();
+    public static void disable(final Book book) {
+        if (isEnabled(book)) {
+            Menu.sendAction(169, -1, -1, book.getAction());
+            Time.sleep(new SleepCondition() {
+                @Override
+                public boolean isValid() {
+                    return !isEnabled(book);
+                }
+            }, 1500);
+        }
+    }
 
-        public String getName();
+    public static Book[] getActivePrayers() {
+        ArrayList<Book> prayers = new ArrayList<>();
+        for (Book normal : Normal.values()) {
+            if (isEnabled(normal)) {
+                prayers.add(normal);
+            }
+        }
+        for (Book curse : Curse.values()) {
+            if (isEnabled(curse)) {
+                prayers.add(curse);
+            }
+        }
+
+        return prayers.toArray(new Book[prayers.size()]);
+    }
+
+    public static void setActivePrayers(Book[] prayers) {
+        for (Book book : prayers) {
+            for (Book normal : Normal.values()) {
+                if (!isEnabled(normal) && normal.equals(book)) {
+                    enable(normal);
+                }
+            }
+            for (Book curse : Curse.values()) {
+                if (!isEnabled(curse) && curse.equals(book)) {
+                    enable(curse);
+                }
+            }
+        }
     }
 
     public enum Normal implements Book {
@@ -176,62 +225,13 @@ public class Prayer {
 
     }
 
+    public interface Book {
+        int getSetting();
 
-    public static boolean isEnabled(Book book) {
-        return Game.getSetting(book.getSetting()) == 1;
-    }
+        int getAction();
 
-    public static void enable(final Book book) {
-        if (!isEnabled(book)) {
-            Menu.sendAction(169, -1, -1, book.getAction());
-            Time.sleep(new SleepCondition() {
-                @Override
-                public boolean isValid() {
-                    return isEnabled(book);
-                }
-            }, 1500);
-        }
-    }
+        int getLevel();
 
-    public static void disable(final Book book) {
-        if (isEnabled(book)) {
-            Menu.sendAction(169, -1, -1, book.getAction());
-            Time.sleep(new SleepCondition() {
-                @Override
-                public boolean isValid() {
-                    return !isEnabled(book);
-                }
-            }, 1500);
-        }
-    }
-
-    public static Book[] getActivePrayers() {
-        ArrayList<Book> prayers = new ArrayList<>();
-        for (Book normal : Normal.values()) {
-            if (isEnabled(normal)) {
-                prayers.add(normal);
-            }
-        }
-        for (Book curse : Curse.values()) {
-            if (isEnabled(curse)) {
-                prayers.add(curse);
-            }
-        }
-        return prayers.toArray(new Book[prayers.size()]);
-    }
-
-    public static void setActivePrayers(Book[] prayers) {
-        for (Book book : prayers) {
-            for (Book normal : Normal.values()) {
-                if (!isEnabled(normal) && normal.equals(book)) {
-                    enable(normal);
-                }
-            }
-            for (Book curse : Curse.values()) {
-                if (!isEnabled(curse) && curse.equals(book)) {
-                    enable(curse);
-                }
-            }
-        }
+        String getName();
     }
 }

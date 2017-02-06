@@ -24,11 +24,11 @@ public class Items {
     private static HashMap<Integer, Long> prices = new HashMap<>();
     private static HashMap<Integer, String> names = new HashMap<>();
 
-    public static String getName(int id){
+    public static String getName(int id) {
         String name;
-        if ((name = names.get(id)) != null){
+        if ((name = names.get(id)) != null) {
             return name;
-        }else {
+        } else {
             try {
                 String content = WebUtil.getContents(Configuration.ITEM_API + id);
                 if (content.length() > 0) {
@@ -40,80 +40,93 @@ public class Items {
                         return name;
                     }
                 }
-            } catch (MalformedURLException | ParseException ignored) {
+            } catch (MalformedURLException | ParseException e) {
+                e.printStackTrace();
             }
         }
+
         return null;
     }
 
-    public static int[] getIds(String name){
+    public static int[] getIds(String name) {
         try {
             String content = WebUtil.getContents(Configuration.ITEM_API + name);
             if (content.length() > 0) {
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
                 JSONArray array = (JSONArray) jsonObject.get("result");
-                if (array.size() > 0){
+                if (array.size() > 0) {
                     int[] ids = new int[array.size()];
-                    for (int i = 0; i < array.size(); i++){
+                    for (int i = 0; i < array.size(); i++) {
                         ids[i] = Integer.parseInt((String) array.get(i));
                     }
                     return ids;
                 }
             }
-        } catch (MalformedURLException | ParseException ignored) {}
+        } catch (MalformedURLException | ParseException e) {
+            e.printStackTrace();
+        }
+
         return new int[0];
     }
 
     /**
      * Returns an int array based on the string it starts with. getIdsStart(dragon) will return an int array with all items starting with dragon
+     *
      * @param name
      * @return
      */
-    public static int[] getIdsStart(String name){
+    public static int[] getIdsStart(String name) {
         try {
             String content = WebUtil.getContents(Configuration.ITEM_API + "starts/" + name);
             if (content.length() > 0) {
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
                 JSONArray array = (JSONArray) jsonObject.get("result");
-                if (array.size() > 0){
+                if (array.size() > 0) {
                     int[] ids = new int[array.size()];
-                    for (int i = 0; i < array.size(); i++){
+                    for (int i = 0; i < array.size(); i++) {
                         ids[i] = Integer.parseInt((String) array.get(i));
                     }
                     return ids;
                 }
             }
-        } catch (MalformedURLException | ParseException ignored) {}
+        } catch (MalformedURLException | ParseException e) {
+            e.printStackTrace();
+        }
+
         return new int[0];
     }
 
     /**
      * Returns an int array based on the string it contains. getIdsContain(dragon) will return an int array with all items containingdragon
+     *
      * @param name
      * @return
      */
-    public static int[] getIdsContain(String name){
+    public static int[] getIdsContain(String name) {
         try {
             String content = WebUtil.getContents(Configuration.ITEM_API + "contains/" + name);
             if (content.length() > 0) {
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
                 JSONArray array = (JSONArray) jsonObject.get("result");
-                if (array.size() > 0){
+                if (array.size() > 0) {
                     int[] ids = new int[array.size()];
-                    for (int i = 0; i < array.size(); i++){
+                    for (int i = 0; i < array.size(); i++) {
                         ids[i] = Integer.parseInt((String) array.get(i));
                     }
                     return ids;
                 }
             }
-        } catch (MalformedURLException | ParseException ignored) {}
+        } catch (MalformedURLException | ParseException e) {
+            e.printStackTrace();
+        }
+
         return new int[0];
     }
 
-    public static long getPrice(int id){
-        if (prices.containsKey(id)){
+    public static long getPrice(int id) {
+        if (prices.containsKey(id)) {
             return prices.get(id);
-        }else {
+        } else {
             try {
                 String content = WebUtil.getContents(Configuration.ITEM_API + id + "/" + Context.getInstance().getServerProviderInfo().getServerName());
                 if (content.length() > 0) {
@@ -125,13 +138,14 @@ public class Items {
                         return price;
                     }
                 }
-            } catch (MalformedURLException | ParseException ignored) {
+            } catch (MalformedURLException | ParseException e) {
+                e.printStackTrace();
             }
         }
         return 0;
     }
 
-    public enum Option{
+    public enum Option {
         TRANSFORM_FIRST(settings.get("menu_transform_one_interaction")),
         VALUE(settings.get("menu_transform_one_interaction")),
         TRANSFORM_ONE(settings.get("menu_transform_one_interaction")),
@@ -176,7 +190,7 @@ public class Items {
         SEVENTH(settings.get("menu_item_seventh_interaction")),
         USE_WITH(settings.get("menu_item_seventh_interaction"));
 
-        int actionId;
+        private int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;
