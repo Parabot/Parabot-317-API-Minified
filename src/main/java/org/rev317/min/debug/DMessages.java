@@ -22,9 +22,9 @@ public class DMessages extends AbstractDebugger implements MessageListener {
     @Override
     public void toggle() {
         enabled = !enabled;
-        if (enabled){
+        if (enabled) {
             ScriptEngine.getInstance().addMessageListener(this);
-        }else{
+        } else {
             ScriptEngine.getInstance().removeMessageListener(this);
         }
     }

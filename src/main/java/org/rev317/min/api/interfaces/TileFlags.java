@@ -14,5 +14,4 @@ public interface TileFlags {
     int UNKNOWN = 0x80000;
     int BLOCKED_TILE = 0x200000;
     int UNLOADED_TILE = 0x1000000;
-
 }

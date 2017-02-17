@@ -38,5 +38,4 @@ public final class GameActionEvent {
     public int getIndex() {
         return index;
     }
-
 }

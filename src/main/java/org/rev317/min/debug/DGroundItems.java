@@ -28,5 +28,4 @@ public class DGroundItems extends AbstractDebugger {
             System.out.println("ID: " + item.getId() + " Location: " + item.getLocation());
         }
     }
-
 }

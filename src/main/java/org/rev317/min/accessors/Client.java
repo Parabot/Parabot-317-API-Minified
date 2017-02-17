@@ -44,7 +44,6 @@ public interface Client {
 
     CollisionMap[] getCollisionMap();
 
-    // args switched
     boolean walkTo(int clickType, int sizeX, int sizeY, int startX, int startY, int destX, int destY, int type, int face, boolean arbitrary, int rotation);
 
     boolean walkToPKH(boolean flag1, boolean flag2, int clickType, int sizeX, int sizeY, int startX, int startY, int destX, int destY, int type, int face, boolean arbitrary, int rotation);

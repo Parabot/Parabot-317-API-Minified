@@ -63,10 +63,10 @@ public class Bank {
      * @return <b>true</b> if successfully interacted
      */
     public static boolean open() {
-
         if (isOpen()) {
             return false;
         }
+
         SceneObject bank = getBank();
         Npc banker = getBanker();
 
@@ -100,7 +100,6 @@ public class Bank {
         }
 
         Item b = getItem(id);
-
         if (b == null) {
             return;
         }
@@ -124,7 +123,6 @@ public class Bank {
      * Gets bank item with given id
      *
      * @param id
-     *
      * @return bank item
      */
     public static Item getItem(int id) {
@@ -140,6 +138,7 @@ public class Bank {
                 }
             }
         }
+
         return null;
     }
 
@@ -147,7 +146,6 @@ public class Bank {
      * Counts the amount of items with given id in bank
      *
      * @param id
-     *
      * @return count
      */
     public static int getCount(int id) {
@@ -155,6 +153,7 @@ public class Bank {
             return 0;
         }
         Item item;
+
         return ((item = getItem(id)) != null ? item.getStackSize() : 0);
     }
 
@@ -167,7 +166,6 @@ public class Bank {
         if (isOpen()) {
             return;
         }
-
         if (bank.getLocation().distanceTo() > 8) {
             bank.getLocation().walkTo();
             Time.sleep(new SleepCondition() {
@@ -178,6 +176,7 @@ public class Bank {
             }, 5000);
             return;
         }
+
         bank.interact(SceneObjects.Option.USE);
     }
 
@@ -189,6 +188,7 @@ public class Bank {
         if (!isOpen()) {
             return;
         }
+
         Menu.sendAction(200, -1, -1, settings.get("button_close_bank"));
     }
 
@@ -231,6 +231,7 @@ public class Bank {
         if (!isOpen()) {
             return null;
         }
+
         return Loader.getClient().getInterfaceCache()[settings.get("item_interface_id")].getItems();
     }
 
@@ -243,6 +244,7 @@ public class Bank {
         if (!isOpen()) {
             return null;
         }
+
         return Loader.getClient().getInterfaceCache()[settings.get("item_interface_id")].getStackSizes();
     }
 
@@ -255,6 +257,7 @@ public class Bank {
         if (!isOpen()) {
             return null;
         }
+
         ArrayList<Item> items = new ArrayList<Item>();
         int[] ids = getBankItemIDs();
         int[] stacks = getBankStacks();
@@ -265,6 +268,7 @@ public class Bank {
                 }
             }
         }
+
         return items.toArray(new Item[items.size()]);
     }
 
@@ -277,6 +281,7 @@ public class Bank {
         if (!isOpen()) {
             return 0;
         }
+
         int[] items;
         return ((items = getBankItemIDs()) != null ? items.length : 0);
     }
@@ -289,5 +294,4 @@ public class Bank {
     public static boolean isOpen() {
         return Loader.getClient().getOpenInterfaceId() == settings.get("bank_interface_id");
     }
-
 }

@@ -5,5 +5,4 @@ public interface Deque {
     Node getHead();
 
     Node getCurrent();
-
 }

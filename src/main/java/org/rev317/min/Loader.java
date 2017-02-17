@@ -23,8 +23,8 @@ import java.io.File;
 import java.net.URL;
 
 /**
-* @author Everel, JKetelaar
-*/
+ * @author Everel, JKetelaar
+ */
 @ServerManifest(author = "Everel & JKetelaar", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
     private boolean extended = true;
@@ -40,9 +40,11 @@ public class Loader extends ServerProvider {
             final ASMClassLoader classLoader = context.getASMClassLoader();
             final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
             Object instance = clientClass.newInstance();
+
             return (Applet) instance;
         } catch (Exception e) {
             e.printStackTrace();
+
             return null;
         }
     }
@@ -70,7 +72,7 @@ public class Loader extends ServerProvider {
         try {
             super.injectHooks();
         } catch (Exception e) {
-            if (Core.inVerboseMode()){
+            if (Core.inVerboseMode()) {
                 e.printStackTrace();
             }
             this.extended = false;
@@ -86,9 +88,9 @@ public class Loader extends ServerProvider {
 
     @Override
     public HookFile getHookFile() {
-        if (this.extended){
+        if (this.extended) {
             return new HookFile(Context.getInstance().getServerProviderInfo().getExtendedHookFile(), HookFile.TYPE_XML);
-        }else{
+        } else {
             return new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
         }
     }

@@ -24,5 +24,4 @@ public class DMouse extends AbstractDebugger {
     public void toggle() {
         enabled = !enabled;
     }
-
 }

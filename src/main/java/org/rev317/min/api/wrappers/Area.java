@@ -4,9 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- *
  * @author Matt, JKetelaar
- *
  */
 public class Area {
     private Polygon p;
@@ -14,8 +12,7 @@ public class Area {
     /**
      * Initializes a PolygonArea with the tiles given
      *
-     * @param tiles
-     *            tiles to use in the area
+     * @param tiles tiles to use in the area
      */
     public Area(Tile... tiles) {
         this.p = new Polygon();
@@ -27,8 +24,7 @@ public class Area {
     /**
      * Adds a tile to the area
      *
-     * @param t
-     *            The tile to add the area
+     * @param t The tile to add the area
      */
     public void addTile(Tile t) {
         p.addPoint(t.getX(), t.getY());
@@ -41,8 +37,10 @@ public class Area {
      */
     public Tile[] getPoints() {
         Tile[] tiles = new Tile[p.npoints];
-        for (int i = 0; i < tiles.length; i++)
+        for (int i = 0; i < tiles.length; i++) {
             tiles[i] = new Tile(p.xpoints[i], p.ypoints[i]);
+        }
+
         return tiles;
     }
 
@@ -80,14 +78,14 @@ public class Area {
                 }
             }
         }
+
         return t.toArray(new Tile[t.size()]);
     }
 
     /**
      * Checks if a tile is in the area
      *
-     * @param tile
-     *            The tile to check
+     * @param tile The tile to check
      * @return <b>true</b> if area does contain the tile, otherwise <b>false</b>
      */
     public boolean contains(Tile tile) {
@@ -99,7 +97,6 @@ public class Area {
      *
      * @param x The x-axis from the tile
      * @param y The y-axis from the tile
-     *
      * @return True if the area does contain the tile, otherwise false
      */
     public boolean contains(int x, int y) {
@@ -113,7 +110,7 @@ public class Area {
                 result = !result;
             }
         }
+
         return result;
     }
-
 }

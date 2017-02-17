@@ -23,6 +23,7 @@ public class DBank extends AbstractDebugger {
         if (!Bank.isOpen()) {
             return;
         }
+
         Item[] items;
         if ((items = Bank.getBankItems()) != null) {
             for (int i = items.length - 1; i >= 0; i--) {
@@ -32,5 +33,4 @@ public class DBank extends AbstractDebugger {
             }
         }
     }
-
 }

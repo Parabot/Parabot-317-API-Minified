@@ -73,7 +73,6 @@ public final class Tile implements TileFlags, Locatable {
         return z;
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -116,6 +115,7 @@ public final class Tile implements TileFlags, Locatable {
         hash = 31 * hash + this.x;
         hash = 31 * hash + this.y;
         hash = 31 * hash + this.z;
+
         return hash;
     }
 
@@ -139,7 +139,6 @@ public final class Tile implements TileFlags, Locatable {
      * Determines if this tile is reachable
      *
      * @param isObject whether this tile is an object tile
-     *
      * @return <code>true</code> if this tile is reachable, otherwise <code>false</code>
      */
     public boolean isReachable(boolean isObject) {
@@ -172,5 +171,4 @@ public final class Tile implements TileFlags, Locatable {
     public Tile getLocation() {
         return this;
     }
-
 }

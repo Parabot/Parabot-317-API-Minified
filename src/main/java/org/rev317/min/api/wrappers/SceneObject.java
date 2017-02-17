@@ -101,9 +101,8 @@ public class SceneObject implements Locatable {
     /**
      * Interacts with this object
      *
-     * @deprecated
-     *
      * @param actionIndex
+     * @deprecated
      */
     public void interact(int actionIndex) {
         Menu.interact(this, actionIndex);
@@ -122,5 +121,4 @@ public class SceneObject implements Locatable {
     public String toString() {
         return String.format("[ID: %d, X: %d, Y: %d]", getId(), getLocalRegionX(), getLocalRegionY());
     }
-
 }

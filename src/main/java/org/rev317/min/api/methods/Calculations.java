@@ -28,6 +28,7 @@ public class Calculations {
     public static final double distanceBetween(Tile a, Tile b) {
         int x = b.getX() - a.getX();
         int y = b.getY() - a.getY();
+
         return Math.sqrt((x * x) + (y * y));
     }
 
@@ -145,6 +146,7 @@ public class Calculations {
                     dist[curr_x + 1][curr_y + 1] = cost;
                 }
             }
+
             return foundPath ? dist[curr_x][curr_y] : -1;
         } catch (Exception e) {
             return -1;
@@ -185,6 +187,7 @@ public class Calculations {
         if (foundPath(from, to)) {
             return dijkstraDist(from.getX(), from.getY(), to.getX(), to.getY(), false);
         }
+
         return -1;
     }
 
@@ -200,6 +203,7 @@ public class Calculations {
         if (foundPath(from, to)) {
             return dijkstraDist(from.getX(), from.getY(), to.getX(), to.getY(), isObject);
         }
+
         return -1;
     }
 
@@ -267,5 +271,4 @@ public class Calculations {
     public static int gainedPerHour(Timer runtime, int start, int current) {
         return runtime.getPerHour(gained(start, current));
     }
-
 }

@@ -146,16 +146,18 @@ public class Game {
         Time.sleep(new SleepCondition() {
             @Override
             public boolean isValid() {
-                return isLoggedIn();
+                return !isLoggedIn();
             }
         }, 2500);
+
         return !isLoggedIn();
     }
 
     /**
      * Login to a server
-     * @param username String
-     * @param password String
+     *
+     * @param username     String
+     * @param password     String
      * @param reconnecting True if it's a retry, false if not
      */
     public static void login(String username, String password, boolean reconnecting) {
@@ -164,6 +166,7 @@ public class Game {
 
     /**
      * Login to a server
+     *
      * @param username String
      * @param password String
      */
@@ -173,6 +176,7 @@ public class Game {
 
     /**
      * Adds friend
+     *
      * @param username String
      */
     public static void addFriend(String username) {
@@ -181,6 +185,7 @@ public class Game {
 
     /**
      * Deletes friend
+     *
      * @param username String
      */
     public static void deleteFriend(String username) {

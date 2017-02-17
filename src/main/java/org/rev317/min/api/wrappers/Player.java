@@ -12,7 +12,7 @@ public class Player extends Character {
         super(accessor, index);
     }
 
-    public String getName(){
+    public String getName() {
         return getAccessor().getName();
     }
 
