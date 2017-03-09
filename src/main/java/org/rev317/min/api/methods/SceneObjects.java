@@ -5,6 +5,7 @@ import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Ground;
 import org.rev317.min.accessors.SceneObjectTile;
+import org.rev317.min.api.methods.utils.Settings;
 import org.rev317.min.api.wrappers.SceneObject;
 
 import java.util.*;
@@ -23,7 +24,7 @@ public class SceneObjects {
 
     };
 
-    private static final Filter<SceneObject> ALL_FILTER = new Filter<SceneObject>() {
+    private static final Filter<SceneObject>      ALL_FILTER = new Filter<SceneObject>() {
 
         @Override
         public boolean accept(SceneObject object) {
@@ -31,7 +32,7 @@ public class SceneObjects {
         }
 
     };
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static       HashMap<String, Integer> settings   = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets the most important scene objects in game which can be interacted with, filters out: 'walls, wall
@@ -67,6 +68,7 @@ public class SceneObjects {
      * Returns array of sceneobjects with the first index to be the nearest
      *
      * @param filter
+     *
      * @return sceneobjects
      */
     public static final SceneObject[] getNearest(Filter<SceneObject> filter) {
@@ -89,6 +91,7 @@ public class SceneObjects {
      * Returns nearest objects with given id
      *
      * @param ids
+     *
      * @return sceneobjects
      */
     public static final SceneObject[] getNearest(final int... ids) {
@@ -175,10 +178,11 @@ public class SceneObjects {
      *
      * @param x
      * @param y
+     *
      * @return array of sceneobjects, or null if there aren't any
      */
     public static final Collection<SceneObject> getSceneObjectsAtTile(int x, int y) {
-        Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
+        Ground                 sceneTile    = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
         ArrayList<SceneObject> sceneObjects = null;
         if (sceneTile != null) {
             final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
@@ -228,37 +232,36 @@ public class SceneObjects {
         return sceneObjects;
     }
 
-
     public enum Option {
-        FIRST(settings.get("menu_scene_object_first_interaction")),
-        TALK_TO(settings.get("menu_scene_object_first_interaction")),
-        CHOP_DOWN(settings.get("menu_scene_object_first_interaction")),
-        CRAFT_RUNE(settings.get("menu_scene_object_first_interaction")),
-        PRAY_AT(settings.get("menu_scene_object_first_interaction")),
-        OPEN(settings.get("menu_scene_object_first_interaction")),
-        DEPOSIT(settings.get("menu_scene_object_first_interaction")),
-        USE(settings.get("menu_scene_object_first_interaction")),
-        SEARCH(settings.get("menu_scene_object_first_interaction")),
-        CLOSE(settings.get("menu_scene_object_first_interaction")),
-        CROSS(settings.get("menu_scene_object_first_interaction")),
-        MINE(settings.get("menu_scene_object_first_interaction")),
-        SMELT(settings.get("menu_scene_object_first_interaction")),
+        FIRST(Settings.getActionByName("menu_scene_object_first_interaction")),
+        TALK_TO(Settings.getActionByName("menu_scene_object_first_interaction")),
+        CHOP_DOWN(Settings.getActionByName("menu_scene_object_first_interaction")),
+        CRAFT_RUNE(Settings.getActionByName("menu_scene_object_first_interaction")),
+        PRAY_AT(Settings.getActionByName("menu_scene_object_first_interaction")),
+        OPEN(Settings.getActionByName("menu_scene_object_first_interaction")),
+        DEPOSIT(Settings.getActionByName("menu_scene_object_first_interaction")),
+        USE(Settings.getActionByName("menu_scene_object_first_interaction")),
+        SEARCH(Settings.getActionByName("menu_scene_object_first_interaction")),
+        CLOSE(Settings.getActionByName("menu_scene_object_first_interaction")),
+        CROSS(Settings.getActionByName("menu_scene_object_first_interaction")),
+        MINE(Settings.getActionByName("menu_scene_object_first_interaction")),
+        SMELT(Settings.getActionByName("menu_scene_object_first_interaction")),
 
-        SECOND(settings.get("menu_scene_object_second_interaction")),
-        TELEPORT(settings.get("menu_scene_object_second_interaction")),
-        STEAL_FROM(settings.get("menu_scene_object_second_interaction")),
-        PRAY(settings.get("menu_scene_object_second_interaction")),
-        USE_QUICKLY(settings.get("menu_scene_object_second_interaction")),
-        INSPECT(settings.get("menu_scene_object_second_interaction")),
+        SECOND(Settings.getActionByName("menu_scene_object_second_interaction")),
+        TELEPORT(Settings.getActionByName("menu_scene_object_second_interaction")),
+        STEAL_FROM(Settings.getActionByName("menu_scene_object_second_interaction")),
+        PRAY(Settings.getActionByName("menu_scene_object_second_interaction")),
+        USE_QUICKLY(Settings.getActionByName("menu_scene_object_second_interaction")),
+        INSPECT(Settings.getActionByName("menu_scene_object_second_interaction")),
 
-        THIRD(settings.get("menu_scene_object_third_interaction")),
+        THIRD(Settings.getActionByName("menu_scene_object_third_interaction")),
 
-        FOURTH(settings.get("menu_scene_object_fourth_interaction")),
-        GUIDE(settings.get("menu_scene_object_fourth_interaction")),
+        FOURTH(Settings.getActionByName("menu_scene_object_fourth_interaction")),
+        GUIDE(Settings.getActionByName("menu_scene_object_fourth_interaction")),
 
-        FIFTH(settings.get("menu_scene_object_fifth_interaction")),
+        FIFTH(Settings.getActionByName("menu_scene_object_fifth_interaction")),
 
-        EXAMINE(settings.get("menu_scene_object_examine"));
+        EXAMINE(Settings.getActionByName("menu_scene_object_examine"));
 
         private int actionId;
 

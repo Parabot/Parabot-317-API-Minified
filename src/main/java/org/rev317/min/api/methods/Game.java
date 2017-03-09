@@ -32,6 +32,7 @@ public class Game {
      * Gets open interface id
      *
      * @return interface id
+     *
      * @deprecated Use {@link Interfaces #getOpenInterfaceId()} instead
      */
     @Deprecated
@@ -39,11 +40,11 @@ public class Game {
         return Loader.getClient().getOpenInterfaceId();
     }
 
-
     /**
      * Get open back dialog id
      *
      * @return back dialog id
+     *
      * @deprecated Use {@link Interfaces #getBackDialogId()} instead
      */
     @Deprecated
@@ -105,6 +106,7 @@ public class Game {
      * Returns the settings within the client
      *
      * @param index The index of the setting you want to gather
+     *
      * @return The specific setting for the given index
      */
     public static int getSetting(int index) {

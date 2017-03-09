@@ -6,6 +6,7 @@ import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.accessors.Deque;
 import org.rev317.min.accessors.Node;
+import org.rev317.min.api.methods.utils.Settings;
 import org.rev317.min.api.wrappers.GroundItem;
 import org.rev317.min.api.wrappers.Tile;
 
@@ -24,7 +25,7 @@ public class GroundItems {
             return n1.distanceTo() - n2.distanceTo();
         }
     };
-    private static final Filter<GroundItem> ALL_FILTER = new Filter<GroundItem>() {
+    private static final Filter<GroundItem>     ALL_FILTER     = new Filter<GroundItem>() {
 
         @Override
         public boolean accept(GroundItem item) {
@@ -67,6 +68,7 @@ public class GroundItems {
      *
      * @param x - local region x
      * @param y - local region y
+     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getGroundItemsAt(final int x, final int y) {
@@ -80,9 +82,9 @@ public class GroundItems {
                 return null;
             }
 
-            ArrayList<GroundItem> list = new ArrayList<>();
-            final Node holder = deque.getHead();
-            Node curNode = holder.getNext();
+            ArrayList<GroundItem> list    = new ArrayList<>();
+            final Node            holder  = deque.getHead();
+            Node                  curNode = holder.getNext();
             while (curNode != null && curNode != holder
                     && curNode != deque.getHead()) {
                 final org.rev317.min.accessors.Item groundItem = (org.rev317.min.accessors.Item) curNode;
@@ -102,6 +104,7 @@ public class GroundItems {
      * Gets GroundItems at a specific tile using x and y location.
      *
      * @param tile Tile to get the GroundItems from.
+     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getGroundItemsAt(final Tile tile) {
@@ -121,6 +124,7 @@ public class GroundItems {
      * Gets the closest GroundItem which matches the given filter.
      *
      * @param filter Filter that should be applied to the GroundItem.
+     *
      * @return closest GroundItem
      */
     public static final GroundItem getClosest(final Filter<GroundItem> filter) {
@@ -136,6 +140,7 @@ public class GroundItems {
      * Gets the closest GroundItems which matches the given ids.
      *
      * @param ids ID's of the GroundItems to look for.
+     *
      * @return closest GroundItems
      */
     public static final GroundItem getClosest(int... ids) {
@@ -151,6 +156,7 @@ public class GroundItems {
      * Returns Array of GroundItems with the first index to be the nearest.
      *
      * @param filter Filter that should be applied to the GroundItem.
+     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest(Filter<GroundItem> filter) {
@@ -173,6 +179,7 @@ public class GroundItems {
      * Returns Array of GroundItems with the first index to be the nearest.
      *
      * @param ids GroundItem ID's to look for.
+     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest(final int... ids) {
@@ -191,18 +198,18 @@ public class GroundItems {
     }
 
     public enum Option {
-        FIRST(settings.get("menu_ground_item_first_interaction")),
+        FIRST(Settings.getActionByName("menu_ground_item_first_interaction")),
 
-        SECOND(settings.get("menu_ground_item_second_interaction")),
+        SECOND(Settings.getActionByName("menu_ground_item_second_interaction")),
 
-        THIRD(settings.get("menu_ground_item_third_interaction")),
-        TAKE(settings.get("menu_ground_item_third_interaction")),
+        THIRD(Settings.getActionByName("menu_ground_item_third_interaction")),
+        TAKE(Settings.getActionByName("menu_ground_item_third_interaction")),
 
-        FOURTH(settings.get("menu_ground_item_fourth_interaction")),
+        FOURTH(Settings.getActionByName("menu_ground_item_fourth_interaction")),
 
-        FIFTH(settings.get("menu_ground_item_fifth_interaction")),
+        FIFTH(Settings.getActionByName("menu_ground_item_fifth_interaction")),
 
-        EXAMINE(settings.get("menu_ground_item_examine_interaction"));
+        EXAMINE(Settings.getActionByName("menu_ground_item_examine_interaction"));
 
         private int actionId;
 

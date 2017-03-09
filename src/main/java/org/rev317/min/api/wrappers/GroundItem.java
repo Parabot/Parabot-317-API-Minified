@@ -12,8 +12,8 @@ import org.rev317.min.api.methods.Menu;
  */
 public class GroundItem implements Locatable {
     private org.rev317.min.accessors.Item accessor;
-    private int x;
-    private int y;
+    private int                           x;
+    private int                           y;
 
     public GroundItem(org.rev317.min.accessors.Item accessor, int x, int y) {
         this.accessor = accessor;
@@ -61,6 +61,7 @@ public class GroundItem implements Locatable {
      * Interacts with this ground item
      *
      * @param actionIndex
+     *
      * @deprecated
      */
     public void interact(int actionIndex) {

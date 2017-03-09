@@ -17,7 +17,7 @@ public class DMessages extends AbstractDebugger implements MessageListener {
 
     private String message;
     private String sender;
-    private int type;
+    private int    type;
 
     @Override
     public void toggle() {

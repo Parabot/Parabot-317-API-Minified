@@ -14,7 +14,7 @@ import org.rev317.min.api.methods.Players;
 public class Character implements Locatable {
 
     private org.rev317.min.accessors.Character accessor;
-    private int index;
+    private int                                index;
 
     public Character(org.rev317.min.accessors.Character accessor, int index) {
         this.accessor = accessor;
@@ -116,6 +116,7 @@ public class Character implements Locatable {
      * Interacts with this character
      *
      * @param i
+     *
      * @deprecated
      */
     public void interact(int i) {
@@ -157,8 +158,8 @@ public class Character implements Locatable {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
+        final int prime  = 31;
+        int       result = 1;
         result = prime * result
                 + ((accessor == null) ? 0 : accessor.hashCode());
         result = prime * result + index;

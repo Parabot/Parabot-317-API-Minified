@@ -36,10 +36,10 @@ public class Loader extends ServerProvider {
     @Override
     public Applet fetchApplet() {
         try {
-            final Context context = Context.getInstance();
+            final Context        context     = Context.getInstance();
             final ASMClassLoader classLoader = context.getASMClassLoader();
-            final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
-            Object instance = clientClass.newInstance();
+            final Class<?>       clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
+            Object               instance    = clientClass.newInstance();
 
             return (Applet) instance;
         } catch (Exception e) {
