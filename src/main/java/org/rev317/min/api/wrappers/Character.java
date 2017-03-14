@@ -1,15 +1,18 @@
 package org.rev317.min.api.wrappers;
 
 import org.parabot.core.reflect.RefClass;
+import org.parabot.environment.api.utils.Time;
+import org.parabot.environment.scripts.framework.SleepCondition;
 import org.rev317.min.Loader;
 import org.rev317.min.api.interfaces.Locatable;
 import org.rev317.min.api.methods.Calculations;
 import org.rev317.min.api.methods.Game;
 import org.rev317.min.api.methods.Menu;
 import org.rev317.min.api.methods.Players;
+import org.rev317.min.api.methods.utils.Emote;
 
 /**
- * @author Everel
+ * @author Everel, EmmaStone
  */
 public class Character implements Locatable {
 
@@ -145,6 +148,21 @@ public class Character implements Locatable {
         }
 
         return null;
+    }
+
+    /**
+     * Performs an emote
+     *
+     * @param emote
+     */
+    public void performEmote(Emote emote) {
+        Menu.clickButton(emote.getAction3());
+        Time.sleep(new SleepCondition() {
+            @Override
+            public boolean isValid() {
+                return Players.getMyPlayer().getAnimation() != -1;
+            }
+        }, 1500);
     }
 
     /**
