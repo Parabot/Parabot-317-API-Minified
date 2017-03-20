@@ -12,7 +12,7 @@ import org.rev317.min.script.ScriptEngine;
  */
 public class MenuAction {
 
-    private static final String[][] outputs = {
+    private static final String[][] outputs            = {
             {
                     "[index: %d, action1: %d, action2: %d, action3: %d, action4: %d, id: %d]",
                     "[id: %d, action1: %d, action2: %d, action3: %d, action4: %d, index: %d]"
@@ -22,17 +22,17 @@ public class MenuAction {
                     "[id: %d, action1: %d, action2: %d, action3: %d, index: %d]"
             }
     };
-    private static int currentOutputIndex = 0;
+    private static       int        currentOutputIndex = 0;
 
     public static void intercept(int index) {
         int outputIndex = 0;
 
-        Client client = Loader.getClient();
-        int action1 = client.getMenuAction1()[index];
-        int action2 = client.getMenuAction2()[index];
-        int action3 = client.getMenuAction3()[index];
-        int action4 = 0;
-        int actionId = client.getMenuActionId()[index];
+        Client client   = Loader.getClient();
+        int    action1  = client.getMenuAction1()[index];
+        int    action2  = client.getMenuAction2()[index];
+        int    action3  = client.getMenuAction3()[index];
+        int    action4  = 0;
+        int    actionId = client.getMenuActionId()[index];
         if (DActions.debugActions()) {
             if (Game.hasAction4()) {
                 action4 = client.getMenuAction4()[index];

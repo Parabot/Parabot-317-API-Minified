@@ -4,6 +4,7 @@ import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
+import org.rev317.min.api.methods.utils.Settings;
 import org.rev317.min.api.wrappers.Player;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Players {
 
     };
 
-    private static final Filter<Player> ALL_FILTER = new Filter<Player>() {
+    private static final Filter<Player>           ALL_FILTER = new Filter<Player>() {
 
         @Override
         public boolean accept(Player p) {
@@ -33,17 +34,18 @@ public class Players {
         }
 
     };
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static       HashMap<String, Integer> settings   = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all players except local player
      *
      * @param filter
+     *
      * @return all players
      */
     public static final Player[] getPlayers(final Filter<Player> filter) {
-        final Client client = Loader.getClient();
-        ArrayList<Player> playerList = new ArrayList<>();
+        final Client                            client     = Loader.getClient();
+        ArrayList<Player>                       playerList = new ArrayList<>();
         final org.rev317.min.accessors.Player[] accPlayers = client.getPlayers();
         for (int i = 0; i < accPlayers.length; i++) {
             if (accPlayers[i] == null) {
@@ -71,6 +73,7 @@ public class Players {
      * Returns array with the first index to be the nearest player
      *
      * @param filter
+     *
      * @return nearest players
      */
     public static final Player[] getNearest(final Filter<Player> filter) {
@@ -98,24 +101,24 @@ public class Players {
     }
 
     public enum Option {
-        FIRST(settings.get("menu_character_first_interaction")),
+        FIRST(Settings.getActionByName("menu_character_first_interaction")),
 
-        SECOND(settings.get("menu_character_second_interaction")),
+        SECOND(Settings.getActionByName("menu_character_second_interaction")),
 
-        THIRD(settings.get("menu_character_third_interaction")),
+        THIRD(Settings.getActionByName("menu_character_third_interaction")),
 
-        FOURTH(settings.get("menu_character_fourth_interaction")),
+        FOURTH(Settings.getActionByName("menu_character_fourth_interaction")),
 
-        FIFTH(settings.get("menu_character_fifth_interaction")),
+        FIFTH(Settings.getActionByName("menu_character_fifth_interaction")),
 
-        FOLLOW(settings.get("menu_character_follow")),
+        FOLLOW(Settings.getActionByName("menu_character_follow")),
 
-        TRADE(settings.get("menu_character_trade")),
+        TRADE(Settings.getActionByName("menu_character_trade")),
 
-        ATTACK(settings.get("menu_character_attack")),
-        CHALLENGE(settings.get("menu_character_attack")),
+        ATTACK(Settings.getActionByName("menu_character_attack")),
+        CHALLENGE(Settings.getActionByName("menu_character_attack")),
 
-        EXAMINE(settings.get("menu_character_examine"));
+        EXAMINE(Settings.getActionByName("menu_character_examine"));
 
         private int actionId;
 

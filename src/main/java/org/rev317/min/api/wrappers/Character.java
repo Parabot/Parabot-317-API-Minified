@@ -1,20 +1,23 @@
 package org.rev317.min.api.wrappers;
 
 import org.parabot.core.reflect.RefClass;
+import org.parabot.environment.api.utils.Time;
+import org.parabot.environment.scripts.framework.SleepCondition;
 import org.rev317.min.Loader;
 import org.rev317.min.api.interfaces.Locatable;
 import org.rev317.min.api.methods.Calculations;
 import org.rev317.min.api.methods.Game;
 import org.rev317.min.api.methods.Menu;
 import org.rev317.min.api.methods.Players;
+import org.rev317.min.api.methods.utils.Emote;
 
 /**
- * @author Everel
+ * @author Everel, EmmaStone
  */
 public class Character implements Locatable {
 
     private org.rev317.min.accessors.Character accessor;
-    private int index;
+    private int                                index;
 
     public Character(org.rev317.min.accessors.Character accessor, int index) {
         this.accessor = accessor;
@@ -116,6 +119,7 @@ public class Character implements Locatable {
      * Interacts with this character
      *
      * @param i
+     *
      * @deprecated
      */
     public void interact(int i) {
@@ -147,6 +151,21 @@ public class Character implements Locatable {
     }
 
     /**
+     * Performs an emote
+     *
+     * @param emote
+     */
+    public void performEmote(Emote emote) {
+        Menu.clickButton(emote.getAction3());
+        Time.sleep(new SleepCondition() {
+            @Override
+            public boolean isValid() {
+                return Players.getMyPlayer().getAnimation() != -1;
+            }
+        }, 1500);
+    }
+
+    /**
      * Gets the accessor class
      *
      * @return RefClass of accessor
@@ -157,8 +176,8 @@ public class Character implements Locatable {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
+        final int prime  = 31;
+        int       result = 1;
         result = prime * result
                 + ((accessor == null) ? 0 : accessor.hashCode());
         result = prime * result + index;

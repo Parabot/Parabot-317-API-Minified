@@ -9,7 +9,7 @@ public enum Skill {
 
     ATTACK, DEFENSE, STRENGTH, HITPOINTS, RANGE, PRAYER, MAGIC, COOKING, WOODCUTTING, FLETCHING, FISHING, FIREMAKING, CRAFTING, SMITHING, MINING, HERBLORE, AGILITY, THIEVING, SLAYER, FARMING, RUNECRAFTING, CONSTRUCTION, HUNTER, SUMMONING, DUNGEONEERING;
 
-    private static final int[] EXPERIENCE = {0, 0, 83, 174, 276, 388, 512,
+    private static final int[] EXPERIENCE = { 0, 0, 83, 174, 276, 388, 512,
             650, 801, 969, 1154, 1358, 1584, 1833, 2107, 2411, 2746, 3115,
             3523, 3973, 4470, 5018, 5624, 6291, 7028, 7842, 8740, 9730, 10824,
             12031, 13363, 14833, 16456, 18247, 20224, 22406, 24815, 27473,
@@ -24,12 +24,13 @@ public enum Skill {
             13034431, 14391160, 15889109, 17542976, 19368992, 21385073,
             23611006, 26068632, 28782069, 31777943, 35085654, 38737661,
             42769801, 47221641, 52136869, 57563718, 63555443, 70170840,
-            77474828, 85539082, 94442737, 104273167};
+            77474828, 85539082, 94442737, 104273167 };
 
     /**
      * Returns the experience of the provided skill.
      *
      * @param index the skill index.
+     *
      * @return the experience.
      */
     public static final int getCurrentExperience(int index) {
@@ -40,6 +41,7 @@ public enum Skill {
      * Returns the real level of the provided skill.
      *
      * @param index the skill index.
+     *
      * @return the real skill level.
      */
     public static final int getRealLevel(int index) {
@@ -50,6 +52,7 @@ public enum Skill {
      * Returns the current level of the provided skill. (Will return de-buffed/buffed levels)
      *
      * @param index the skill index.
+     *
      * @return the current skill level. Done by Bears
      */
     public static final int getCurrentLevel(int index) {
@@ -60,6 +63,7 @@ public enum Skill {
      * Returns the exact experience at the provided level.
      *
      * @param level the level.
+     *
      * @return the experience at the provided level.
      */
     public static final int getExperienceByLevel(int level) {
@@ -74,6 +78,7 @@ public enum Skill {
      * Returns the exact level with the provided experience.
      *
      * @param experience the experience.
+     *
      * @return the level at the provided experience.
      */
     public static final int getLevelByExperience(int experience) {
@@ -90,6 +95,7 @@ public enum Skill {
      * Returns the remaining experience for the provided skill to level up.
      *
      * @param index the skill index.
+     *
      * @return the remaining experience.
      */
     public static final int getRemainingExperience(int index) {
@@ -105,11 +111,12 @@ public enum Skill {
      * Returns the percentage to the next level for the provided skill.
      *
      * @param index the skill index.
+     *
      * @return the remaining percentage.
      */
     public static final int getPercentToNextLevel(int index) {
         int currentLevel = getLevelByExperience(getCurrentExperience(index));
-        int nextLevel = currentLevel + 1;
+        int nextLevel    = currentLevel + 1;
         if (currentLevel == 99 || nextLevel > 99 || currentLevel < 1
                 || nextLevel < 1) {
             return 0;

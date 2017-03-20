@@ -1,6 +1,5 @@
 package org.rev317.min.api.methods;
 
-
 import org.parabot.core.Context;
 import org.rev317.min.Loader;
 import org.rev317.min.api.wrappers.Tile;
@@ -36,6 +35,7 @@ public class Walking {
 
     /**
      * @param tilePath
+     *
      * @return <b>true</b> if destination reached, otherwise <b>false</b>
      */
     public static boolean walkDown(TilePath tilePath) {
@@ -51,6 +51,7 @@ public class Walking {
      * Gets nearest reachable tile on minimap to given tile
      *
      * @param tile
+     *
      * @return nearest reachable tile on minimap
      */
     public static Tile getNearestTileTo(Tile tile) {

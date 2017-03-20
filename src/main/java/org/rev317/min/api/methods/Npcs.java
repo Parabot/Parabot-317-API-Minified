@@ -4,6 +4,7 @@ import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
+import org.rev317.min.api.methods.utils.Settings;
 import org.rev317.min.api.wrappers.Npc;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Npcs {
 
     };
 
-    private static final Filter<Npc> ALL_FILTER = new Filter<Npc>() {
+    private static final Filter<Npc>              ALL_FILTER = new Filter<Npc>() {
 
         @Override
         public boolean accept(Npc n) {
@@ -33,17 +34,18 @@ public class Npcs {
         }
 
     };
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static       HashMap<String, Integer> settings   = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all Npcs except local Npc
      *
      * @param filter
+     *
      * @return all Npcs
      */
     public static final Npc[] getNpcs(final Filter<Npc> filter) {
-        final Client client = Loader.getClient();
-        ArrayList<Npc> npcList = new ArrayList<>();
+        final Client                         client  = Loader.getClient();
+        ArrayList<Npc>                       npcList = new ArrayList<>();
         final org.rev317.min.accessors.Npc[] accNpcs = client.getNpcs();
         for (int i = 0; i < accNpcs.length; i++) {
             if (accNpcs[i] == null) {
@@ -71,6 +73,7 @@ public class Npcs {
      * Gets the closest npc which matches the given filter
      *
      * @param filter
+     *
      * @return closest npc
      */
     public static final Npc getClosest(final Filter<Npc> filter) {
@@ -86,6 +89,7 @@ public class Npcs {
      * Gets the closest npc which matches the given ids
      *
      * @param ids
+     *
      * @return closest npc
      */
     public static final Npc getClosest(int... ids) {
@@ -101,6 +105,7 @@ public class Npcs {
      * Returns array with the first index to be the nearest Npc
      *
      * @param filter
+     *
      * @return nearest Npcs
      */
     public static final Npc[] getNearest(final Filter<Npc> filter) {
@@ -114,6 +119,7 @@ public class Npcs {
      * Gets nearest npcs which hold given id(s)
      *
      * @param ids
+     *
      * @return array of npcs with the first index to be the nearest
      */
     public static final Npc[] getNearest(final int... ids) {
@@ -148,31 +154,31 @@ public class Npcs {
     }
 
     public enum Option {
-        FIRST(settings.get("menu_character_first_interaction")),
-        ATTACK(settings.get("menu_character_first_interaction")),
+        FIRST(Settings.getActionByName("menu_character_first_interaction")),
+        ATTACK(Settings.getActionByName("menu_character_first_interaction")),
 
-        SECOND(settings.get("menu_character_second_interaction")),
-        TALK_TO(settings.get("menu_character_second_interaction")),
-        INTERACT(settings.get("menu_character_second_interaction")),
-        BAIT(settings.get("menu_character_second_interaction")),
-        CAGE(settings.get("menu_character_second_interaction")),
-        NET(settings.get("menu_character_second_interaction")),
+        SECOND(Settings.getActionByName("menu_character_second_interaction")),
+        TALK_TO(Settings.getActionByName("menu_character_second_interaction")),
+        INTERACT(Settings.getActionByName("menu_character_second_interaction")),
+        BAIT(Settings.getActionByName("menu_character_second_interaction")),
+        CAGE(Settings.getActionByName("menu_character_second_interaction")),
+        NET(Settings.getActionByName("menu_character_second_interaction")),
 
-        THIRD(settings.get("menu_character_third_interaction")),
-        TRADE(settings.get("menu_character_third_interaction")),
-        BANK(settings.get("menu_character_third_interaction")),
-        PICKPOCKET(settings.get("menu_character_third_interaction")),
-        HARPOON(settings.get("menu_character_third_interaction")),
-        GET_TASK(settings.get("menu_character_third_interaction")),
+        THIRD(Settings.getActionByName("menu_character_third_interaction")),
+        TRADE(Settings.getActionByName("menu_character_third_interaction")),
+        BANK(Settings.getActionByName("menu_character_third_interaction")),
+        PICKPOCKET(Settings.getActionByName("menu_character_third_interaction")),
+        HARPOON(Settings.getActionByName("menu_character_third_interaction")),
+        GET_TASK(Settings.getActionByName("menu_character_third_interaction")),
 
-        FOURTH(settings.get("menu_character_fourth_interaction")),
-        COLLECT(settings.get("menu_character_fourth_interaction")),
-        CHANGE_CLOTHES(settings.get("menu_character_fourth_interaction")),
+        FOURTH(Settings.getActionByName("menu_character_fourth_interaction")),
+        COLLECT(Settings.getActionByName("menu_character_fourth_interaction")),
+        CHANGE_CLOTHES(Settings.getActionByName("menu_character_fourth_interaction")),
 
-        FIFTH(settings.get("menu_character_fifth_interaction")),
-        REWARD(settings.get("menu_character_fifth_interaction")),
+        FIFTH(Settings.getActionByName("menu_character_fifth_interaction")),
+        REWARD(Settings.getActionByName("menu_character_fifth_interaction")),
 
-        EXAMINE(settings.get("menu_character_examine"));
+        EXAMINE(Settings.getActionByName("menu_character_examine"));
 
         private int actionId;
 

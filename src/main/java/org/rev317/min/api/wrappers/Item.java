@@ -71,6 +71,7 @@ public class Item {
      * Interacts with this item
      *
      * @param i
+     *
      * @deprecated
      */
     public void interact(int i) {
@@ -81,6 +82,7 @@ public class Item {
      * Interacts with this item
      *
      * @param s
+     *
      * @deprecated
      */
     public void interact(String s) {
@@ -90,6 +92,7 @@ public class Item {
     /**
      * @param actionIndex
      * @param interfaceParentId
+     *
      * @deprecated
      */
     public void transform(int actionIndex, int interfaceParentId) {
