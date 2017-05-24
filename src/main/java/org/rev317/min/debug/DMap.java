@@ -1,6 +1,6 @@
 package org.rev317.min.debug;
 
-import org.parabot.core.Context;
+import org.parabot.core.Core;
 import org.parabot.core.paint.AbstractDebugger;
 import org.parabot.core.paint.PaintDebugger;
 import org.rev317.min.api.methods.Game;
@@ -13,7 +13,7 @@ public class DMap extends AbstractDebugger {
 
     @Override
     public void paint(Graphics g) {
-        PaintDebugger p = Context.getInstance().getPaintDebugger();
+        PaintDebugger p = Core.getInjector().getInstance(PaintDebugger.class);
         p.addLine("Location: " + Players.getMyPlayer().getLocation());
         p.addLine("Plane: " + Game.getPlane());
     }

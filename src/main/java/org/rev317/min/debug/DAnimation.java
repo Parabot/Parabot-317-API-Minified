@@ -1,7 +1,8 @@
 package org.rev317.min.debug;
 
-import org.parabot.core.Context;
+import org.parabot.core.Core;
 import org.parabot.core.paint.AbstractDebugger;
+import org.parabot.core.paint.PaintDebugger;
 import org.rev317.min.api.methods.Players;
 
 import java.awt.*;
@@ -11,7 +12,7 @@ public class DAnimation extends AbstractDebugger {
 
     @Override
     public void paint(Graphics g) {
-        Context.getInstance().getPaintDebugger().addLine("Animation: " + Players.getMyPlayer().getAnimation());
+        Core.getInjector().getInstance(PaintDebugger.class).addLine("Animation: " + Players.getMyPlayer().getAnimation());
     }
 
     @Override

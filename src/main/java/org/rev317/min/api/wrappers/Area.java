@@ -50,11 +50,11 @@ public class Area {
      * @return the tiles.
      */
     public Tile[] getTiles() {
-        int lowestX = -1;
-        int lowestY = -1;
-        int highestX = -1;
-        int highestY = -1;
-        ArrayList<Tile> t = new ArrayList<>();
+        int             lowestX  = -1;
+        int             lowestY  = -1;
+        int             highestX = -1;
+        int             highestY = -1;
+        ArrayList<Tile> t        = new ArrayList<>();
         for (int i : p.xpoints) {
             if (i < lowestX || lowestX == -1) {
                 lowestX = i;
@@ -86,6 +86,7 @@ public class Area {
      * Checks if a tile is in the area
      *
      * @param tile The tile to check
+     *
      * @return <b>true</b> if area does contain the tile, otherwise <b>false</b>
      */
     public boolean contains(Tile tile) {
@@ -97,11 +98,12 @@ public class Area {
      *
      * @param x The x-axis from the tile
      * @param y The y-axis from the tile
+     *
      * @return True if the area does contain the tile, otherwise false
      */
     public boolean contains(int x, int y) {
-        int i;
-        int j;
+        int     i;
+        int     j;
         boolean result = false;
         for (i = 0, j = p.npoints - 1; i < p.npoints; j = i++) {
             if ((p.ypoints[i] > y - 1) != (p.ypoints[j] > y - 1)

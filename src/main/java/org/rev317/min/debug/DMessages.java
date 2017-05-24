@@ -1,6 +1,6 @@
 package org.rev317.min.debug;
 
-import org.parabot.core.Context;
+import org.parabot.core.Core;
 import org.parabot.core.paint.AbstractDebugger;
 import org.parabot.core.paint.PaintDebugger;
 import org.rev317.min.api.events.MessageEvent;
@@ -17,7 +17,7 @@ public class DMessages extends AbstractDebugger implements MessageListener {
 
     private String message;
     private String sender;
-    private int type;
+    private int    type;
 
     @Override
     public void toggle() {
@@ -36,7 +36,7 @@ public class DMessages extends AbstractDebugger implements MessageListener {
 
     @Override
     public void paint(Graphics graphics) {
-        PaintDebugger p = Context.getInstance().getPaintDebugger();
+        PaintDebugger p = Core.getInjector().getInstance(PaintDebugger.class);
         p.addLine("Message: " + message);
         p.addLine("Sender: " + sender);
         p.addLine("Type: " + type);

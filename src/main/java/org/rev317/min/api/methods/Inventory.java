@@ -1,6 +1,5 @@
 package org.rev317.min.api.methods;
 
-import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
@@ -11,13 +10,12 @@ import org.rev317.min.api.wrappers.Item;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 /**
  * @author Everel, JKetelaar, Fryslan
  */
 public class Inventory {
 
-    private static final Filter<Item> ALL_FILTER = new Filter<Item>() {
+    private static final Filter<Item>             ALL_FILTER = new Filter<Item>() {
 
         @Override
         public boolean accept(Item i) {
@@ -25,7 +23,7 @@ public class Inventory {
         }
 
     };
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static       HashMap<String, Integer> settings   = new HashMap<>();
 
     /**
      * Clears the inventory
@@ -74,6 +72,7 @@ public class Inventory {
      * Gets the amount of items with given ids in inventory, excludes the stack sizes
      *
      * @param ids
+     *
      * @return amount of items
      */
     public static int getCount(int... ids) {
@@ -84,6 +83,7 @@ public class Inventory {
      * Gets the amount of items in inventory
      *
      * @param includeStack - true for including stack sizes to the counting
+     *
      * @return amount of items
      */
     public static int getCount(final boolean includeStack) {
@@ -91,8 +91,8 @@ public class Inventory {
         if (inventory == null) {
             return -1;
         }
-        int count = 0;
-        final int[] items = inventory.getItems();
+        int         count      = 0;
+        final int[] items      = inventory.getItems();
         final int[] stackSizes = includeStack ? inventory.getStackSizes() : null;
         for (int i = 0; i < items.length; i++) {
             if (items[i] > 0) {
@@ -107,6 +107,7 @@ public class Inventory {
      *
      * @param includeStack - true for including stack sizes to the counting
      * @param ids
+     *
      * @return amount of items
      */
     public static int getCount(final boolean includeStack, int... ids) {
@@ -114,8 +115,8 @@ public class Inventory {
         if (inventory == null) {
             return -1;
         }
-        int count = 0;
-        final int[] items = inventory.getItems();
+        int         count      = 0;
+        final int[] items      = inventory.getItems();
         final int[] stackSizes = includeStack ? inventory.getStackSizes() : null;
         for (int i = 0; i < items.length; i++) {
             final int itemId = items[i];
@@ -144,6 +145,7 @@ public class Inventory {
      * Gets all items with given ids
      *
      * @param ids
+     *
      * @return items
      */
     public static Item[] getItems(final int... ids) {
@@ -166,6 +168,7 @@ public class Inventory {
      * Gets all items accepted by filter
      *
      * @param filter
+     *
      * @return items
      */
     public static Item[] getItems(final Filter<Item> filter) {
@@ -173,16 +176,16 @@ public class Inventory {
         if (inventory == null) {
             return null;
         }
-        final int[] items = inventory.getItems();
-        final int[] stackSizes = inventory.getStackSizes();
-        final ArrayList<Item> invItems = new ArrayList<>(28);
+        final int[]           items      = inventory.getItems();
+        final int[]           stackSizes = inventory.getStackSizes();
+        final ArrayList<Item> invItems   = new ArrayList<>(28);
         for (int i = 0; i < items.length; i++) {
             final int itemId = items[i];
             if (itemId < 1) {
                 continue;
             }
-            final int stackSize = stackSizes[i];
-            final Item item = new Item(itemId, stackSize, i);
+            final int  stackSize = stackSizes[i];
+            final Item item      = new Item(itemId, stackSize, i);
             if (filter.accept(item)) {
                 invItems.add(item);
             }
@@ -212,6 +215,7 @@ public class Inventory {
      * Checks if an item exists in the inventory
      *
      * @param id The item id that will be looked for
+     *
      * @return True if the item exists in the inventory
      */
     public static boolean contains(int... id) {
@@ -227,6 +231,7 @@ public class Inventory {
      * Returns the item in the inventory based on the given id
      *
      * @param id The item id that will be used to find the item in the inventory
+     *
      * @return First found item in the inventory
      */
     public static Item getItem(int id) {
@@ -243,6 +248,7 @@ public class Inventory {
      *
      * @param itemOne The first item id that will be used to combine
      * @param itemTwo The second item id that will be used to combine
+     *
      * @return True if nothing unexpected happened
      */
     public static boolean combine(int itemOne, int itemTwo) {
@@ -267,6 +273,7 @@ public class Inventory {
      * @param itemOne        The first item id that will be used to combine
      * @param itemTwo        The second item id that will be used to combine
      * @param sleepCondition The sleep condition that will be used to check and wait until the condition is valid
+     *
      * @return True if the condition was true and nothing unexpected happened
      */
     public static boolean combine(int itemOne, int itemTwo, SleepCondition sleepCondition) {

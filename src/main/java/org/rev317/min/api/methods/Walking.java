@@ -1,7 +1,7 @@
 package org.rev317.min.api.methods;
 
-
 import org.parabot.core.Context;
+import org.parabot.core.Core;
 import org.rev317.min.Loader;
 import org.rev317.min.api.wrappers.Tile;
 import org.rev317.min.api.wrappers.TilePath;
@@ -18,7 +18,7 @@ public class Walking {
      * @param to   Tile to Walk To.
      */
     public static void walkTo(Tile from, Tile to) {
-        if (Context.getInstance().getServerProviderInfo().getServerName().equalsIgnoreCase("pkhonor")) {
+        if (Core.getInjector().getInstance(Context.class).getServerProvider().getServerDescription().getServerName().equalsIgnoreCase("pkhonor")) {
             Loader.getClient().walkToPKH(false, false, 0, 0, 0, 0, from.getLocation().getRegionY(), 0, 0, to.getRegionY(), from.getLocation().getRegionX(), true, to.getRegionX());
         } else {
             Loader.getClient().walkTo(0, 0, 0, 0, from.getRegionY(), 0, 0, to.getRegionY(), from.getRegionX(), true, to.getRegionX());
@@ -36,6 +36,7 @@ public class Walking {
 
     /**
      * @param tilePath
+     *
      * @return <b>true</b> if destination reached, otherwise <b>false</b>
      */
     public static boolean walkDown(TilePath tilePath) {
@@ -51,6 +52,7 @@ public class Walking {
      * Gets nearest reachable tile on minimap to given tile
      *
      * @param tile
+     *
      * @return nearest reachable tile on minimap
      */
     public static Tile getNearestTileTo(Tile tile) {

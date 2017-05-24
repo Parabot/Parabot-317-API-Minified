@@ -1,6 +1,5 @@
 package org.rev317.min.api.methods;
 
-import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
@@ -24,7 +23,7 @@ public class GroundItems {
             return n1.distanceTo() - n2.distanceTo();
         }
     };
-    private static final Filter<GroundItem> ALL_FILTER = new Filter<GroundItem>() {
+    private static final Filter<GroundItem>     ALL_FILTER     = new Filter<GroundItem>() {
 
         @Override
         public boolean accept(GroundItem item) {
@@ -33,7 +32,7 @@ public class GroundItems {
 
     };
     private static Client client;
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = new HashMap<>();
 
     /**
      * Gets all loaded GroundItems within an radius of 52 Tiles.
@@ -67,6 +66,7 @@ public class GroundItems {
      *
      * @param x - local region x
      * @param y - local region y
+     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getGroundItemsAt(final int x, final int y) {
@@ -80,9 +80,9 @@ public class GroundItems {
                 return null;
             }
 
-            ArrayList<GroundItem> list = new ArrayList<>();
-            final Node holder = deque.getHead();
-            Node curNode = holder.getNext();
+            ArrayList<GroundItem> list    = new ArrayList<>();
+            final Node            holder  = deque.getHead();
+            Node                  curNode = holder.getNext();
             while (curNode != null && curNode != holder
                     && curNode != deque.getHead()) {
                 final org.rev317.min.accessors.Item groundItem = (org.rev317.min.accessors.Item) curNode;
@@ -102,6 +102,7 @@ public class GroundItems {
      * Gets GroundItems at a specific tile using x and y location.
      *
      * @param tile Tile to get the GroundItems from.
+     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getGroundItemsAt(final Tile tile) {
@@ -121,6 +122,7 @@ public class GroundItems {
      * Gets the closest GroundItem which matches the given filter.
      *
      * @param filter Filter that should be applied to the GroundItem.
+     *
      * @return closest GroundItem
      */
     public static final GroundItem getClosest(final Filter<GroundItem> filter) {
@@ -136,6 +138,7 @@ public class GroundItems {
      * Gets the closest GroundItems which matches the given ids.
      *
      * @param ids ID's of the GroundItems to look for.
+     *
      * @return closest GroundItems
      */
     public static final GroundItem getClosest(int... ids) {
@@ -151,6 +154,7 @@ public class GroundItems {
      * Returns Array of GroundItems with the first index to be the nearest.
      *
      * @param filter Filter that should be applied to the GroundItem.
+     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest(Filter<GroundItem> filter) {
@@ -173,6 +177,7 @@ public class GroundItems {
      * Returns Array of GroundItems with the first index to be the nearest.
      *
      * @param ids GroundItem ID's to look for.
+     *
      * @return GroundItems Array of the Nearest GroundItems with the first index to be the nearest.
      */
     public static final GroundItem[] getNearest(final int... ids) {

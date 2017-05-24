@@ -139,6 +139,7 @@ public final class Tile implements TileFlags, Locatable {
      * Determines if this tile is reachable
      *
      * @param isObject whether this tile is an object tile
+     *
      * @return <code>true</code> if this tile is reachable, otherwise <code>false</code>
      */
     public boolean isReachable(boolean isObject) {

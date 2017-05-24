@@ -15,7 +15,6 @@ public final class Npc extends Character {
         this.accessor = accessor;
     }
 
-
     /**
      * Gets the definition of this npc
      *

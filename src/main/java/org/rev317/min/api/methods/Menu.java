@@ -1,6 +1,5 @@
 package org.rev317.min.api.methods;
 
-import org.parabot.core.Context;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.api.wrappers.Character;
@@ -13,7 +12,7 @@ import java.util.HashMap;
  */
 public class Menu {
 
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static HashMap<String, Integer> settings = new HashMap<>();
 
     /**
      * Interacts with a sceneobject
@@ -34,6 +33,7 @@ public class Menu {
      *
      * @param object
      * @param actionIndex
+     *
      * @deprecated
      */
     public static void interact(SceneObject object, int actionIndex) {
@@ -87,6 +87,7 @@ public class Menu {
      *
      * @param character
      * @param actionIndex
+     *
      * @deprecated
      */
     public static void interact(Character character, int actionIndex) {
@@ -129,6 +130,7 @@ public class Menu {
      * @param item
      * @param actionIndex
      * @param interfaceParentId
+     *
      * @deprecated
      */
     public static void transformItem(Item item, int actionIndex, int interfaceParentId) {
@@ -178,6 +180,7 @@ public class Menu {
      *
      * @param item
      * @param action
+     *
      * @deprecated
      */
     public static void interact(GroundItem item, int action) {

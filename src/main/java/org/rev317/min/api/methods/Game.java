@@ -1,6 +1,6 @@
 package org.rev317.min.api.methods;
 
-import org.parabot.api.misc.TextUtils;
+import org.parabot.api.misc.StringUtil;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 import org.rev317.min.Loader;
@@ -32,6 +32,7 @@ public class Game {
      * Gets open interface id
      *
      * @return interface id
+     *
      * @deprecated Use {@link Interfaces #getOpenInterfaceId()} instead
      */
     @Deprecated
@@ -39,11 +40,11 @@ public class Game {
         return Loader.getClient().getOpenInterfaceId();
     }
 
-
     /**
      * Get open back dialog id
      *
      * @return back dialog id
+     *
      * @deprecated Use {@link Interfaces #getBackDialogId()} instead
      */
     @Deprecated
@@ -105,6 +106,7 @@ public class Game {
      * Returns the settings within the client
      *
      * @param index The index of the setting you want to gather
+     *
      * @return The specific setting for the given index
      */
     public static int getSetting(int index) {
@@ -180,7 +182,7 @@ public class Game {
      * @param username String
      */
     public static void addFriend(String username) {
-        Loader.getClient().addFriend(TextUtils.longForName(TextUtils.fixName(username)));
+        Loader.getClient().addFriend(StringUtil.longForName(StringUtil.fixName(username)));
     }
 
     /**
@@ -189,6 +191,6 @@ public class Game {
      * @param username String
      */
     public static void deleteFriend(String username) {
-        Loader.getClient().deleteFriend(TextUtils.longForName(TextUtils.fixName(username)));
+        Loader.getClient().deleteFriend(StringUtil.longForName(StringUtil.fixName(username)));
     }
 }

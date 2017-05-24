@@ -1,14 +1,13 @@
 package org.rev317.min;
 
+import org.parabot.api.io.Directories;
+import org.parabot.api.io.WebUtil;
 import org.parabot.core.Context;
 import org.parabot.core.Core;
-import org.parabot.core.Directories;
 import org.parabot.core.asm.ASMClassLoader;
 import org.parabot.core.asm.adapters.AddInterfaceAdapter;
 import org.parabot.core.asm.hooks.HookFile;
-import org.parabot.core.desc.ServerProviderInfo;
-import org.parabot.core.ui.components.VerboseLoader;
-import org.parabot.environment.api.utils.WebUtil;
+import org.parabot.environment.api.utils.StringUtils;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.servers.ServerManifest;
 import org.parabot.environment.servers.ServerProvider;
@@ -20,6 +19,7 @@ import org.rev317.min.ui.BotMenu;
 import javax.swing.*;
 import java.applet.Applet;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -27,19 +27,18 @@ import java.net.URL;
  */
 @ServerManifest(author = "Everel & JKetelaar", name = "Server name here", type = Type.INJECTION, version = 2.1)
 public class Loader extends ServerProvider {
-    private boolean extended = true;
 
     public static Client getClient() {
-        return (Client) Context.getInstance().getClient();
+        return (Client) Core.getInjector().getInstance(Context.class).getClient();
     }
 
     @Override
     public Applet fetchApplet() {
         try {
-            final Context context = Context.getInstance();
-            final ASMClassLoader classLoader = context.getASMClassLoader();
-            final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
-            Object instance = clientClass.newInstance();
+            final Context        context     = Core.getInjector().getInstance(Context.class);
+            final ASMClassLoader classLoader = Core.getInjector().getInstance(ASMClassLoader.class);
+            final Class<?>       clientClass = classLoader.loadClass(context.getServerProvider().getServerDescription().getDetail("client"));
+            Object               instance    = clientClass.newInstance();
 
             return (Applet) instance;
         } catch (Exception e) {
@@ -51,11 +50,14 @@ public class Loader extends ServerProvider {
 
     @Override
     public URL getJar() {
-        ServerProviderInfo serverProvider = Context.getInstance().getServerProviderInfo();
-
-        File target = new File(Directories.getCachePath(), serverProvider.getClientCRC32() + ".jar");
+        ServerProvider provider = Core.getInjector().getInstance(Context.class).getServerProvider();
+        File           target   = new File(Directories.getCachePath(), StringUtils.toMD5(provider.getServerDescription().getServerName()) + ".jar");
         if (!target.exists()) {
-            WebUtil.downloadFile(serverProvider.getClient(), target, VerboseLoader.get());
+            try {
+                WebUtil.downloadFile(new URL(""), target);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
 
         return WebUtil.toURL(target);
@@ -72,11 +74,7 @@ public class Loader extends ServerProvider {
         try {
             super.injectHooks();
         } catch (Exception e) {
-            if (Core.inVerboseMode()) {
-                e.printStackTrace();
-            }
-            this.extended = false;
-            super.injectHooks();
+            e.printStackTrace();
         }
     }
 
@@ -88,11 +86,12 @@ public class Loader extends ServerProvider {
 
     @Override
     public HookFile getHookFile() {
-        if (this.extended) {
-            return new HookFile(Context.getInstance().getServerProviderInfo().getExtendedHookFile(), HookFile.TYPE_XML);
-        } else {
-            return new HookFile(Context.getInstance().getServerProviderInfo().getHookFile(), HookFile.TYPE_XML);
+        try {
+            return new HookFile(new File(""), HookFile.TYPE_XML);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
     public void unloadScript(Script script) {

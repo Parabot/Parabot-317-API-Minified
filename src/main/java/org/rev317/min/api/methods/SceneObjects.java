@@ -1,6 +1,5 @@
 package org.rev317.min.api.methods;
 
-import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Ground;
@@ -23,7 +22,7 @@ public class SceneObjects {
 
     };
 
-    private static final Filter<SceneObject> ALL_FILTER = new Filter<SceneObject>() {
+    private static final Filter<SceneObject>      ALL_FILTER = new Filter<SceneObject>() {
 
         @Override
         public boolean accept(SceneObject object) {
@@ -31,7 +30,7 @@ public class SceneObjects {
         }
 
     };
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static       HashMap<String, Integer> settings   = new HashMap<>();
 
     /**
      * Gets the most important scene objects in game which can be interacted with, filters out: 'walls, wall
@@ -67,6 +66,7 @@ public class SceneObjects {
      * Returns array of sceneobjects with the first index to be the nearest
      *
      * @param filter
+     *
      * @return sceneobjects
      */
     public static final SceneObject[] getNearest(Filter<SceneObject> filter) {
@@ -89,6 +89,7 @@ public class SceneObjects {
      * Returns nearest objects with given id
      *
      * @param ids
+     *
      * @return sceneobjects
      */
     public static final SceneObject[] getNearest(final int... ids) {
@@ -175,10 +176,11 @@ public class SceneObjects {
      *
      * @param x
      * @param y
+     *
      * @return array of sceneobjects, or null if there aren't any
      */
     public static final Collection<SceneObject> getSceneObjectsAtTile(int x, int y) {
-        Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
+        Ground                 sceneTile    = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
         ArrayList<SceneObject> sceneObjects = null;
         if (sceneTile != null) {
             final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
@@ -227,7 +229,6 @@ public class SceneObjects {
 
         return sceneObjects;
     }
-
 
     public enum Option {
         FIRST(settings.get("menu_scene_object_first_interaction")),

@@ -12,14 +12,14 @@ import org.rev317.min.api.methods.SceneObjects;
  * @author Everel
  */
 public class SceneObject implements Locatable {
-    public static final int TYPE_WALL = 0; // object1
-    public static final int TYPE_WALLDECORATION = 1; // object2
+    public static final int TYPE_WALL             = 0; // object1
+    public static final int TYPE_WALLDECORATION   = 1; // object2
     public static final int TYPE_GROUNDDECORATION = 2; // object3
-    public static final int TYPE_GROUNDITEM = 3; // object4
-    public static final int TYPE_INTERACTIVE = 4; // object5
+    public static final int TYPE_GROUNDITEM       = 3; // object4
+    public static final int TYPE_INTERACTIVE      = 4; // object5
 
-    public SceneObjectTile accessor;
-    private int type;
+    public  SceneObjectTile accessor;
+    private int             type;
 
     public SceneObject(SceneObjectTile accessor, int type) {
         this.accessor = accessor;
@@ -102,6 +102,7 @@ public class SceneObject implements Locatable {
      * Interacts with this object
      *
      * @param actionIndex
+     *
      * @deprecated
      */
     public void interact(int actionIndex) {

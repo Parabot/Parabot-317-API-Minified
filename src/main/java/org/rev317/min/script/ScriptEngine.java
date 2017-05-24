@@ -1,6 +1,7 @@
 package org.rev317.min.script;
 
 import org.parabot.core.Context;
+import org.parabot.core.Core;
 import org.parabot.environment.api.interfaces.Paintable;
 import org.parabot.environment.scripts.Script;
 import org.rev317.min.api.events.GameActionEvent;
@@ -21,10 +22,10 @@ import java.util.HashMap;
  */
 public class ScriptEngine {
     private static HashMap<Context, ScriptEngine> instances = new HashMap<>();
-    private ArrayList<MouseListener> mouseListeners;
+    private ArrayList<MouseListener>       mouseListeners;
     private ArrayList<MouseMotionListener> mouseMotionListeners;
-    private ArrayList<MessageListener> messageListeners;
-    private ArrayList<GameActionListener> actionListeners;
+    private ArrayList<MessageListener>     messageListeners;
+    private ArrayList<GameActionListener>  actionListeners;
 
     private Script script = null;
 
@@ -33,11 +34,11 @@ public class ScriptEngine {
         this.mouseMotionListeners = new ArrayList<>();
         this.messageListeners = new ArrayList<>();
         this.actionListeners = new ArrayList<>();
-        instances.put(Context.getInstance(), this);
+        instances.put(Core.getInjector().getInstance(Context.class), this);
     }
 
     public static ScriptEngine getInstance() {
-        final ScriptEngine engine = instances.get(Context.getInstance());
+        final ScriptEngine engine = instances.get(Core.getInjector().getInstance(Context.class));
         if (engine != null) {
             return engine;
         }
@@ -101,7 +102,7 @@ public class ScriptEngine {
         clearMouseMotionListeners();
         clearMessageListeners();
         if (script instanceof Paintable) {
-            Context.getInstance().removePaintable((Paintable) script);
+            Core.getInjector().getInstance(Context.class).removePaintable((Paintable) script);
         }
 
         this.script = null;
@@ -121,7 +122,7 @@ public class ScriptEngine {
             addMessageListener((MessageListener) script);
         }
         if (script instanceof Paintable) {
-            Context.getInstance().addPaintable((Paintable) script);
+            Core.getInjector().getInstance(Context.class).addPaintable((Paintable) script);
         }
         if (script instanceof GameActionListener) {
             addActionListener((GameActionListener) script);

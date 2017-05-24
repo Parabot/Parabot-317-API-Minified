@@ -1,6 +1,5 @@
 package org.rev317.min.api.methods;
 
-import org.parabot.core.Context;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
@@ -25,7 +24,7 @@ public class Npcs {
 
     };
 
-    private static final Filter<Npc> ALL_FILTER = new Filter<Npc>() {
+    private static final Filter<Npc>              ALL_FILTER = new Filter<Npc>() {
 
         @Override
         public boolean accept(Npc n) {
@@ -33,17 +32,18 @@ public class Npcs {
         }
 
     };
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static       HashMap<String, Integer> settings   = new HashMap<>();
 
     /**
      * Gets all Npcs except local Npc
      *
      * @param filter
+     *
      * @return all Npcs
      */
     public static final Npc[] getNpcs(final Filter<Npc> filter) {
-        final Client client = Loader.getClient();
-        ArrayList<Npc> npcList = new ArrayList<>();
+        final Client                         client  = Loader.getClient();
+        ArrayList<Npc>                       npcList = new ArrayList<>();
         final org.rev317.min.accessors.Npc[] accNpcs = client.getNpcs();
         for (int i = 0; i < accNpcs.length; i++) {
             if (accNpcs[i] == null) {
@@ -71,6 +71,7 @@ public class Npcs {
      * Gets the closest npc which matches the given filter
      *
      * @param filter
+     *
      * @return closest npc
      */
     public static final Npc getClosest(final Filter<Npc> filter) {
@@ -86,6 +87,7 @@ public class Npcs {
      * Gets the closest npc which matches the given ids
      *
      * @param ids
+     *
      * @return closest npc
      */
     public static final Npc getClosest(int... ids) {
@@ -101,6 +103,7 @@ public class Npcs {
      * Returns array with the first index to be the nearest Npc
      *
      * @param filter
+     *
      * @return nearest Npcs
      */
     public static final Npc[] getNearest(final Filter<Npc> filter) {
@@ -114,6 +117,7 @@ public class Npcs {
      * Gets nearest npcs which hold given id(s)
      *
      * @param ids
+     *
      * @return array of npcs with the first index to be the nearest
      */
     public static final Npc[] getNearest(final int... ids) {

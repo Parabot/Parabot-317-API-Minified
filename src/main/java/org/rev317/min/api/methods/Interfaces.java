@@ -24,6 +24,7 @@ public class Interfaces {
      * Get's the Interface from the Interface Cache using the given ID.
      *
      * @param id Interface ID.
+     *
      * @return Interface from the cache by the given ID.
      */
     public static Interface getInterface(int id) {
@@ -79,6 +80,7 @@ public class Interfaces {
      * Checks if the Interface or Back Dialog by the given ID is Open.
      *
      * @param id ID of the Interface or Back Dialog to check for.
+     *
      * @return True is the Interface or Back Dialog is Open else will return false.
      */
     public static boolean isOpen(int id) {
@@ -90,6 +92,7 @@ public class Interfaces {
      *
      * @param id         ID of the Interface or Back Dialog to check for depending on the backDialog boolean.
      * @param backDialog When tru it will check the Bank Dialog ID else it will check for the Interface ID.
+     *
      * @return True is the Interface or Back Dialog is Open else will return false.
      */
     public static boolean isOpen(int id, boolean backDialog) {

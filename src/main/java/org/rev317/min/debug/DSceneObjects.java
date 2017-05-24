@@ -20,8 +20,9 @@ public class DSceneObjects extends AbstractDebugger {
     @Override
     public void toggle() {
         SceneObject[] objects = SceneObjects.getNearest();
-        if (objects == null || objects.length == 0)
+        if (objects == null || objects.length == 0) {
             return;
+        }
 
         for (int i = objects.length - 1; i >= 0; i--) {
             System.out.println(

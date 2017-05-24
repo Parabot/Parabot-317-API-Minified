@@ -1,6 +1,6 @@
 package org.rev317.min.ui;
 
-import org.parabot.core.Context;
+import org.parabot.core.Core;
 import org.parabot.core.paint.PaintDebugger;
 import org.rev317.min.callback.MenuAction;
 import org.rev317.min.debug.*;
@@ -15,25 +15,25 @@ import java.awt.event.ActionListener;
 public class BotMenu implements ActionListener {
 
     public BotMenu(JMenuBar bar) {
-        PaintDebugger debugger = Context.getInstance().getPaintDebugger();
+        PaintDebugger debugger = Core.getInjector().getInstance(PaintDebugger.class);
 
         JMenu debug = new JMenu("Debug");
 
-        JMenu actions = new JMenu("Actions");
+        JMenu     actions       = new JMenu("Actions");
         JMenuItem enableActions = newItem("Enable Actions");
 
-        JMenuItem animation = newItem("Animation");
-        JMenuItem bank = newItem("Bank");
-        JMenuItem flags = newItem("Collision flags");
-        JMenuItem items = newItem("GroundItems");
+        JMenuItem animation  = newItem("Animation");
+        JMenuItem bank       = newItem("Bank");
+        JMenuItem flags      = newItem("Collision flags");
+        JMenuItem items      = newItem("GroundItems");
         JMenuItem interfaces = newItem("Interfaces");
-        JMenuItem inventory = newItem("Inventory");
-        JMenuItem map = newItem("Map");
-        JMenuItem messages = newItem("Messages");
-        JMenuItem mouse = newItem("Mouse");
-        JMenuItem npcs = newItem("Npcs");
-        JMenuItem objects = newItem("Objects");
-        JMenuItem players = newItem("Players");
+        JMenuItem inventory  = newItem("Inventory");
+        JMenuItem map        = newItem("Map");
+        JMenuItem messages   = newItem("Messages");
+        JMenuItem mouse      = newItem("Mouse");
+        JMenuItem npcs       = newItem("Npcs");
+        JMenuItem objects    = newItem("Objects");
+        JMenuItem players    = newItem("Players");
 
         debugger.addDebugger("Enable Actions", new DActions());
         debugger.addDebugger("Animation", new DAnimation());
@@ -68,7 +68,7 @@ public class BotMenu implements ActionListener {
 
         ButtonGroup group = new ButtonGroup();
         for (int i = 0; i < MenuAction.getOutputs().length; i++) {
-            final int index = i;
+            final int index       = i;
             JMenuItem debugOutput = new JRadioButtonMenuItem("Output: " + index);
             debugOutput.addActionListener(new ActionListener() {
                 @Override
@@ -93,6 +93,6 @@ public class BotMenu implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Context.getInstance().getPaintDebugger().toggle(e.getActionCommand());
+        Core.getInjector().getInstance(PaintDebugger.class).toggle(e.getActionCommand());
     }
 }
