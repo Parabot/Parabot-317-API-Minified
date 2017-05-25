@@ -37,7 +37,7 @@ public class Loader extends ServerProvider {
         try {
             final Context        context     = Core.getInjector().getInstance(Context.class);
             final ASMClassLoader classLoader = Core.getInjector().getInstance(ASMClassLoader.class);
-            final Class<?>       clientClass = classLoader.loadClass(context.getServerProvider().getServerDescription().getDetail("client"));
+            final Class<?>       clientClass = classLoader.loadClass(context.getServerProvider().getServerDescription().getDetail("client-class"));
             Object               instance    = clientClass.newInstance();
 
             return (Applet) instance;
@@ -54,7 +54,7 @@ public class Loader extends ServerProvider {
         File           target   = new File(Directories.getCachePath(), StringUtils.toMD5(provider.getServerDescription().getServerName()) + ".jar");
         if (!target.exists()) {
             try {
-                WebUtil.downloadFile(new URL(""), target);
+                WebUtil.downloadFile(new URL(provider.getServerDescription().getDetail("server")), target);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -87,7 +87,14 @@ public class Loader extends ServerProvider {
     @Override
     public HookFile getHookFile() {
         try {
-            return new HookFile(new File(""), HookFile.TYPE_XML);
+            String hook = Core.getInjector().getInstance(Context.class).getServerProvider().getServerDescription().getDetail("hooks");
+            boolean isWeb = hook.toLowerCase().startsWith("http")
+                    || hook.toLowerCase().startsWith("https");
+            if (isWeb) {
+                return new HookFile(new URL(hook), HookFile.TYPE_XML);
+            } else {
+                return new HookFile(new File(hook), HookFile.TYPE_XML);
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
