@@ -25,6 +25,7 @@ public class NpcDef {
      * Gets id of this item
      *
      * @param avoidLong defines if it should check if long id exists
+     *
      * @return id of this item
      */
     private int getId(boolean avoidLong) {
@@ -38,7 +39,7 @@ public class NpcDef {
 //                }
 //                return (int) id;
 //            } catch (Exception e) {
-                return accessor.getId();
+            return accessor.getId();
 //            }
         }
     }

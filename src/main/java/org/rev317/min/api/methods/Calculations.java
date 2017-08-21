@@ -12,6 +12,7 @@ public class Calculations {
      * Calculates distance between local player and given tile
      *
      * @param tile
+     *
      * @return distance between local player and given tile
      */
     public static final double distanceTo(Tile tile) {
@@ -23,6 +24,7 @@ public class Calculations {
      *
      * @param a
      * @param b
+     *
      * @return distance between a and b
      */
     public static final double distanceBetween(Tile a, Tile b) {
@@ -32,22 +34,22 @@ public class Calculations {
         return Math.sqrt((x * x) + (y * y));
     }
 
-
     /**
      * @param startX       the startX (0 < startX < 104)
      * @param startY       the startY (0 < startY < 104)
      * @param destX        the destX (0 < destX < 104)
      * @param destY        the destY (0 < destY < 104)
      * @param findAdjacent if it's an object, it will find path which touches it.
+     *
      * @return The distance of the shortest path to the destination; or -1 if no valid path to the destination was
      * found.
      */
     public static int dijkstraDist(final int startX, final int startY, final int destX, final int destY, final boolean findAdjacent) {
         try {
-            final int[][] prev = new int[104][104];
-            final int[][] dist = new int[104][104];
-            final int[] path_x = new int[4000];
-            final int[] path_y = new int[4000];
+            final int[][] prev   = new int[104][104];
+            final int[][] dist   = new int[104][104];
+            final int[]   path_x = new int[4000];
+            final int[]   path_y = new int[4000];
             for (int xx = 0; xx < 104; xx++) {
                 for (int yy = 0; yy < 104; yy++) {
                     prev[xx][yy] = 0;
@@ -64,7 +66,7 @@ public class Calculations {
             path_y[path_ptr++] = startY;
             final int blocks[][] = Game.getCollisionFlags();
             final int pathLength = path_x.length;
-            boolean foundPath = false;
+            boolean   foundPath  = false;
             while (step_ptr != path_ptr) {
                 curr_x = path_x[step_ptr];
                 curr_y = path_y[step_ptr];
@@ -158,6 +160,7 @@ public class Calculations {
      *
      * @param from Start Tile.
      * @param to   Destination Tile.
+     *
      * @return True if Path is found.
      */
     public static boolean foundPath(Tile from, Tile to) {
@@ -170,6 +173,7 @@ public class Calculations {
      * @param from     Start Tile.
      * @param to       Destination Tile.
      * @param isObject Is destination an  Object.
+     *
      * @return True if Path is found.
      */
     public static boolean foundPath(Tile from, Tile to, boolean isObject) {
@@ -181,6 +185,7 @@ public class Calculations {
      *
      * @param from Start Tile.
      * @param to   Destination Tile.
+     *
      * @return Shortest Path distance between two tiles using Dijkstra algorithm, returns -1 if path isn't found.
      */
     public static int pathDistanceBetween(Tile from, Tile to) {
@@ -197,6 +202,7 @@ public class Calculations {
      * @param from     Start Tile.
      * @param to       Destination Tile.
      * @param isObject Is destination an Object.
+     *
      * @return Shortest Path distance between two tiles using Dijkstra algorithm, returns -1 if path isn't found.
      */
     public static int pathDistanceBetween(Tile from, Tile to, boolean isObject) {
@@ -211,6 +217,7 @@ public class Calculations {
      * Gets the shortest distance to a tile.
      *
      * @param tile Destination Tile.
+     *
      * @return Shortest distance to tile.
      */
     public static int pathDistanceTo(Tile tile) {
@@ -222,6 +229,7 @@ public class Calculations {
      *
      * @param tile     Destination Tile.
      * @param isObject Is destination an Object.
+     *
      * @return Shortest distance to tile.
      */
     public static int pathDistanceTo(Tile tile, boolean isObject) {
@@ -233,6 +241,7 @@ public class Calculations {
      *
      * @param first  First tile.
      * @param second Second tile.
+     *
      * @return True if Coordinate data from first and second tiles match.
      */
     public static boolean isSameTile(Tile first, Tile second) {
@@ -243,6 +252,7 @@ public class Calculations {
      * Checks if player is at the destination tile.
      *
      * @param destination destination tile.
+     *
      * @return true if players location equals destination tile.
      */
     public static boolean atTile(Tile destination) {
@@ -254,6 +264,7 @@ public class Calculations {
      *
      * @param start   Starting value.
      * @param current Current value.
+     *
      * @return difference between start and current.
      */
     public static int gained(int start, int current) {
@@ -266,6 +277,7 @@ public class Calculations {
      * @param runtime Timer used for calculating hourly difference.
      * @param start   Starting value.
      * @param current Current value.
+     *
      * @return Hourly difference between start and current.
      */
     public static int gainedPerHour(Timer runtime, int start, int current) {

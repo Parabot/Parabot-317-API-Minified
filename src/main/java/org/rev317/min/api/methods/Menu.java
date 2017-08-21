@@ -3,6 +3,7 @@ package org.rev317.min.api.methods;
 import org.parabot.core.Context;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
+import org.rev317.min.api.methods.utils.Settings;
 import org.rev317.min.api.wrappers.Character;
 import org.rev317.min.api.wrappers.*;
 
@@ -34,6 +35,7 @@ public class Menu {
      *
      * @param object
      * @param actionIndex
+     *
      * @deprecated
      */
     public static void interact(SceneObject object, int actionIndex) {
@@ -87,6 +89,7 @@ public class Menu {
      *
      * @param character
      * @param actionIndex
+     *
      * @deprecated
      */
     public static void interact(Character character, int actionIndex) {
@@ -129,6 +132,7 @@ public class Menu {
      * @param item
      * @param actionIndex
      * @param interfaceParentId
+     *
      * @deprecated
      */
     public static void transformItem(Item item, int actionIndex, int interfaceParentId) {
@@ -160,7 +164,7 @@ public class Menu {
      * @param item
      */
     public static void take(GroundItem item) {
-        sendAction(settings.get("button_take_item"), item.getId(), item.getX(), item.getY());
+        sendAction(Settings.getActionByName("button_take_item"), item.getId(), item.getX(), item.getY());
     }
 
     /**
@@ -178,6 +182,7 @@ public class Menu {
      *
      * @param item
      * @param action
+     *
      * @deprecated
      */
     public static void interact(GroundItem item, int action) {
@@ -262,7 +267,7 @@ public class Menu {
      * @param item
      */
     public static void drop(Item item) {
-        sendAction(settings.get("button_drop_item"), item.getId() - 1, item.getSlot(), settings.get("inventory_index"));
+        sendAction(Settings.getActionByName("button_drop_item"), item.getId() - 1, item.getSlot(), Settings.getActionByName("inventory_index"));
     }
 
     /**
@@ -271,7 +276,7 @@ public class Menu {
      * @param id
      */
     public static void clickButton(int id) {
-        sendAction(settings.get("button_action_click"), 0, 0, id);
+        sendAction(Settings.getActionByName("button_action_click"), 0, 0, id);
     }
 
     /**

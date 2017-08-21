@@ -21,10 +21,10 @@ import java.util.HashMap;
  */
 public class ScriptEngine {
     private static HashMap<Context, ScriptEngine> instances = new HashMap<>();
-    private ArrayList<MouseListener> mouseListeners;
+    private ArrayList<MouseListener>       mouseListeners;
     private ArrayList<MouseMotionListener> mouseMotionListeners;
-    private ArrayList<MessageListener> messageListeners;
-    private ArrayList<GameActionListener> actionListeners;
+    private ArrayList<MessageListener>     messageListeners;
+    private ArrayList<GameActionListener>  actionListeners;
 
     private Script script = null;
 

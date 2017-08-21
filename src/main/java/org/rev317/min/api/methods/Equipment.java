@@ -61,6 +61,7 @@ public class Equipment {
      * Check if the Player is Wearing an Item based on the ID.
      *
      * @param id ID of the item to check for.
+     *
      * @return True if the Player is wearing the Item.
      */
     public static boolean isWearing(int id) {
@@ -77,6 +78,7 @@ public class Equipment {
      * Get's the item ID in slot.
      *
      * @param slot Slot to get the item ID from.
+     *
      * @return Item ID from given slot.
      */
     public static int getItemId(Slot slot) {
@@ -87,6 +89,7 @@ public class Equipment {
      * Check's if there is an item in the given slot.
      *
      * @param slot Slot to check for Item.
+     *
      * @return True if there is an Item in the given slot.
      */
     public static boolean hasItem(Slot slot) {
@@ -97,6 +100,7 @@ public class Equipment {
      * Check's if the given slot is empty.
      *
      * @param slot Slot to check for Item.
+     *
      * @return True if the given slot is empty.
      */
     public static boolean isEmpty(Slot slot) {
