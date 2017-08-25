@@ -7,6 +7,8 @@ import org.parabot.core.Core;
 import org.parabot.core.asm.ASMClassLoader;
 import org.parabot.core.asm.adapters.AddInterfaceAdapter;
 import org.parabot.core.asm.hooks.HookFile;
+import org.parabot.core.bdn.api.APICaller;
+import org.parabot.core.user.SharedUserAuthenticator;
 import org.parabot.environment.api.utils.StringUtils;
 import org.parabot.environment.scripts.Script;
 import org.parabot.environment.servers.ServerManifest;
@@ -19,6 +21,7 @@ import org.rev317.min.ui.BotMenu;
 import javax.swing.*;
 import java.applet.Applet;
 import java.io.File;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -49,15 +52,15 @@ public class Loader extends ServerProvider {
     }
 
     @Override
-    public URL getJar() {
+    public URL getJar(SharedUserAuthenticator userAuthenticator) {
         ServerProvider provider = Core.getInjector().getInstance(Context.class).getServerProvider();
         File           target   = new File(Directories.getCachePath(), StringUtils.toMD5(provider.getServerDescription().getServerName()) + ".jar");
         if (!target.exists()) {
-            try {
-                WebUtil.downloadFile(new URL(provider.getServerDescription().getDetail("server")), target);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+            APICaller.APIPoint          point       = APICaller.APIPoint.DOWNLOAD_SERVER.setPointParams(provider.getServerDescription().getId());
+            InputStream inputStream = (InputStream) APICaller.callPoint(point, userAuthenticator);
+            System.out.println(point.getPoint().toString());
+
+            APICaller.downloadFile(inputStream, target);
         }
 
         return WebUtil.toURL(target);
