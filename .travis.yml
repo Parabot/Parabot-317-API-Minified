@@ -60,5 +60,4 @@ deploy:
       repo: Parabot/Parabot-317-API-Minified
       branch:
         - master
-        - development
       jdk: 'oraclejdk7'
