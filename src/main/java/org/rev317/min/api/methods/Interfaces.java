@@ -41,12 +41,12 @@ public class Interfaces {
     }
 
     /**
-     * Sets the int by the given Amount
+     * Sets the String by the given Amount
      *
-     * @param amount Amount to set
+     * @param text Amount to set
      */
-    public static void setAmountOrNameInput(int amount) {
-        Loader.getClient().setAmountOrNameInput(amount);
+    public static void setAmountOrNameInput(String text) {
+        Loader.getClient().setAmountOrNameInput(text);
     }
 
     /**

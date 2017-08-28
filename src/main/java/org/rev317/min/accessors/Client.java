@@ -20,7 +20,7 @@ public interface Client {
 
     void setInterface(int id);
 
-    void setAmountOrNameInput(int amount);
+    void setAmountOrNameInput(String text);
 
     int[] getCurrentExp();
 
