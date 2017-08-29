@@ -40,7 +40,7 @@ public class Loader extends ServerProvider {
         try {
             final Context        context     = Core.getInjector().getInstance(Context.class);
             final ASMClassLoader classLoader = Core.getInjector().getInstance(ASMClassLoader.class);
-            final Class<?>       clientClass = classLoader.loadClass(context.getServerProvider().getServerDescription().getDetail("client-class"));
+            final Class<?>       clientClass = classLoader.loadClass(context.getServerProvider().getServerDescription().getDetail("client_class"));
             Object               instance    = clientClass.newInstance();
 
             return (Applet) instance;
@@ -57,8 +57,7 @@ public class Loader extends ServerProvider {
         File           target   = new File(Directories.getCachePath(), StringUtils.toMD5(provider.getServerDescription().getServerName()) + ".jar");
         if (!target.exists()) {
             APICaller.APIPoint          point       = APICaller.APIPoint.DOWNLOAD_SERVER.setPointParams(provider.getServerDescription().getId());
-            InputStream inputStream = (InputStream) APICaller.callPoint(point, userAuthenticator);
-            System.out.println(point.getPoint().toString());
+            InputStream inputStream = (InputStream) APICaller.callPoint(point, this.getUserAuthenticator());
 
             APICaller.downloadFile(inputStream, target);
         }
@@ -91,12 +90,17 @@ public class Loader extends ServerProvider {
     public HookFile getHookFile() {
         try {
             String hook = Core.getInjector().getInstance(Context.class).getServerProvider().getServerDescription().getDetail("hooks");
-            boolean isWeb = hook.toLowerCase().startsWith("http")
-                    || hook.toLowerCase().startsWith("https");
-            if (isWeb) {
-                return new HookFile(new URL(hook), HookFile.TYPE_XML);
-            } else {
-                return new HookFile(new File(hook), HookFile.TYPE_XML);
+            if (hook != null) {
+                boolean isWeb = hook.toLowerCase().startsWith("http")
+                        || hook.toLowerCase().startsWith("https");
+                if (isWeb) {
+                    return new HookFile(new URL(hook), HookFile.TYPE_XML);
+                } else {
+                    return new HookFile(new File(hook), HookFile.TYPE_XML);
+                }
+            }else{
+                return new HookFile(new URL("https://gist.githubusercontent.com/JKetelaar/2a8d635b1dbe88c21d7b19a148b6c662/raw/aa6b9fce2be82dcadf8fbbc9465a79525e4c6978/gistfile1.txt"), HookFile.TYPE_XML);
+                // TODO: Download hooks from BDN V3
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
