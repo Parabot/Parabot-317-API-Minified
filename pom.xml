@@ -27,7 +27,7 @@
         <repository>
             <id>parabot-maven</id>
             <name>Parabot its Maven Repository</name>
-            <url>http://maven.parabot.org/</url>
+            <url>https://maven.parabot.org/</url>
         </repository>
     </repositories>
 
