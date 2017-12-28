@@ -1,8 +1,8 @@
 language: java
 
 jdk:
-  - oraclejdk7
   - oraclejdk8
+  - oraclejdk9
 
 before_install:
   - chmod +x ./.travis/maven-build.sh
