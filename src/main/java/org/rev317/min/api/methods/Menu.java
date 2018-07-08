@@ -1,6 +1,7 @@
 package org.rev317.min.api.methods;
 
 import org.parabot.core.Context;
+import org.parabot.core.GameSync;
 import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.api.methods.utils.Settings;
@@ -10,7 +11,7 @@ import org.rev317.min.api.wrappers.*;
 import java.util.HashMap;
 
 /**
- * @author JKetelaar, Everel
+ * @author JKetelaar, Everel, Matt123337
  */
 public class Menu {
 
@@ -316,15 +317,22 @@ public class Menu {
      */
     public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int cmd4, int index) {
         Client client = Loader.getClient();
+        //TODO Just a heads up, by doing this only one action can be sent per-tick, so you might want to convert all the sendAction methods to vararg methods or something
+        // On the bright side no-more de-syncing the client :)
+        GameSync.lock();
+        try{
+        
+            client.getMenuAction1()[index] = cmd1;
+            client.getMenuAction2()[index] = cmd2;
+            client.getMenuAction3()[index] = cmd3;
+            if (Game.hasAction4()) {
+                client.getMenuAction4()[index] = cmd4;
+            }
+            client.getMenuActionId()[index] = action;
 
-        client.getMenuAction1()[index] = cmd1;
-        client.getMenuAction2()[index] = cmd2;
-        client.getMenuAction3()[index] = cmd3;
-        if (Game.hasAction4()) {
-            client.getMenuAction4()[index] = cmd4;
+            client.doAction(index);
+        }finally{
+            GameSync.unlock();
         }
-        client.getMenuActionId()[index] = action;
-
-        client.doAction(index);
     }
 }
