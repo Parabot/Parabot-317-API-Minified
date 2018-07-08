@@ -34,6 +34,7 @@ public class BotMenu implements ActionListener {
         JMenuItem npcs       = newItem("Npcs");
         JMenuItem objects    = newItem("Objects");
         JMenuItem players    = newItem("Players");
+        JMenuItem skills    = newItem("Skills");
 
         debugger.addDebugger("Enable Actions", new DActions());
         debugger.addDebugger("Animation", new DAnimation());
@@ -48,6 +49,7 @@ public class BotMenu implements ActionListener {
         debugger.addDebugger("Npcs", new DNpcs());
         debugger.addDebugger("Objects", new DSceneObjects());
         debugger.addDebugger("Players", new DPlayers());
+        debugger.addDebugger("Skills", new DSkills());
 
         debug.add(actions);
         actions.add(enableActions);
@@ -63,6 +65,7 @@ public class BotMenu implements ActionListener {
         debug.add(npcs);
         debug.add(objects);
         debug.add(players);
+        debug.add(skills);
 
         actions.addSeparator();
 
