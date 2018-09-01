@@ -52,7 +52,7 @@ public class MenuAction {
      * @param currentOutputIndex
      */
     public static void setCurrentOutputIndex(int currentOutputIndex) {
-        if (currentOutputIndex > outputs.length - 1) {
+        if (currentOutputIndex > outputs.length) {
             currentOutputIndex = 0;
         }
         MenuAction.currentOutputIndex = currentOutputIndex;
