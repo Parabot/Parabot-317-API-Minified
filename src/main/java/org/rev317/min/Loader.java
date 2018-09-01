@@ -36,6 +36,7 @@ public class Loader extends ServerProvider {
     @Override
     public Applet fetchApplet() {
         try {
+            Core.verbose("[317-api-minified provider] Fetching Applet from class: "+Context.getInstance().getServerProviderInfo().getClientClass());
             final Context        context     = Context.getInstance();
             final ASMClassLoader classLoader = context.getASMClassLoader();
             final Class<?>       clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
