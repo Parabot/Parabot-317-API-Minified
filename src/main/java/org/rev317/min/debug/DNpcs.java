@@ -13,17 +13,11 @@ import java.awt.*;
 public class DNpcs extends AbstractDebugger {
 
     private boolean enabled;
-    private long lastCheck = System.currentTimeMillis();
-    private int cached;
 
     @Override
     public void paint(Graphics g) {
-        if (System.currentTimeMillis() - lastCheck > 1000L) {
-            lastCheck = System.currentTimeMillis();
-            cached = Npcs.getNearest().length;
-        }
         PaintDebugger p = Context.getInstance().getPaintDebugger();
-        p.addLine("Close NPCs: " + cached);
+        p.addLine("Close NPCs: " + Npcs.getNearest().length);
     }
 
     @Override

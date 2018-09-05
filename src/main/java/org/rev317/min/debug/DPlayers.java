@@ -16,8 +16,6 @@ import java.awt.*;
 public class DPlayers extends AbstractDebugger {
 
     private boolean enabled = false;
-    private long lastCheck = System.currentTimeMillis();
-    private int cachedClosePlayerCount;
 
     @Override
     public void toggle() {
@@ -40,11 +38,7 @@ public class DPlayers extends AbstractDebugger {
 
     @Override
     public void paint(Graphics graphics) {
-        if (System.currentTimeMillis() - lastCheck > 1000L) {
-            lastCheck = System.currentTimeMillis();
-            cachedClosePlayerCount = Players.getNearest().length;
-        }
         PaintDebugger p = Context.getInstance().getPaintDebugger();
-        p.addLine("Close Players: " + cachedClosePlayerCount);
+        p.addLine("Close Players: " + Players.getNearest().length);
     }
 }

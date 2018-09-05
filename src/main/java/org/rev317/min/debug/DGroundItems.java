@@ -13,17 +13,11 @@ import java.awt.*;
 public class DGroundItems extends AbstractDebugger {
 
     private boolean enabled;
-    private long lastCheck = System.currentTimeMillis();
-    private int cached;
 
     @Override
     public void paint(Graphics g) {
-        if (System.currentTimeMillis() - lastCheck > 1000L) {
-            lastCheck = System.currentTimeMillis();
-            cached = GroundItems.getGroundItems().length;
-        }
         PaintDebugger p = Context.getInstance().getPaintDebugger();
-        p.addLine("Close Ground Items: " + cached);
+        p.addLine("Close Ground Items: " + GroundItems.getGroundItems().length);
     }
 
     @Override
