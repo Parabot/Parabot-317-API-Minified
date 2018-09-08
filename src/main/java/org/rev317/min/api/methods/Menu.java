@@ -340,6 +340,6 @@ public class Menu {
 
         client.getMenuActionId()[index] = action;
 
-        client.doAction(index);
+        client.performAction(index);
     }
 }
