@@ -25,6 +25,8 @@ public class Menu {
     public static void interact(SceneObject object, SceneObjects.Option action) {
         if (Game.hasAction4()) {
             sendAction(action.getActionId(), object.getHash(), object.getLocalRegionX(), object.getLocalRegionY(), object.getId(), 0);
+        } else if (Game.hasMenuHash()) {
+            sendAction(action.getActionId(), object.getId(), object.getLocalRegionX(), object.getLocalRegionY(), object.getHash(), 0);
         } else {
             sendAction(action.getActionId(), object.getHash(), object.getLocalRegionX(), object.getLocalRegionY());
         }
@@ -57,8 +59,11 @@ public class Menu {
                 actionId = SceneObjects.Option.FIFTH.getActionId();
                 break;
         }
+
         if (Game.hasAction4()) {
             sendAction(actionId, object.getHash(), object.getLocalRegionX(), object.getLocalRegionY(), object.getId(), 0);
+        } else if (Game.hasMenuHash()) {
+            sendAction(actionId, object.getId(), object.getLocalRegionX(), object.getLocalRegionY(), object.getHash(), 0);
         } else {
             sendAction(actionId, object.getHash(), object.getLocalRegionX(), object.getLocalRegionY());
         }
@@ -315,14 +320,24 @@ public class Menu {
      * @param index
      */
     public static void sendAction(int action, int cmd1, int cmd2, int cmd3, int cmd4, int index) {
+        sendAction(action, cmd1, cmd2, cmd3, (long) cmd4, index);
+    }
+
+    public static void sendAction(int action, int cmd1, int cmd2, int cmd3, long hash, int index) {
         Client client = Loader.getClient();
 
         client.getMenuAction1()[index] = cmd1;
         client.getMenuAction2()[index] = cmd2;
         client.getMenuAction3()[index] = cmd3;
-        if (Game.hasAction4()) {
-            client.getMenuAction4()[index] = cmd4;
+
+        if (Game.hasMenuHash()) {
+            client.getMenuHash()[index] = hash;
         }
+
+        if (Game.hasAction4()) {
+            client.getMenuAction4()[index] = (int) hash;
+        }
+
         client.getMenuActionId()[index] = action;
 
         client.doAction(index);
