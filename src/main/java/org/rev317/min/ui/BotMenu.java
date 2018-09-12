@@ -32,7 +32,13 @@ public class BotMenu implements ActionListener {
         JMenuItem messages   = newItem("Messages");
         JMenuItem mouse      = newItem("Mouse");
         JMenuItem npcs       = newItem("Npcs");
-        JMenuItem objects    = newItem("Objects");
+        JMenu objects    = new JMenu("Objects");
+        JMenuItem enableAllObject = newItem("Enable All Objects");
+        JMenuItem groundDecorations = newItem("Ground Decorations");
+        JMenuItem interactiveObjects = newItem("Interactive Objects");
+        JMenuItem wallObjects = newItem("Wall Objects");
+        JMenuItem wallDecorations = newItem("Wall Decorations");
+        JMenuItem groundItems = newItem("Ground Items");
         JMenuItem players    = newItem("Players");
         JMenuItem skills    = newItem("Skills");
 
@@ -47,7 +53,12 @@ public class BotMenu implements ActionListener {
         debugger.addDebugger("Messages", new DMessages());
         debugger.addDebugger("Mouse", new DMouse());
         debugger.addDebugger("Npcs", new DNpcs());
-        debugger.addDebugger("Objects", new DSceneObjects());
+        debugger.addDebugger("Enable All Objects", new DSceneObjects());
+        debugger.addDebugger("Ground Decorations", new DSceneObjectsGroundDec());
+        debugger.addDebugger("Interactive Objects", new DSceneObjectsInteractiveObj());
+        debugger.addDebugger("Wall Objects", new DSceneObjectsWallObj());
+        debugger.addDebugger("Wall Decorations", new DSceneObjectsWallDec());
+        debugger.addDebugger("Ground Items", new DSceneObjectsGroundItems());
         debugger.addDebugger("Players", new DPlayers());
         debugger.addDebugger("Skills", new DSkills());
 
@@ -64,6 +75,13 @@ public class BotMenu implements ActionListener {
         debug.add(mouse);
         debug.add(npcs);
         debug.add(objects);
+        objects.add(enableAllObject);
+        objects.addSeparator();
+        objects.add(groundDecorations);
+        objects.add(groundItems);
+        objects.add(wallDecorations);
+        objects.add(wallObjects);
+        objects.add(interactiveObjects);
         debug.add(players);
         debug.add(skills);
 
