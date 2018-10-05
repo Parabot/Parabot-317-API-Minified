@@ -37,7 +37,7 @@ public class DSceneObjectsInteractiveObj extends AbstractDebugger {
         if (enabled) {
             SceneObject[] objects = getInteractiveObjects();
             if (objects == null || objects.length == 0) {
-                Logger.addMessage("There are no GameObjects around you.");
+                Logger.addMessage("There are no Interactive Objects around you.");
                 return;
             }
             java.util.List<SceneObject> objs = Arrays.asList(objects);

@@ -34,7 +34,7 @@ public class DSceneObjectsGroundItems extends AbstractDebugger {
         if (enabled) {
             SceneObject[] objects = getGroundItems();
             if (objects == null || objects.length == 0) {
-                Logger.addMessage("There are no GameObjects around you.");
+                Logger.addMessage("There are no Ground Items around you.");
                 return;
             }
             java.util.List<SceneObject> objs = Arrays.asList(objects);
@@ -44,7 +44,7 @@ public class DSceneObjectsGroundItems extends AbstractDebugger {
             for (int i = objects.length - 1; i >= 0; i--) {
                 System.out.println(
                         " ID: " + objects[i].getId() +
-                                " UID: " + objects[i].getHash() +
+                                " UID: " + objects[i].resolveHash() +
                                 " Location: " + objects[i].getLocation() +
                                 " Distance: " + objects[i].distanceTo());
             }

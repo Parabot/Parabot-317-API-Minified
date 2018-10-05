@@ -39,6 +39,8 @@ public class SceneObject implements Locatable {
 
     /**
      * Resolves the hash depending on the API's inner SceneObjectTile getHash() methods' type.
+     * <br>This is strictly to be used only by Debug classes such as {@code DSceneObjects} due to the overhead of Reflection.
+     * In cases of high usage, classes should be duplicated as usual in a custom API with the required changed type.
      * @return An object, casted to either Long or Int
      */
     public final Object resolveHash() {
