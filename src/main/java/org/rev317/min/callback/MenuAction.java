@@ -32,11 +32,15 @@ public class MenuAction {
         int    action2  = client.getMenuAction2()[index];
         int    action3  = client.getMenuAction3()[index];
         int    action4  = 0;
+        long    menuHash = 0;
         int    actionId = client.getMenuActionId()[index];
         if (DActions.debugActions()) {
             if (Game.hasAction4()) {
                 action4 = client.getMenuAction4()[index];
                 System.out.println(String.format(outputs[0][outputIndex], index, action1, action2, action3, action4, actionId));
+            } else if (Game.hasMenuHash()) {
+                menuHash = client.getMenuHash()[index];
+                System.out.println(String.format(outputs[0][outputIndex], index, action1, action2, action3, menuHash, actionId));
             } else {
                 System.out.println(String.format(outputs[1][outputIndex], index, action1, action2, action3, actionId));
             }

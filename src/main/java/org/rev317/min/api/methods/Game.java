@@ -103,6 +103,20 @@ public class Game {
     }
 
     /**
+     * Determines whether this client has menu hash hooked
+     *
+     * @return <code>true</code> if menu hash is hooked
+     */
+    public static boolean hasMenuHash() {
+        try {
+            Loader.getClient().getMenuHash();
+            return true;
+        } catch (AbstractMethodError e) {
+            return false;
+        }
+    }
+
+    /**
      * Returns the settings within the client
      *
      * @param index The index of the setting you want to gather

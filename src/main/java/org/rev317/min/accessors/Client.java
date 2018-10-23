@@ -42,6 +42,8 @@ public interface Client {
 
     int[] getMenuAction4();
 
+    long[] getMenuHash();
+
     CollisionMap[] getCollisionMap();
 
     boolean walkTo(int clickType, int sizeX, int sizeY, int startX, int startY, int destX, int destY, int type, int face, boolean arbitrary, int rotation);
