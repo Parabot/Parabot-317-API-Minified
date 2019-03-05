@@ -99,6 +99,11 @@ public class BotMenu implements ActionListener {
                 }
             });
             group.add(debugOutput);
+
+            if (index == 0) {
+                group.setSelected(debugOutput.getModel(), true);
+            }
+
             actions.add(debugOutput);
         }
 
