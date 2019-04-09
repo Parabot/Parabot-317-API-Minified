@@ -26,5 +26,7 @@ public class DMap extends AbstractDebugger {
     @Override
     public void toggle() {
         enabled = !enabled;
+        System.out.println("Players location: " + Players.getMyPlayer().getLocation());
+
     }
 }
