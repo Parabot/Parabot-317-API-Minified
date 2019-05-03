@@ -25,7 +25,6 @@ public class MenuAction {
     private static       int        currentOutputIndex = 0;
 
     public static void intercept(int index) {
-        int outputIndex = 0;
 
         Client client   = Loader.getClient();
         int    action1  = client.getMenuAction1()[index];
@@ -36,9 +35,9 @@ public class MenuAction {
         if (DActions.debugActions()) {
             if (Game.hasAction4()) {
                 action4 = client.getMenuAction4()[index];
-                System.out.println(String.format(outputs[0][outputIndex], index, action1, action2, action3, action4, actionId));
+                System.out.println(String.format(outputs[0][currentOutputIndex], index, action1, action2, action3, action4, actionId));
             } else {
-                System.out.println(String.format(outputs[1][outputIndex], index, action1, action2, action3, actionId));
+                System.out.println(String.format(outputs[1][currentOutputIndex], index, action1, action2, action3, actionId));
             }
         }
 
