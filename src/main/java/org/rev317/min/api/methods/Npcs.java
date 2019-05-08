@@ -160,14 +160,14 @@ public class Npcs {
         SECOND(Settings.getActionByName("menu_character_second_interaction")),
         TALK_TO(Settings.getActionByName("menu_character_second_interaction")),
         INTERACT(Settings.getActionByName("menu_character_second_interaction")),
-        BAIT(Settings.getActionByName("menu_character_second_interaction")),
-        CAGE(Settings.getActionByName("menu_character_second_interaction")),
         NET(Settings.getActionByName("menu_character_second_interaction")),
+        CAGE(Settings.getActionByName("menu_character_second_interaction")),
 
         THIRD(Settings.getActionByName("menu_character_third_interaction")),
         TRADE(Settings.getActionByName("menu_character_third_interaction")),
         BANK(Settings.getActionByName("menu_character_third_interaction")),
         PICKPOCKET(Settings.getActionByName("menu_character_third_interaction")),
+        BAIT(Settings.getActionByName("menu_character_third_interaction")),
         HARPOON(Settings.getActionByName("menu_character_third_interaction")),
         GET_TASK(Settings.getActionByName("menu_character_third_interaction")),
 

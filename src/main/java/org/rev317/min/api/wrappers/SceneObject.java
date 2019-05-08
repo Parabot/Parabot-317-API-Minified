@@ -1,6 +1,8 @@
 package org.rev317.min.api.wrappers;
 
+import org.parabot.core.Context;
 import org.parabot.core.reflect.RefClass;
+import org.parabot.core.reflect.RefMethod;
 import org.rev317.min.accessors.SceneObjectTile;
 import org.rev317.min.api.interfaces.Locatable;
 import org.rev317.min.api.methods.Calculations;
@@ -33,6 +35,27 @@ public class SceneObject implements Locatable {
      */
     public final int getHash() {
         return accessor.getHash();
+    }
+
+    /**
+     * Resolves the hash depending on the API's inner SceneObjectTile getHash() methods' type.
+     * <br>This is strictly to be used only by Debug classes such as {@code DSceneObjects} due to the overhead of Reflection.
+     * In cases of high usage, classes should be duplicated as usual in a custom API with the required changed type.
+     * @return An object, casted to either Long or Int
+     */
+    public final Object resolveHash() {
+        Object    hash       = (int) 0;
+        try {
+            RefMethod hashMethod = new RefClass(Context.getInstance().getASMClassLoader().loadClass("org.rev317.min.accessors.SceneObjectTile"), accessor).getMethod("getHash");
+            if (hashMethod.getReturnType() == int.class) {
+                hash = (int) hashMethod.invoke();
+            } else {
+                hash = (long) hashMethod.invoke();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return hash;
     }
 
     /**
