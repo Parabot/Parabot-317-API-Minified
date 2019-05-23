@@ -36,8 +36,11 @@ public class DInventory extends AbstractDebugger {
     @Override
     public void toggle() {
         enabled = !enabled;
-        for (Item i : Inventory.getItems()) {
-            System.out.println("ID: " + i.getId() + " Stack: " + i.getStackSize() + " Slot: " + i.getSlot());
+
+        if (enabled) {
+            for (Item i : Inventory.getItems()) {
+                System.out.println("ID: " + i.getId() + " Stack: " + i.getStackSize() + " Slot: " + i.getSlot());
+            }
         }
     }
 

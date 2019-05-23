@@ -23,5 +23,9 @@ public class DMouse extends AbstractDebugger {
     @Override
     public void toggle() {
         enabled = !enabled;
+
+        if (enabled) {
+            System.out.println("Mouse: " + Mouse.getInstance().getPoint().toString());
+        }
     }
 }

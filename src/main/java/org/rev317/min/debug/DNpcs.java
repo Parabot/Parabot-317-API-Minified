@@ -5,7 +5,6 @@ import org.parabot.core.paint.AbstractDebugger;
 import org.parabot.core.paint.PaintDebugger;
 import org.parabot.core.ui.Logger;
 import org.rev317.min.api.methods.Npcs;
-import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.wrappers.Npc;
 
 import java.awt.*;
@@ -34,7 +33,7 @@ public class DNpcs extends AbstractDebugger {
                 return;
             }
             for (Npc n : Npcs.getNearest()) {
-                System.out.println("ID: " + n.getDef().getId() + " Distance: " + n.distanceTo() + " Location: " + n.getLocation().toString());
+                System.out.println("ID: " + n.getDef().getId() + " Distance: " + n.distanceTo() + " Location: " + n.getLocation().toString() + " Index: " + n.getIndex());
             }
         }
     }
