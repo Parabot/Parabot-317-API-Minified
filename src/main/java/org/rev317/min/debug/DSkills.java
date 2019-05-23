@@ -7,16 +7,21 @@ import java.awt.*;
 
 public class DSkills extends AbstractDebugger {
 
+    private boolean enabled;
+
     @Override
     public void toggle() {
-        for (Skill skill : Skill.values()){
-            System.out.println(String.format("%s level: %d / %d", skill.getName(), skill.getLevel(), skill.getRealLevel()));
+        enabled = !enabled;
+        if (enabled) {
+            for (Skill skill : Skill.values()) {
+                System.out.println(String.format("%s level: %d / %d (exp: %s)", skill.getName(), skill.getLevel(), skill.getRealLevel(), skill.getExperience()));
+            }
         }
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return enabled;
     }
 
     @Override

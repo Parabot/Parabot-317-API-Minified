@@ -22,5 +22,9 @@ public class DAnimation extends AbstractDebugger {
     @Override
     public void toggle() {
         enabled = !enabled;
+
+        if (enabled) {
+            Players.getMyPlayer().getAnimation();
+        }
     }
 }

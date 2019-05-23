@@ -26,5 +26,10 @@ public class DMap extends AbstractDebugger {
     @Override
     public void toggle() {
         enabled = !enabled;
+
+        if (enabled) {
+            System.out.println("Location: " + Players.getMyPlayer().getLocation());
+            System.out.println("Plane: " + Game.getPlane());
+        }
     }
 }

@@ -25,5 +25,10 @@ public class DInterfaces extends AbstractDebugger {
     @Override
     public void toggle() {
         enabled = !enabled;
+
+        if (enabled) {
+            System.out.println("Open interface: " + Interfaces.getOpenInterfaceId());
+            System.out.println("Open back dialog: " + Interfaces.getBackDialogId());
+        }
     }
 }
