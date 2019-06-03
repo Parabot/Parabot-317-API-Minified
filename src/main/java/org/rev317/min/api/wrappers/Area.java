@@ -125,8 +125,10 @@ public class Area {
      */
     public Tile getRandomTile()
     {
-        if (p.npoints < 2)
+        if (p.npoints == 0)
             return null;
+        while (p.npoints < 3)
+            p.addPoint(p.xpoints[0], p.ypoints[0]);
 
         Random rand = new Random();
         ArrayList<Polygon> polyTriangles = new ArrayList<>();
@@ -145,7 +147,7 @@ public class Area {
         int i = -1;
         while (weightedAverage > 0)
         {
-            weightedAverage -= polyAreas.get(i++)/totalPolyArea;
+            weightedAverage -= polyAreas.get(++i)/totalPolyArea;
         }
 
         double r1 = rand.nextDouble(), r2 = rand.nextDouble();
