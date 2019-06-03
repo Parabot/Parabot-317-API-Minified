@@ -127,10 +127,12 @@ public class Area {
     {
         if (p.npoints < 2)
             return null;
-        
+
+        Random rand = new Random();
         ArrayList<Polygon> polyTriangles = new ArrayList<>();
         ArrayList<Double> polyAreas = new ArrayList<>();
         double totalPolyArea = 0;
+
         //https://en.wikipedia.org/wiki/Polygon_triangulation
         for (int i = 1; i < p.npoints - 1; i++)
         {
@@ -139,16 +141,14 @@ public class Area {
                     p.xpoints[0] * p.ypoints[2] - p.xpoints[1] * p.ypoints[0]) - p.xpoints[2] * p.ypoints[1]) /2);
             totalPolyArea += polyAreas.get(i-1);
         }
-        Random rand = new Random();
         double weightedAverage = rand.nextDouble();
         int i = -1;
         while (weightedAverage > 0)
         {
-            i++;
-            weightedAverage -= polyAreas.get(i)/totalPolyArea;
+            weightedAverage -= polyAreas.get(i++)/totalPolyArea;
         }
-        double r1 = rand.nextDouble();
-        double r2 = rand.nextDouble();
+
+        double r1 = rand.nextDouble(), r2 = rand.nextDouble();
         //https://www.cs.princeton.edu/~funk/tog02.pdf section 4.2
         int x = (int) Math.round((1 - Math.sqrt(r1)) * polyTriangles.get(i).xpoints[0] +
                 Math.sqrt(r1) * (1 - r2) * polyTriangles.get(i).xpoints[1] +
