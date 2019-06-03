@@ -118,6 +118,11 @@ public class Area {
         return result;
     }
 
+    /**
+     * Returns a random tile from the area
+     *
+     * @return The Tile
+     */
     public Tile getRandomTile()
     {
         if (p.npoints < 2)
@@ -136,28 +141,21 @@ public class Area {
         }
         Random rand = new Random();
         double weightedAverage = rand.nextDouble();
-        int i = 0;
+        int i = -1;
         while (weightedAverage > 0)
         {
-            weightedAverage -= polyAreas.get(i)/totalPolyArea;
             i++;
+            weightedAverage -= polyAreas.get(i)/totalPolyArea;
         }
         double r1 = rand.nextDouble();
         double r2 = rand.nextDouble();
-        int x = (int) Math.round(1 - Math.sqrt(r1) * polyTriangles.get(i).xpoints[0] +
+        //https://www.cs.princeton.edu/~funk/tog02.pdf section 4.2
+        int x = (int) Math.round((1 - Math.sqrt(r1)) * polyTriangles.get(i).xpoints[0] +
                 Math.sqrt(r1) * (1 - r2) * polyTriangles.get(i).xpoints[1] +
                 Math.sqrt(r1) * r2 * polyTriangles.get(i).xpoints[2]);
-        int y = (int) Math.round(1 - Math.sqrt(r1) * polyTriangles.get(i).ypoints[0] +
+        int y = (int) Math.round((1 - Math.sqrt(r1)) * polyTriangles.get(i).ypoints[0] +
                 Math.sqrt(r1) * (1 - r2) * polyTriangles.get(i).ypoints[1] +
                 Math.sqrt(r1) * r2 * polyTriangles.get(i).ypoints[2]);
-
-        /*Random rand = new Random();
-        Tile t;
-        do {
-            t = new Tile(rand.nextInt(p.xpoints.length), rand.nextInt(p.ypoints.length));
-        } while (!contains(t));
-
-        return t;*/
 
         return new Tile(x, y);
     }
