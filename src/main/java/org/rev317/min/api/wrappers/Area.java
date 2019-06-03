@@ -2,6 +2,8 @@ package org.rev317.min.api.wrappers;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Vector;
 
 /**
  * @author Matt, JKetelaar
@@ -114,5 +116,49 @@ public class Area {
         }
 
         return result;
+    }
+
+    public Tile getRandomTile()
+    {
+        if (p.npoints < 2)
+            return null;
+        
+        ArrayList<Polygon> polyTriangles = new ArrayList<>();
+        ArrayList<Double> polyAreas = new ArrayList<>();
+        double totalPolyArea = 0;
+        //https://en.wikipedia.org/wiki/Polygon_triangulation
+        for (int i = 1; i < p.npoints - 1; i++)
+        {
+            polyTriangles.add(new Polygon(new int[]{p.xpoints[0], p.xpoints[i], p.xpoints[i + 1]}, new int[]{p.ypoints[0], p.ypoints[i], p.ypoints[i + 1]}, 3));
+            polyAreas.add((double) ((p.xpoints[0] * p.ypoints[1] + p.xpoints[1] * p.ypoints[2] + p.xpoints[2] * p.ypoints[0] -
+                    p.xpoints[0] * p.ypoints[2] - p.xpoints[1] * p.ypoints[0]) - p.xpoints[2] * p.ypoints[1]) /2);
+            totalPolyArea += polyAreas.get(i-1);
+        }
+        Random rand = new Random();
+        double weightedAverage = rand.nextDouble();
+        int i = 0;
+        while (weightedAverage > 0)
+        {
+            weightedAverage -= polyAreas.get(i)/totalPolyArea;
+            i++;
+        }
+        double r1 = rand.nextDouble();
+        double r2 = rand.nextDouble();
+        int x = (int) Math.round(1 - Math.sqrt(r1) * polyTriangles.get(i).xpoints[0] +
+                Math.sqrt(r1) * (1 - r2) * polyTriangles.get(i).xpoints[1] +
+                Math.sqrt(r1) * r2 * polyTriangles.get(i).xpoints[2]);
+        int y = (int) Math.round(1 - Math.sqrt(r1) * polyTriangles.get(i).ypoints[0] +
+                Math.sqrt(r1) * (1 - r2) * polyTriangles.get(i).ypoints[1] +
+                Math.sqrt(r1) * r2 * polyTriangles.get(i).ypoints[2]);
+
+        /*Random rand = new Random();
+        Tile t;
+        do {
+            t = new Tile(rand.nextInt(p.xpoints.length), rand.nextInt(p.ypoints.length));
+        } while (!contains(t));
+
+        return t;*/
+
+        return new Tile(x, y);
     }
 }
