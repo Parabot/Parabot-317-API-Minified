@@ -13,6 +13,7 @@ public class Area {
 
     /**
      * Initializes a PolygonArea with the tiles given
+     * Note this is a *Polygon* Area - it will likely not do what you think it will do.
      *
      * @param tiles tiles to use in the area
      */
