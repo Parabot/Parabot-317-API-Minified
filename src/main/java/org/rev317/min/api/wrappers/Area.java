@@ -97,23 +97,11 @@ public class Area {
     /**
      * Checks if a tile is in the area
      *
-     * @param x The x-axis from the tile
-     * @param y The y-axis from the tile
-     *
-     * @return True if the area does contain the tile, otherwise false
-     */
-    public boolean contains(int x, int y) {
-        int     i;
-        int     j;
-        boolean result = false;
-        for (i = 0, j = p.npoints - 1; i < p.npoints; j = i++) {
-            if ((p.ypoints[i] > y - 1) != (p.ypoints[j] > y - 1)
-                    && (x <= (p.xpoints[j] - p.xpoints[i]) * (y - p.ypoints[i])
-                    / (p.ypoints[j] - p.ypoints[i]) + p.xpoints[i])) {
-                result = !result;
-            }
-        }
-
-        return result;
-    }
+	 * @param x - X coordinate from the tile
+	 * @param y - Y coordinate from the tile
+	 * @return boolean <b>true</b> if the area does contain the tile, otherwise <b>false</b>
+	 */
+	public boolean contains(int x, int y) {
+		return this.p.getBounds().contains(x, y);
+	}
 }
