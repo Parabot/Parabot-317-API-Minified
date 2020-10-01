@@ -25,7 +25,7 @@ public class GroundItems {
             return n1.distanceTo() - n2.distanceTo();
         }
     };
-    private static final Filter<GroundItem>     ALL_FILTER     = new Filter<GroundItem>() {
+    private static final Filter<GroundItem> ALL_FILTER = new Filter<GroundItem>() {
 
         @Override
         public boolean accept(GroundItem item) {
@@ -34,7 +34,7 @@ public class GroundItems {
 
     };
     private static Client client;
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static final HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all loaded GroundItems within an radius of 52 Tiles.
@@ -82,9 +82,9 @@ public class GroundItems {
                 return null;
             }
 
-            ArrayList<GroundItem> list    = new ArrayList<>();
-            final Node            holder  = deque.getHead();
-            Node                  curNode = holder.getNext();
+            ArrayList<GroundItem> list = new ArrayList<>();
+            final Node holder = deque.getHead();
+            Node curNode = holder.getNext();
             while (curNode != null && curNode != holder
                     && curNode != deque.getHead()) {
                 final org.rev317.min.accessors.Item groundItem = (org.rev317.min.accessors.Item) curNode;
@@ -211,7 +211,7 @@ public class GroundItems {
 
         EXAMINE(Settings.getActionByName("menu_ground_item_examine_interaction"));
 
-        private int actionId;
+        private final int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;

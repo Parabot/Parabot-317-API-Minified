@@ -116,7 +116,7 @@ public enum Skill {
      */
     public static final int getPercentToNextLevel(int index) {
         int currentLevel = getLevelByExperience(getCurrentExperience(index));
-        int nextLevel    = currentLevel + 1;
+        int nextLevel = currentLevel + 1;
         if (currentLevel == 99 || nextLevel > 99 || currentLevel < 1
                 || nextLevel < 1) {
             return 0;

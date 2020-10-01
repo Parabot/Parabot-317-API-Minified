@@ -8,7 +8,7 @@ import org.rev317.min.api.events.MessageEvent;
 import org.rev317.min.api.events.listeners.GameActionListener;
 import org.rev317.min.api.events.listeners.MessageListener;
 
-import java.awt.*;
+import java.awt.AWTEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -20,11 +20,11 @@ import java.util.HashMap;
  * @author matt123337
  */
 public class ScriptEngine {
-    private static HashMap<Context, ScriptEngine> instances = new HashMap<>();
-    private ArrayList<MouseListener>       mouseListeners;
-    private ArrayList<MouseMotionListener> mouseMotionListeners;
-    private ArrayList<MessageListener>     messageListeners;
-    private ArrayList<GameActionListener>  actionListeners;
+    private static final HashMap<Context, ScriptEngine> instances = new HashMap<>();
+    private final ArrayList<MouseListener> mouseListeners;
+    private final ArrayList<MouseMotionListener> mouseMotionListeners;
+    private final ArrayList<MessageListener> messageListeners;
+    private final ArrayList<GameActionListener> actionListeners;
 
     private Script script = null;
 

@@ -1,13 +1,13 @@
 package org.rev317.min.api.wrappers;
 
-import java.awt.*;
+import java.awt.Polygon;
 import java.util.ArrayList;
 
 /**
  * @author Matt, JKetelaar
  */
 public class Area {
-    private Polygon p;
+    private final Polygon p;
 
     /**
      * Initializes a PolygonArea with the tiles given
@@ -51,11 +51,11 @@ public class Area {
      * @return the tiles.
      */
     public Tile[] getTiles() {
-        int             lowestX  = -1;
-        int             lowestY  = -1;
-        int             highestX = -1;
-        int             highestY = -1;
-        ArrayList<Tile> t        = new ArrayList<>();
+        int lowestX = -1;
+        int lowestY = -1;
+        int highestX = -1;
+        int highestY = -1;
+        ArrayList<Tile> t = new ArrayList<>();
         for (int i : p.xpoints) {
             if (i < lowestX || lowestX == -1) {
                 lowestX = i;
@@ -103,8 +103,8 @@ public class Area {
      * @return True if the area does contain the tile, otherwise false
      */
     public boolean contains(int x, int y) {
-        int     i;
-        int     j;
+        int i;
+        int j;
         boolean result = false;
         for (i = 0, j = p.npoints - 1; i < p.npoints; j = i++) {
             if ((p.ypoints[i] > y - 1) != (p.ypoints[j] > y - 1)

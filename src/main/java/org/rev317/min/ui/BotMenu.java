@@ -3,11 +3,35 @@ package org.rev317.min.ui;
 import org.parabot.core.Context;
 import org.parabot.core.paint.PaintDebugger;
 import org.rev317.min.callback.MenuAction;
-import org.rev317.min.debug.*;
+import org.rev317.min.debug.DActions;
+import org.rev317.min.debug.DAnimation;
+import org.rev317.min.debug.DBank;
+import org.rev317.min.debug.DCollisionFlags;
+import org.rev317.min.debug.DGroundItems;
+import org.rev317.min.debug.DInterfaces;
+import org.rev317.min.debug.DInventory;
+import org.rev317.min.debug.DMap;
+import org.rev317.min.debug.DMessages;
+import org.rev317.min.debug.DMouse;
+import org.rev317.min.debug.DNpcs;
+import org.rev317.min.debug.DPlayers;
+import org.rev317.min.debug.DSceneObjects;
+import org.rev317.min.debug.DSceneObjectsGroundDec;
+import org.rev317.min.debug.DSceneObjectsGroundItems;
+import org.rev317.min.debug.DSceneObjectsInteractiveObj;
+import org.rev317.min.debug.DSceneObjectsWallDec;
+import org.rev317.min.debug.DSceneObjectsWallObj;
+import org.rev317.min.debug.DSkills;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JRadioButtonMenuItem;
 
 /**
  * @author JKetelaar, Everel
@@ -19,28 +43,28 @@ public class BotMenu implements ActionListener {
 
         JMenu debug = new JMenu("Debug");
 
-        JMenu     actions       = new JMenu("Actions");
+        JMenu actions = new JMenu("Actions");
         JMenuItem enableActions = newItem("Enable Actions");
 
-        JMenuItem animation  = newItem("Animation");
-        JMenuItem bank       = newItem("Bank");
-        JMenuItem flags      = newItem("Collision flags");
-        JMenuItem items      = newItem("GroundItems");
+        JMenuItem animation = newItem("Animation");
+        JMenuItem bank = newItem("Bank");
+        JMenuItem flags = newItem("Collision flags");
+        JMenuItem items = newItem("GroundItems");
         JMenuItem interfaces = newItem("Interfaces");
-        JMenuItem inventory  = newItem("Inventory");
-        JMenuItem map        = newItem("Map");
-        JMenuItem messages   = newItem("Messages");
-        JMenuItem mouse      = newItem("Mouse");
-        JMenuItem npcs       = newItem("Npcs");
-        JMenu objects    = new JMenu("Objects");
+        JMenuItem inventory = newItem("Inventory");
+        JMenuItem map = newItem("Map");
+        JMenuItem messages = newItem("Messages");
+        JMenuItem mouse = newItem("Mouse");
+        JMenuItem npcs = newItem("Npcs");
+        JMenu objects = new JMenu("Objects");
         JMenuItem enableAllObject = newItem("Enable All Objects");
         JMenuItem groundDecorations = newItem("Ground Decorations");
         JMenuItem interactiveObjects = newItem("Interactive Objects");
         JMenuItem wallObjects = newItem("Wall Objects");
         JMenuItem wallDecorations = newItem("Wall Decorations");
         JMenuItem groundItems = newItem("Ground Items");
-        JMenuItem players    = newItem("Players");
-        JMenuItem skills    = newItem("Skills");
+        JMenuItem players = newItem("Players");
+        JMenuItem skills = newItem("Skills");
 
         debugger.addDebugger("Enable Actions", new DActions());
         debugger.addDebugger("Animation", new DAnimation());
@@ -89,7 +113,7 @@ public class BotMenu implements ActionListener {
 
         ButtonGroup group = new ButtonGroup();
         for (int i = 0; i < MenuAction.getOutputs().length; i++) {
-            final int index       = i;
+            final int index = i;
             JMenuItem debugOutput = new JRadioButtonMenuItem("Output: " + index);
             debugOutput.addActionListener(new ActionListener() {
                 @Override
@@ -110,15 +134,15 @@ public class BotMenu implements ActionListener {
         bar.add(debug);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Context.getInstance().getPaintDebugger().toggle(e.getActionCommand());
+    }
+
     private JMenuItem newItem(String name) {
         JMenuItem item = new JCheckBoxMenuItem(name);
         item.addActionListener(this);
 
         return item;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Context.getInstance().getPaintDebugger().toggle(e.getActionCommand());
     }
 }

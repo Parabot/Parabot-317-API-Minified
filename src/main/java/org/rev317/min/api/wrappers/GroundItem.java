@@ -11,9 +11,9 @@ import org.rev317.min.api.methods.Menu;
  * @author Everel
  */
 public class GroundItem implements Locatable {
-    private org.rev317.min.accessors.Item accessor;
-    private int                           x;
-    private int                           y;
+    private final org.rev317.min.accessors.Item accessor;
+    private final int x;
+    private final int y;
 
     public GroundItem(org.rev317.min.accessors.Item accessor, int x, int y) {
         this.accessor = accessor;

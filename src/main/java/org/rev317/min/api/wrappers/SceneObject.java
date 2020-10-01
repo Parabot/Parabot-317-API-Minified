@@ -14,14 +14,14 @@ import org.rev317.min.api.methods.SceneObjects;
  * @author Everel
  */
 public class SceneObject implements Locatable {
-    public static final int TYPE_WALL             = 0; // object1
-    public static final int TYPE_WALLDECORATION   = 1; // object2
+    public static final int TYPE_WALL = 0; // object1
+    public static final int TYPE_WALLDECORATION = 1; // object2
     public static final int TYPE_GROUNDDECORATION = 2; // object3
-    public static final int TYPE_GROUNDITEM       = 3; // object4
-    public static final int TYPE_INTERACTIVE      = 4; // object5
+    public static final int TYPE_GROUNDITEM = 3; // object4
+    public static final int TYPE_INTERACTIVE = 4; // object5
 
-    public  SceneObjectTile accessor;
-    private int             type;
+    public SceneObjectTile accessor;
+    private final int type;
 
     public SceneObject(SceneObjectTile accessor, int type) {
         this.accessor = accessor;
@@ -41,16 +41,17 @@ public class SceneObject implements Locatable {
      * Resolves the hash depending on the API's inner SceneObjectTile getHash() methods' type.
      * <br>This is strictly to be used only by Debug classes such as {@code DSceneObjects} due to the overhead of Reflection.
      * In cases of high usage, classes should be duplicated as usual in a custom API with the required changed type.
+     *
      * @return An object, casted to either Long or Int
      */
     public final Object resolveHash() {
-        Object    hash       = (int) 0;
+        Object hash = 0;
         try {
             RefMethod hashMethod = new RefClass(Context.getInstance().getASMClassLoader().loadClass("org.rev317.min.accessors.SceneObjectTile"), accessor).getMethod("getHash");
             if (hashMethod.getReturnType() == int.class) {
-                hash = (int) hashMethod.invoke();
+                hash = hashMethod.invoke();
             } else {
-                hash = (long) hashMethod.invoke();
+                hash = hashMethod.invoke();
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

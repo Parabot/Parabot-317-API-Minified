@@ -13,8 +13,8 @@ import org.rev317.min.api.methods.Walking;
  * @author Everel
  */
 public final class Tile implements TileFlags, Locatable {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private int z;
 
     public Tile(int x, int y) {

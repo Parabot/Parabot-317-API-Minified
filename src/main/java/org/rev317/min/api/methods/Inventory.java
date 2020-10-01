@@ -17,7 +17,7 @@ import java.util.HashMap;
  */
 public class Inventory {
 
-    private static final Filter<Item>             ALL_FILTER = new Filter<Item>() {
+    private static final Filter<Item> ALL_FILTER = new Filter<Item>() {
 
         @Override
         public boolean accept(Item i) {
@@ -25,7 +25,7 @@ public class Inventory {
         }
 
     };
-    private static       HashMap<String, Integer> settings   = Context.getInstance().getServerProviderInfo().getSettings();
+    private static final HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Clears the inventory
@@ -93,8 +93,8 @@ public class Inventory {
         if (inventory == null) {
             return -1;
         }
-        int         count      = 0;
-        final int[] items      = inventory.getItems();
+        int count = 0;
+        final int[] items = inventory.getItems();
         final int[] stackSizes = includeStack ? inventory.getStackSizes() : null;
         for (int i = 0; i < items.length; i++) {
             if (items[i] > 0) {
@@ -117,8 +117,8 @@ public class Inventory {
         if (inventory == null) {
             return -1;
         }
-        int         count      = 0;
-        final int[] items      = inventory.getItems();
+        int count = 0;
+        final int[] items = inventory.getItems();
         final int[] stackSizes = includeStack ? inventory.getStackSizes() : null;
         for (int i = 0; i < items.length; i++) {
             final int itemId = items[i];
@@ -178,16 +178,16 @@ public class Inventory {
         if (inventory == null) {
             return null;
         }
-        final int[]           items      = inventory.getItems();
-        final int[]           stackSizes = inventory.getStackSizes();
-        final ArrayList<Item> invItems   = new ArrayList<>(28);
+        final int[] items = inventory.getItems();
+        final int[] stackSizes = inventory.getStackSizes();
+        final ArrayList<Item> invItems = new ArrayList<>(28);
         for (int i = 0; i < items.length; i++) {
             final int itemId = items[i];
             if (itemId < 1) {
                 continue;
             }
-            final int  stackSize = stackSizes[i];
-            final Item item      = new Item(itemId, stackSize, i);
+            final int stackSize = stackSizes[i];
+            final Item item = new Item(itemId, stackSize, i);
             if (filter.accept(item)) {
                 invItems.add(item);
             }

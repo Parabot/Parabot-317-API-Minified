@@ -7,8 +7,9 @@ import org.rev317.min.api.methods.Menu;
  * @author Everel
  */
 public class Item {
-    private int id, stackSize;
-    private int slot;
+    private final int id;
+    private final int stackSize;
+    private final int slot;
 
     public Item(int id, int stackSize, int slot) {
         this.id = id;

@@ -5,7 +5,11 @@ import org.rev317.min.Loader;
 import org.rev317.min.accessors.Client;
 import org.rev317.min.api.methods.utils.Settings;
 import org.rev317.min.api.wrappers.Character;
-import org.rev317.min.api.wrappers.*;
+import org.rev317.min.api.wrappers.GroundItem;
+import org.rev317.min.api.wrappers.Item;
+import org.rev317.min.api.wrappers.Npc;
+import org.rev317.min.api.wrappers.Player;
+import org.rev317.min.api.wrappers.SceneObject;
 
 import java.util.HashMap;
 
@@ -14,7 +18,7 @@ import java.util.HashMap;
  */
 public class Menu {
 
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static final HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Interacts with a sceneobject

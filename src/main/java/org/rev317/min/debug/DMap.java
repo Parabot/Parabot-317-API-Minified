@@ -6,7 +6,7 @@ import org.parabot.core.paint.PaintDebugger;
 import org.rev317.min.api.methods.Game;
 import org.rev317.min.api.methods.Players;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DMap extends AbstractDebugger {
     private boolean enabled;

@@ -8,7 +8,11 @@ import org.rev317.min.accessors.SceneObjectTile;
 import org.rev317.min.api.methods.utils.Settings;
 import org.rev317.min.api.wrappers.SceneObject;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
 
 /**
  * @author Everel, JKetelaar
@@ -24,7 +28,7 @@ public class SceneObjects {
 
     };
 
-    private static final Filter<SceneObject>      ALL_FILTER = new Filter<SceneObject>() {
+    private static final Filter<SceneObject> ALL_FILTER = new Filter<SceneObject>() {
 
         @Override
         public boolean accept(SceneObject object) {
@@ -32,7 +36,7 @@ public class SceneObjects {
         }
 
     };
-    private static       HashMap<String, Integer> settings   = Context.getInstance().getServerProviderInfo().getSettings();
+    private static final HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets the most important scene objects in game which can be interacted with, filters out: 'walls, wall
@@ -131,29 +135,6 @@ public class SceneObjects {
         return nearestObjects[0];
     }
 
-    private static SceneObject getSceneObjectAtTile(int x, int y) {
-        Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
-        if (sceneTile == null) {
-            return null;
-        }
-
-        final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
-        if (interactiveObjects != null) {
-            for (final SceneObjectTile interactiveObject : interactiveObjects) {
-                if (interactiveObject != null) {
-                    return new SceneObject(interactiveObject, SceneObject.TYPE_INTERACTIVE);
-                }
-            }
-        }
-
-        SceneObjectTile sceneObjectTile = sceneTile.getWallObject();
-        if (sceneObjectTile != null) {
-            return new SceneObject(sceneObjectTile, SceneObject.TYPE_WALL);
-        }
-
-        return null;
-    }
-
     /**
      * Gets every loaded scene object in game
      *
@@ -182,7 +163,7 @@ public class SceneObjects {
      * @return array of sceneobjects, or null if there aren't any
      */
     public static final Collection<SceneObject> getSceneObjectsAtTile(int x, int y) {
-        Ground                 sceneTile    = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
+        Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
         ArrayList<SceneObject> sceneObjects = null;
         if (sceneTile != null) {
             final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
@@ -232,6 +213,29 @@ public class SceneObjects {
         return sceneObjects;
     }
 
+    private static SceneObject getSceneObjectAtTile(int x, int y) {
+        Ground sceneTile = Loader.getClient().getScene().getGroundArray()[Game.getPlane()][x][y];
+        if (sceneTile == null) {
+            return null;
+        }
+
+        final SceneObjectTile[] interactiveObjects = sceneTile.getInteractiveObjects();
+        if (interactiveObjects != null) {
+            for (final SceneObjectTile interactiveObject : interactiveObjects) {
+                if (interactiveObject != null) {
+                    return new SceneObject(interactiveObject, SceneObject.TYPE_INTERACTIVE);
+                }
+            }
+        }
+
+        SceneObjectTile sceneObjectTile = sceneTile.getWallObject();
+        if (sceneObjectTile != null) {
+            return new SceneObject(sceneObjectTile, SceneObject.TYPE_WALL);
+        }
+
+        return null;
+    }
+
     public enum Option {
         FIRST(Settings.getActionByName("menu_scene_object_first_interaction")),
         TALK_TO(Settings.getActionByName("menu_scene_object_first_interaction")),
@@ -263,7 +267,7 @@ public class SceneObjects {
 
         EXAMINE(Settings.getActionByName("menu_scene_object_examine"));
 
-        private int actionId;
+        private final int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;

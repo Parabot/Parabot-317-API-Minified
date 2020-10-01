@@ -4,7 +4,7 @@ import org.parabot.core.paint.AbstractDebugger;
 import org.rev317.min.api.methods.Inventory;
 import org.rev317.min.api.wrappers.Item;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DInventory extends AbstractDebugger {
 

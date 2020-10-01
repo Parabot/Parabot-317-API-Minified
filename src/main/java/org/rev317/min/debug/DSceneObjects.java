@@ -7,7 +7,7 @@ import org.parabot.core.ui.Logger;
 import org.rev317.min.api.methods.SceneObjects;
 import org.rev317.min.api.wrappers.SceneObject;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.util.Comparator;
 
 public class DSceneObjects extends AbstractDebugger {

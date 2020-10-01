@@ -4,7 +4,7 @@ import org.parabot.core.Context;
 import org.parabot.core.paint.AbstractDebugger;
 import org.rev317.min.api.methods.Players;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DAnimation extends AbstractDebugger {
     private boolean enabled;

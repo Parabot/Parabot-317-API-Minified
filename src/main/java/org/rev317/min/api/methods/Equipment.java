@@ -121,7 +121,7 @@ public class Equipment {
         AMMO(13);
 
         private final int INTERFACE_ID = 1688;
-        private int slot;
+        private final int slot;
 
         Slot(int slot) {
             this.slot = slot;

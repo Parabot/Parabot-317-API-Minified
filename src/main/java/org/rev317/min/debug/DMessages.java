@@ -7,7 +7,7 @@ import org.rev317.min.api.events.MessageEvent;
 import org.rev317.min.api.events.listeners.MessageListener;
 import org.rev317.min.script.ScriptEngine;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 /**
  * @author JKetelaar
@@ -17,7 +17,7 @@ public class DMessages extends AbstractDebugger implements MessageListener {
 
     private String message;
     private String sender;
-    private int    type;
+    private int type;
 
     @Override
     public void toggle() {

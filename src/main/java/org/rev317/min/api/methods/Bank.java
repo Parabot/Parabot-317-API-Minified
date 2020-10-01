@@ -17,15 +17,15 @@ import java.util.HashMap;
  * @author Everel, Matt123337, JKetelaar
  */
 public class Bank {
-    public static final int[]                    BANKERS  = new int[]{ 44, 45, 494, 495, 498, 499,
+    public static final int[] BANKERS = new int[]{ 44, 45, 494, 495, 498, 499,
             909, 958, 1036, 2271, 2354, 2355, 3824, 5488, 5901, 4456, 4457,
             4458, 4459, 5912, 5913, 6362, 6532, 6533, 6534, 6535, 7605, 8948,
             9710, 14367 };
-    public static final int[]                    BANKS    = new int[]{ 782, 2213, 2995, 5276, 6084,
+    public static final int[] BANKS = new int[]{ 782, 2213, 2995, 5276, 6084,
             10517, 11402, 11758, 12759, 14367, 19230, 20325, 24914, 25808,
             26972, 29085, 52589, 34752, 35647, 36786, 2012, 2015, 2019, 693,
             4483, 12308, 20607, 21301, 27663, 42192 };
-    private static      HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static final HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets nearest banker
@@ -68,8 +68,8 @@ public class Bank {
             return false;
         }
 
-        SceneObject bank   = getBank();
-        Npc         banker = getBanker();
+        SceneObject bank = getBank();
+        Npc banker = getBanker();
 
         if (bank != null) {
             bank.interact(SceneObjects.Option.USE);
@@ -260,9 +260,9 @@ public class Bank {
             return null;
         }
 
-        ArrayList<Item> items  = new ArrayList<>();
-        int[]           ids    = getBankItemIDs();
-        int[]           stacks = getBankStacks();
+        ArrayList<Item> items = new ArrayList<>();
+        int[] ids = getBankItemIDs();
+        int[] stacks = getBankStacks();
         if (ids != null && stacks != null) {
             for (int i = 0; i < ids.length; i++) {
                 if (ids[i] > 0) {

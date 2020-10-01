@@ -46,10 +46,10 @@ public class Calculations {
      */
     public static int dijkstraDist(final int startX, final int startY, final int destX, final int destY, final boolean findAdjacent) {
         try {
-            final int[][] prev   = new int[104][104];
-            final int[][] dist   = new int[104][104];
-            final int[]   path_x = new int[4000];
-            final int[]   path_y = new int[4000];
+            final int[][] prev = new int[104][104];
+            final int[][] dist = new int[104][104];
+            final int[] path_x = new int[4000];
+            final int[] path_y = new int[4000];
             for (int xx = 0; xx < 104; xx++) {
                 for (int yy = 0; yy < 104; yy++) {
                     prev[xx][yy] = 0;
@@ -64,9 +64,9 @@ public class Calculations {
             int step_ptr = 0;
             path_x[path_ptr] = startX;
             path_y[path_ptr++] = startY;
-            final int blocks[][] = Game.getCollisionFlags();
+            final int[][] blocks = Game.getCollisionFlags();
             final int pathLength = path_x.length;
-            boolean   foundPath  = false;
+            boolean foundPath = false;
             while (step_ptr != path_ptr) {
                 curr_x = path_x[step_ptr];
                 curr_y = path_y[step_ptr];

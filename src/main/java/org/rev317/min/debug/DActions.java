@@ -2,7 +2,7 @@ package org.rev317.min.debug;
 
 import org.parabot.core.paint.AbstractDebugger;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DActions extends AbstractDebugger {
     private static boolean enabled;

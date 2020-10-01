@@ -5,7 +5,7 @@ import org.parabot.core.paint.AbstractDebugger;
 import org.parabot.core.paint.PaintDebugger;
 import org.rev317.min.api.methods.Interfaces;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DInterfaces extends AbstractDebugger {
     private boolean enabled;

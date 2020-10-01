@@ -38,7 +38,7 @@ public enum Emote {
     RABBIT_HOP(18686),
     SKILLCAPE_EMOTE(154);
 
-    private int action3;
+    private final int action3;
 
     Emote(int action3) {
         this.action3 = action3;
