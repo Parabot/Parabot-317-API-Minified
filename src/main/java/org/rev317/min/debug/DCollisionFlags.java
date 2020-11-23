@@ -7,7 +7,7 @@ import org.rev317.min.api.methods.Game;
 import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.wrappers.Tile;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DCollisionFlags extends AbstractDebugger {
     private boolean enabled;

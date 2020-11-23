@@ -6,7 +6,7 @@ import org.parabot.core.reflect.RefClass;
  * @author Everel, JKetelaar, EmmaStone
  */
 public class NpcDef {
-    private org.rev317.min.accessors.NpcDef accessor;
+    private final org.rev317.min.accessors.NpcDef accessor;
 
     public NpcDef(org.rev317.min.accessors.NpcDef accessor) {
         this.accessor = accessor;
@@ -19,6 +19,15 @@ public class NpcDef {
      */
     public int getId() {
         return getId(false);
+    }
+
+    /**
+     * Gets the accessor class
+     *
+     * @return RefClass of accessor
+     */
+    public RefClass getRefClass() {
+        return new RefClass(this.accessor);
     }
 
     /**
@@ -56,14 +65,5 @@ public class NpcDef {
         } catch (Exception e) {
             return getId(true);
         }
-    }
-
-    /**
-     * Gets the accessor class
-     *
-     * @return RefClass of accessor
-     */
-    public RefClass getRefClass() {
-        return new RefClass(this.accessor);
     }
 }

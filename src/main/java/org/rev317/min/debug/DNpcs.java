@@ -7,7 +7,7 @@ import org.parabot.core.ui.Logger;
 import org.rev317.min.api.methods.Npcs;
 import org.rev317.min.api.wrappers.Npc;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DNpcs extends AbstractDebugger {
 

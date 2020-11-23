@@ -8,7 +8,7 @@ import org.rev317.min.api.methods.Npcs;
  * @author Everel
  */
 public final class Npc extends Character {
-    private org.rev317.min.accessors.Npc accessor;
+    private final org.rev317.min.accessors.Npc accessor;
 
     public Npc(org.rev317.min.accessors.Npc accessor, int index) {
         super(accessor, index);
@@ -34,10 +34,10 @@ public final class Npc extends Character {
     }
 
     /**
-    * Gets the name of the Npc
-    *
-    * @return String of the Npc name
-    */
+     * Gets the name of the Npc
+     *
+     * @return String of the Npc name
+     */
     public String getName() {
         return getAccessor().getName();
     }

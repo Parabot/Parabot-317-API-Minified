@@ -3,17 +3,14 @@ package org.rev317.min.debug;
 import org.parabot.core.Context;
 import org.parabot.core.paint.AbstractDebugger;
 import org.parabot.core.paint.PaintDebugger;
-import org.parabot.core.reflect.RefClass;
-import org.parabot.core.reflect.RefMethod;
 import org.parabot.core.ui.Logger;
 import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.api.methods.SceneObjects;
 import org.rev317.min.api.wrappers.SceneObject;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class DSceneObjectsInteractiveObj extends AbstractDebugger {
 

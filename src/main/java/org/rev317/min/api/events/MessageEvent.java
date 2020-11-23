@@ -5,12 +5,12 @@ package org.rev317.min.api.events;
  */
 public final class MessageEvent {
     public static final int TYPE_GENERIC = 0;
-    public static final int TYPE_PLAYER  = 2;
-    public static final int TYPE_TRADE   = 4;
-    public static final int TYPE_DUEL    = 8;
-    private int    type;
-    private String name;
-    private String message;
+    public static final int TYPE_PLAYER = 2;
+    public static final int TYPE_TRADE = 4;
+    public static final int TYPE_DUEL = 8;
+    private final int type;
+    private final String name;
+    private final String message;
 
     public MessageEvent(final int type, String name, String msg) {
         this.type = type;

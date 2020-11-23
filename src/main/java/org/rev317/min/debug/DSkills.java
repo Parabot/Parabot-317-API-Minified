@@ -3,7 +3,7 @@ package org.rev317.min.debug;
 import org.parabot.core.paint.AbstractDebugger;
 import org.rev317.min.api.methods.Skill;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DSkills extends AbstractDebugger {
 

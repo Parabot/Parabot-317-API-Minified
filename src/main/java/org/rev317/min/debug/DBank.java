@@ -5,7 +5,7 @@ import org.parabot.core.ui.Logger;
 import org.rev317.min.api.methods.Bank;
 import org.rev317.min.api.wrappers.Item;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DBank extends AbstractDebugger {
 

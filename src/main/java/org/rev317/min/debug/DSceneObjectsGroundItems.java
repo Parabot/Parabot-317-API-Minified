@@ -8,7 +8,7 @@ import org.parabot.environment.api.utils.Filter;
 import org.rev317.min.api.methods.SceneObjects;
 import org.rev317.min.api.wrappers.SceneObject;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.util.Arrays;
 import java.util.Collections;
 

@@ -4,7 +4,7 @@ import org.parabot.core.Context;
 import org.parabot.core.paint.AbstractDebugger;
 import org.parabot.environment.input.Mouse;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DMouse extends AbstractDebugger {
 

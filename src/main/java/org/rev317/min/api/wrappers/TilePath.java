@@ -5,7 +5,7 @@ package org.rev317.min.api.wrappers;
  */
 public class TilePath {
 
-    private Tile[] tiles;
+    private final Tile[] tiles;
 
     public TilePath(Tile[] tiles) {
         this.tiles = tiles;

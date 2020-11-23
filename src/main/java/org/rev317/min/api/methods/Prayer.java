@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 /**
  * @author JKetelaar, Fryslan
- *         TODO Set the actual level requirements
- *         TODO Set curses setting and action ids.
+ * TODO Set the actual level requirements
+ * TODO Set curses setting and action ids.
  */
 public class Prayer {
 
@@ -103,9 +103,9 @@ public class Prayer {
         RIGOUR(710, 23113, 1),
         AUGURY(711, 23116, 1);
 
-        private int setting;
-        private int action;
-        private int level;
+        private final int setting;
+        private final int action;
+        private final int level;
 
         Normal(int setting, int action, int level) {
             this.setting = setting;
@@ -175,9 +175,9 @@ public class Prayer {
         SOUL_SPLIT(628, 22539, 92),
         TURMOIL(629, 22541, 95);
 
-        private int setting;
-        private int action;
-        private int level;
+        private final int setting;
+        private final int action;
+        private final int level;
 
         Curse(int setting, int action, int level) {
             this.setting = setting;

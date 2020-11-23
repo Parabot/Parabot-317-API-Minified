@@ -54,14 +54,10 @@ public enum Settings {
     MENU_ITEM_SIXTH_INTERACTION(1125),
     MENU_ITEM_SEVENTH_INTERACTION(870);
 
-    private int id;
+    private final int id;
 
     Settings(int id) {
         this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public static int getActionByName(String name) {
@@ -72,5 +68,9 @@ public enum Settings {
         }
 
         return 0;
+    }
+
+    public int getId() {
+        return id;
     }
 }

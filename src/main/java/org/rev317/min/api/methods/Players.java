@@ -26,7 +26,7 @@ public class Players {
 
     };
 
-    private static final Filter<Player>           ALL_FILTER = new Filter<Player>() {
+    private static final Filter<Player> ALL_FILTER = new Filter<Player>() {
 
         @Override
         public boolean accept(Player p) {
@@ -34,7 +34,7 @@ public class Players {
         }
 
     };
-    private static       HashMap<String, Integer> settings   = Context.getInstance().getServerProviderInfo().getSettings();
+    private static final HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Gets all players except local player
@@ -44,8 +44,8 @@ public class Players {
      * @return all players
      */
     public static final Player[] getPlayers(final Filter<Player> filter) {
-        final Client                            client     = Loader.getClient();
-        ArrayList<Player>                       playerList = new ArrayList<>();
+        final Client client = Loader.getClient();
+        ArrayList<Player> playerList = new ArrayList<>();
         final org.rev317.min.accessors.Player[] accPlayers = client.getPlayers();
         for (int i = 0; i < accPlayers.length; i++) {
             if (accPlayers[i] == null) {
@@ -120,7 +120,7 @@ public class Players {
 
         EXAMINE(Settings.getActionByName("menu_character_examine"));
 
-        private int actionId;
+        private final int actionId;
 
         Option(int actionId) {
             this.actionId = actionId;

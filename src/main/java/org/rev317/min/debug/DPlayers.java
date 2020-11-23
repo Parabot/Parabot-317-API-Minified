@@ -7,7 +7,7 @@ import org.parabot.core.ui.Logger;
 import org.rev317.min.api.methods.Players;
 import org.rev317.min.api.wrappers.Player;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 /**
  * @author JKetelaar

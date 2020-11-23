@@ -15,7 +15,7 @@ import java.util.HashMap;
  */
 public class Trading {
 
-    private static HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
+    private static final HashMap<String, Integer> settings = Context.getInstance().getServerProviderInfo().getSettings();
 
     /**
      * Checks if the first or the second screen is open, based on the given boolean
@@ -52,9 +52,9 @@ public class Trading {
     }
 
     public static Item[] getMyOffer() {
-        ArrayList<Item> items  = new ArrayList<>();
-        int[]           ids    = getItemIDs(Settings.getActionByName("my_offer_interface_id"));
-        int[]           stacks = getItemStacks(Settings.getActionByName("my_offer_interface_id"));
+        ArrayList<Item> items = new ArrayList<>();
+        int[] ids = getItemIDs(Settings.getActionByName("my_offer_interface_id"));
+        int[] stacks = getItemStacks(Settings.getActionByName("my_offer_interface_id"));
         for (int i = 0; i < ids.length; i++) {
             if (ids[i] > 0) {
                 items.add(new Item(ids[i], stacks[i], i));
@@ -64,38 +64,15 @@ public class Trading {
     }
 
     public static Item[] getOpponentsOffer() {
-        ArrayList<Item> items  = new ArrayList<>();
-        int[]           ids    = getItemIDs(Settings.getActionByName("opponent_offer_interface_id"));
-        int[]           stacks = getItemStacks(Settings.getActionByName("opponent_offer_interface_id"));
+        ArrayList<Item> items = new ArrayList<>();
+        int[] ids = getItemIDs(Settings.getActionByName("opponent_offer_interface_id"));
+        int[] stacks = getItemStacks(Settings.getActionByName("opponent_offer_interface_id"));
         for (int i = 0; i < ids.length; i++) {
             if (ids[i] > 0) {
                 items.add(new Item(ids[i], stacks[i], i));
             }
         }
         return items.toArray(new Item[items.size()]);
-    }
-
-    private static int[] getItemIDs(int interfaceID) {
-        Interface i;
-        if ((i = Interfaces.getInterfaces()[interfaceID]) != null) {
-            int[] items;
-            if ((items = i.getItems()) != null && items.length > 0) {
-                return items;
-            }
-        }
-        return new int[0];
-    }
-
-    private static int[] getItemStacks(int interfaceID) {
-        Interface i;
-
-        if ((i = Interfaces.getInterfaces()[interfaceID]) != null) {
-            int[] stacks;
-            if ((stacks = i.getStackSizes()) != null && stacks.length > 0) {
-                return stacks;
-            }
-        }
-        return new int[0];
     }
 
     /**
@@ -126,5 +103,28 @@ public class Trading {
                 return !isOpen();
             }
         }, 2500);
+    }
+
+    private static int[] getItemIDs(int interfaceID) {
+        Interface i;
+        if ((i = Interfaces.getInterfaces()[interfaceID]) != null) {
+            int[] items;
+            if ((items = i.getItems()) != null && items.length > 0) {
+                return items;
+            }
+        }
+        return new int[0];
+    }
+
+    private static int[] getItemStacks(int interfaceID) {
+        Interface i;
+
+        if ((i = Interfaces.getInterfaces()[interfaceID]) != null) {
+            int[] stacks;
+            if ((stacks = i.getStackSizes()) != null && stacks.length > 0) {
+                return stacks;
+            }
+        }
+        return new int[0];
     }
 }

@@ -7,7 +7,7 @@ import org.parabot.core.ui.Logger;
 import org.rev317.min.api.methods.GroundItems;
 import org.rev317.min.api.wrappers.GroundItem;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class DGroundItems extends AbstractDebugger {
 

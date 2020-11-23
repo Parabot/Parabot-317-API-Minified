@@ -17,10 +17,11 @@ import org.rev317.min.accessors.Client;
 import org.rev317.min.script.ScriptEngine;
 import org.rev317.min.ui.BotMenu;
 
-import javax.swing.*;
 import java.applet.Applet;
 import java.io.File;
 import java.net.URL;
+
+import javax.swing.JMenuBar;
 
 /**
  * @author Everel, JKetelaar
@@ -36,10 +37,10 @@ public class Loader extends ServerProvider {
     @Override
     public Applet fetchApplet() {
         try {
-            final Context        context     = Context.getInstance();
+            final Context context = Context.getInstance();
             final ASMClassLoader classLoader = context.getASMClassLoader();
-            final Class<?>       clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
-            Object               instance    = clientClass.newInstance();
+            final Class<?> clientClass = classLoader.loadClass(Context.getInstance().getServerProviderInfo().getClientClass());
+            Object instance = clientClass.newInstance();
 
             return (Applet) instance;
         } catch (Exception e) {
