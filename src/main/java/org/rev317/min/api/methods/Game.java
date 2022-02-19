@@ -1,6 +1,6 @@
 package org.rev317.min.api.methods;
 
-import org.parabot.api.misc.TextUtils;
+import org.parabot.api.misc.StringUtils;
 import org.parabot.environment.api.utils.Time;
 import org.parabot.environment.scripts.framework.SleepCondition;
 import org.rev317.min.Loader;
@@ -182,7 +182,7 @@ public class Game {
      * @param username String
      */
     public static void addFriend(String username) {
-        Loader.getClient().addFriend(TextUtils.longForName(TextUtils.fixName(username)));
+        Loader.getClient().addFriend(StringUtils.longForName(StringUtils.fixName(username)));
     }
 
     /**
@@ -191,6 +191,6 @@ public class Game {
      * @param username String
      */
     public static void deleteFriend(String username) {
-        Loader.getClient().deleteFriend(TextUtils.longForName(TextUtils.fixName(username)));
+        Loader.getClient().deleteFriend(StringUtils.longForName(StringUtils.fixName(username)));
     }
 }
